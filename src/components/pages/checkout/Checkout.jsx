@@ -75,7 +75,7 @@ const Checkout = () => {
     });
     try {
       let response = await axios.post(
-        "https://backend-hogar.vercel.app/create_preference",
+        "https://back-prueba-kdt33t5ey-yaninavilte.vercel.app/create_preference",
         {
           items: newArray,
           shipment_cost: shipmentCost,
