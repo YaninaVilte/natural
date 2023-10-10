@@ -41,7 +41,7 @@ const Dashboard = () => {
   };
 
   const updateShipment = async()=>{
-    updateDoc( doc(db, "shipment", "HxMuNKLUglVoHjAyosML"), {cost:shipmentCost } )
+    updateDoc(doc(db, "shipment", "lXy4L7rWxnuFKqPoisQW"), {cost:shipmentCost } )
     setOpen(false)
   }
 
