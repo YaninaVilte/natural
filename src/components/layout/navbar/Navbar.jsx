@@ -35,7 +35,7 @@ function Navbar(props) {
   const handleLogout = () => {
     logout();
     logoutContext();
-    navigate("/login");
+    navigate("/");
   };
 
   const drawer = (

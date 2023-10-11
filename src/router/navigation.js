@@ -2,6 +2,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import StoreIcon from '@mui/icons-material/Store';
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import ShopIcon from '@mui/icons-material/Shop';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 export const menuItems = [
     
    
@@ -28,5 +29,11 @@ export const menuItems = [
         path: "/user-orders",
         title: "Mis compras",
         Icon: ShopIcon
+    },
+    {
+        id: "Login",
+        path: "/Login",
+        title: "Admin",
+        Icon: AdminPanelSettingsIcon,
     }
 ]
