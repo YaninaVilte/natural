@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { db } from "../../../firebaseConfig";
 import { getDocs, collection } from "firebase/firestore";
 import { Link } from "react-router-dom";
+import { Box, Card, CardActionArea, CardContent, CardMedia, Grid, Typography } from "@mui/material";
 
 const ItemListContainer = () => {
   const [products, setProducts] = useState([]);
@@ -23,18 +24,39 @@ const ItemListContainer = () => {
   return (
     <div>
       <h1>Estoy en el shop</h1>
-
+      <Box sx={{ mt: 2, mx: 3 }}>
+        <Grid container spacing={2} direction="row" sx={{ mt: 2}}>
       {products.map((product) => {
         return (
-            <div key={product.id} style={{ border: "2px solid black" }}>
-              <img src={product.image} style={{ width: "200px" }} alt="" />
-              <h4>{product.title}</h4>
-              <h4>{product.unit_price}</h4>
-              <h4>{product.stock}</h4>
-                <Link to={`/itemDetail/${product.id}`}>Ver detalle</Link>
-            </div>
+          
+          <Grid key={product.id} item
+            xs={4} sm={3} md={2}>
+              <Link to={`/itemDetail/${product.id}`}>
+            <Card sx={{ maxWidth: 250 }}>
+              <CardActionArea sx={{ mt: 2, mx: 0, my: 0 }}>
+                <CardMedia component="img" src={product.image} sx={{ width: "200px", height: "194px", mx: 'auto' }} alt=""/>
+                  <CardContent>
+                    <Typography>
+                      {product.title}
+                    </Typography>
+                      <Typography>
+                        $ {product.unit_price}
+                      </Typography>
+                      <Typography>
+                        Stock {product.stock}
+                      </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+              </Link>
+              </Grid>
+            
+          
         );
       })}
+      </Grid>
+      </Box>
+      
     </div>
   );
 };

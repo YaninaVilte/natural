@@ -19,6 +19,8 @@ import { menuItems } from "../../../router/navigation";
 import { logout } from "../../../firebaseConfig";
 import { AuthContext } from "../../../context/AuthContext";
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import LogoNatural from "../../../img/natural.jpg"
+
 const drawerWidth = 200;
 
 function Navbar(props) {
@@ -102,9 +104,9 @@ function Navbar(props) {
         <Toolbar
           sx={{ gap: "20px", display: "flex", justifyContent: "space-between" }}
         >
-          <Link to="/" style={{ color: "whitesmoke" }}>
-            Natural Icy Market
-          </Link>
+          <Link to="/">
+            <img src="src\img\natural.jpg" style={{ width: "200px" }} alt="Descripción de la imagen" />
+</Link>
           <IconButton
             color="secondary.primary"
             aria-label="open drawer"
