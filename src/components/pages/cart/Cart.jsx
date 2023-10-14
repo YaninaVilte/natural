@@ -16,8 +16,10 @@ const Cart = () => {
       {cart.map((product) => {
         return (
           <div key={product.id} style={{width: "200px", border: "2px solid red"}}>
-            <h6>{product.title}</h6>
-            <h6>{product.quantity}</h6>
+            <h6><small>Producto </small> {product.title}</h6>
+            <h6><small>Precio </small>${product.unit_price}</h6>
+            <h6><small>Cantidad </small>{product.quantity}</h6>
+            <h6><small>Subtotal </small>${product.quantity * product.unit_price}</h6>
             <button onClick={()=>deleteById(product.id)}>Eliminar</button>
           </div>
         );

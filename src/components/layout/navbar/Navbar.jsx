@@ -19,7 +19,7 @@ import { menuItems } from "../../../router/navigation";
 import { logout } from "../../../firebaseConfig";
 import { AuthContext } from "../../../context/AuthContext";
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import LogoNatural from "../../../img/natural.jpg"
+import LogoNatural from "../../../assets/natural.jpg"
 
 const drawerWidth = 200;
 
