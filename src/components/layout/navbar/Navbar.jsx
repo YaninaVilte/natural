@@ -105,7 +105,7 @@ function Navbar(props) {
           sx={{ gap: "20px", display: "flex", justifyContent: "space-between" }}
         >
           <Link to="/">
-            <img src="src\img\natural.jpg" style={{ width: "200px" }} alt="Descripción de la imagen" />
+            <img src={LogoNatural} style={{ width: "200px" }} alt="Descripción de la imagen" />
 </Link>
           <IconButton
             color="secondary.primary"

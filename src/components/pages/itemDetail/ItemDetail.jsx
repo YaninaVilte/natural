@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { db } from "../../../firebaseConfig";
 import { getDoc, collection, doc } from "firebase/firestore";
-import { Button } from "@mui/material";
+import { Box, Button, Card, Grid } from "@mui/material";
 import { CartContext } from "../../../context/CartContext";
 
 const ItemDetail = () => {
@@ -52,29 +52,37 @@ const ItemDetail = () => {
   return (
     <div>
       <h1>detalle</h1>
-
-      {product && (
-        <div>
-          <h2>{product.title}</h2>
-          <img src={product.image} style={{ width: "200px" }} alt="" />
-        </div>
-      )}
-  {
-    quantity && <h6>Ya tienes {quantity} en el carrito</h6>
-  }
-  {
-    product?.stock === quantity && <h6>Ya tienes el maximo en el carrito</h6>
-  }
-      <div style={{ display: "flex" }}>
-        <Button variant="contained" onClick={addOne}>
-          +
-        </Button>
-        <h4>{counter}</h4>
-        <Button variant="contained" onClick={subOne}>
-          -
-        </Button>
-      </div>
-      <Button onClick={onAdd}>Agregar al carrito</Button>
+      <Card sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+          <Grid container>
+            <Grid item xs={12} sm={6}>
+              {product && (
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                  <img src={product.image} style={{ width: "500px"}} alt="" />
+              </div>
+              )}
+            </Grid>
+            <Grid item xs={12} sm={6} sx={{ p: 2 }}>
+              {product && (
+                <div>
+                  <h4>Categoría: {product.category}</h4>
+                  <h2>{product.title}</h2>
+                  <h2>$ {product.unit_price}</h2>
+                  <h3>{product.description}</h3>
+                </div>
+              )}
+              {quantity && <h6>Ya tienes {quantity} en el carrito</h6>}
+              {product?.stock === quantity && <h6>Ya tienes el máximo en el carrito</h6>}
+              <div style={{ display: "flex" }}>
+                <Button variant="contained" onClick={subOne}>-</Button>
+                <h4>{counter}</h4>
+                <Button variant="contained" onClick={addOne}>+</Button>
+                <Button onClick={onAdd}>Agregar al carrito</Button>
+              </div>
+            </Grid>
+          </Grid>
+        </Box>
+      </Card>
     </div>
   );
 };
