@@ -5,14 +5,14 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Button, IconButton, TextField } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { db } from "../../../firebaseConfig";
 import { deleteDoc, doc } from "firebase/firestore";
 import { useState } from "react";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+
 import Modal from "@mui/material/Modal";
 import ProductsForm from "./ProductsForm";
 
@@ -55,13 +55,13 @@ const ProductsList = ({ products, setIsChange }) => {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell align="left">id</TableCell>
-              <TableCell align="left">titulo</TableCell>
-              <TableCell align="left">precio</TableCell>
-              <TableCell align="left">stock</TableCell>
-              <TableCell align="left">imagen</TableCell>
-              <TableCell align="left">categoria</TableCell>
-              <TableCell align="left">acciones</TableCell>
+              <TableCell align="left">Id</TableCell>
+              <TableCell align="left">Titulo</TableCell>
+              <TableCell align="left">Precio</TableCell>
+              <TableCell align="left">Stock</TableCell>
+              <TableCell align="left">Imagen</TableCell>
+              <TableCell align="left">Categoria</TableCell>
+              <TableCell align="left">Acciones</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

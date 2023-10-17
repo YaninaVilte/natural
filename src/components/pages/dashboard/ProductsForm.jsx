@@ -19,18 +19,38 @@ const ProductsForm = ({
     image: "",
   });
   const [file, setFile] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(productSelected?.image || "");
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+
+  const [isUploadButtonVisible, setIsUploadButtonVisible] = useState(true);
+
 
   const handleImage = async () => {
     setIsLoading(true);
-    let url = await uploadFile(file);
 
-    if (productSelected) {
-      setProductSelected({ ...productSelected, image: url });
-    } else {
-      setNewProduct({ ...newProduct, image: url });
+    if (file) {
+      let url = await uploadFile(file);
+
+      if (productSelected) {
+        setProductSelected({ ...productSelected, image: url });
+        updateImageInDatabase(productSelected.id, url);
+      } else {
+        setNewProduct({ ...newProduct, image: url });
+      }
+
+      setSelectedImage(url);
     }
 
+    setIsImageLoaded(true);
+    setIsUploadButtonVisible(false);
     setIsLoading(false);
+  };
+
+  const updateImageInDatabase = async (productId, imageUrl) => {
+    const productsCollection = collection(db, "products");
+    const productRef = doc(productsCollection, productId);
+
+    await updateDoc(productRef, { image: imageUrl });
   };
 
   const handleChange = (e) => {
@@ -71,6 +91,8 @@ const ProductsForm = ({
       });
     }
   };
+
+
 
   return (
     <div>
@@ -118,13 +140,21 @@ const ProductsForm = ({
           name="category"
           onChange={handleChange}
         />
-        <TextField type="file" onChange={(e) => setFile(e.target.files[0])} />
-        {file && (
+        {!selectedImage && (
+          <TextField type="file" onChange={(e) => setFile(e.target.files[0])} />
+        )}
+        {selectedImage && (
+          <div>
+            <img src={selectedImage} alt="Imagen Seleccionada" style={{ maxWidth: "100px" }} />
+            <Button onClick={() => setSelectedImage("")}>Eliminar Imagen</Button>
+          </div>
+        )}
+        {isUploadButtonVisible && file && (
           <Button onClick={handleImage} type="button">
             Cargar imagen
           </Button>
         )}
-        {file && !isLoading && (
+        {isImageLoaded && (
           <Button variant="contained" type="submit">
             {productSelected ? "modificar" : "crear"}
           </Button>
