@@ -21,7 +21,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: 800,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -59,7 +59,10 @@ const ProductsList = ({ products, setIsChange }) => {
               <TableCell align="left">Titulo</TableCell>
               <TableCell align="left">Precio</TableCell>
               <TableCell align="left">Stock</TableCell>
-              <TableCell align="left">Imagen</TableCell>
+              <TableCell align="left">Imagen principal</TableCell>
+              <TableCell align="left">Imagen 1</TableCell>
+              <TableCell align="left">Imagen 2</TableCell>
+              <TableCell align="left">Imagen 3</TableCell>
               <TableCell align="left">Categoria</TableCell>
               <TableCell align="left">Acciones</TableCell>
             </TableRow>
@@ -85,6 +88,27 @@ const ProductsList = ({ products, setIsChange }) => {
                 <TableCell component="th" scope="row" align="left">
                   <img
                     src={product.image}
+                    alt=""
+                    style={{ width: "80px", height: "80px" }}
+                  />
+                </TableCell>
+                <TableCell component="th" scope="row" align="left">
+                  <img
+                    src={product.image1}
+                    alt=""
+                    style={{ width: "80px", height: "80px" }}
+                  />
+                </TableCell>
+                <TableCell component="th" scope="row" align="left">
+                  <img
+                    src={product.image2}
+                    alt=""
+                    style={{ width: "80px", height: "80px" }}
+                  />
+                </TableCell>
+                <TableCell component="th" scope="row" align="left">
+                  <img
+                    src={product.image3}
                     alt=""
                     style={{ width: "80px", height: "80px" }}
                   />

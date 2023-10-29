@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { db } from "../../../firebaseConfig";
 import { getDoc, collection, doc } from "firebase/firestore";
-import { Box, Button, Card, Grid } from "@mui/material";
+import { Box, Button, Card, Grid, CardMedia } from "@mui/material";
 import { CartContext } from "../../../context/CartContext";
 
 const ItemDetail = () => {
@@ -58,7 +58,10 @@ const ItemDetail = () => {
             <Grid item xs={12} sm={6}>
               {product && (
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-                  <img src={product.image} style={{ width: "500px"}} alt="" />
+                  <CardMedia component="img" src={product.image} alt="" />
+                  <CardMedia component="img" src={product.image1} alt="" />
+                  <CardMedia component="img" src={product.image2} alt="" />
+                  <CardMedia component="img" src={product.image3} alt="" />
               </div>
               )}
             </Grid>

@@ -34,7 +34,7 @@ const ItemListContainer = () => {
               <Link to={`/itemDetail/${product.id}`}>
             <Card sx={{ maxWidth: 250 }}>
               <CardActionArea sx={{ mt: 2, mx: 0, my: 0 }}>
-                <CardMedia component="img" src={product.image} sx={{ width: "200px", height: "194px", mx: 'auto' }} alt=""/>
+                <CardMedia component="img" src={product.image} alt=""/>
                   <CardContent>
                     <Typography>
                       {product.title}

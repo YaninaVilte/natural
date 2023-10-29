@@ -35,6 +35,7 @@ const Dashboard = () => {
       setProducts(newArr);
     });
   }, [isChange]);
+  
 
   const handleClose = () => {
     setOpen(false);

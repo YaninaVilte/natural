@@ -81,3 +81,24 @@ export const uploadFile = async (file)=>{
   let url = await getDownloadURL(storageRef)
   return url
 }
+
+export const uploadFile1 = async (file) => {
+  const storageRef = ref(storage, v4())
+  await uploadBytes(storageRef, file)
+  let url1 = await getDownloadURL(storageRef)
+  return url1
+}
+
+export const uploadFile2 = async (file) => {
+  const storageRef = ref(storage, v4())
+  await uploadBytes(storageRef, file)
+  let url2 = await getDownloadURL(storageRef)
+  return url2
+}
+
+export const uploadFile3 = async (file) => {
+  const storageRef = ref(storage, v4())
+  await uploadBytes(storageRef, file)
+  let url3 = await getDownloadURL(storageRef)
+  return url3
+}
