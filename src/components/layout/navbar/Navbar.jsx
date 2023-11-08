@@ -60,20 +60,20 @@ function Navbar(props) {
           );
         })}
 
-{
-  user.rol === rolAdmin &&
-        <Link to={"/dashboard"}>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <DashboardIcon sx={{ color: "whitesmoke" }} />
-              </ListItemIcon>
-              <ListItemText primary={"Dashboard"} sx={{ color: "whitesmoke" }} />
-            </ListItemButton>
-          </ListItem>
-        </Link>
+        {
+          user.rol === rolAdmin &&
+          <Link to={"/dashboard"}>
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <DashboardIcon sx={{ color: "whitesmoke" }} />
+                </ListItemIcon>
+                <ListItemText primary={"Dashboard"} sx={{ color: "whitesmoke" }} />
+              </ListItemButton>
+            </ListItem>
+          </Link>
 
-}
+        }
         <ListItem disablePadding>
           <ListItemButton onClick={handleLogout}>
             <ListItemIcon>
@@ -106,7 +106,7 @@ function Navbar(props) {
         >
           <Link to="/">
             <img src={LogoNatural} style={{ width: "200px" }} alt="Descripción de la imagen" />
-</Link>
+          </Link>
           <IconButton
             color="secondary.primary"
             aria-label="open drawer"
