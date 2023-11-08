@@ -3,6 +3,10 @@ import { db } from "../../../firebaseConfig";
 import { getDocs, collection } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import { Box, Card, CardActionArea, CardContent, CardMedia, Grid, Typography } from "@mui/material";
+import { createTheme } from "@mui/material";
+import theme from "../../../temaConfig";
+import { ThemeProvider } from "@emotion/react";
+
 
 const ItemListContainer = () => {
   const [products, setProducts] = useState([]);
@@ -28,17 +32,19 @@ const ItemListContainer = () => {
         <Grid container spacing={2} direction="row" sx={{ mt: 2}}>
       {products.map((product) => {
         return (
-          
           <Grid key={product.id} item
-            xs={4} sm={3} md={2}>
+            lg={2} md={3} sm={4} xs={6}>
               <Link to={`/itemDetail/${product.id}`}>
             <Card sx={{ maxWidth: 250 }}>
               <CardActionArea sx={{ mt: 2, mx: 0, my: 0 }}>
                 <CardMedia component="img" src={product.image} alt=""/>
                   <CardContent>
-                    <Typography>
+                    <ThemeProvider theme={theme}>
+                      <Typography variant="h3">
                       {product.title}
                     </Typography>
+                    </ThemeProvider>
+                    
                       <Typography>
                         $ {product.unit_price}
                       </Typography>
@@ -50,8 +56,6 @@ const ItemListContainer = () => {
               </Card>
               </Link>
               </Grid>
-            
-          
         );
       })}
       </Grid>
