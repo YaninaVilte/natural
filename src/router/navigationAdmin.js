@@ -1,6 +1,8 @@
 import HomeIcon from '@mui/icons-material/Home';
 import StoreIcon from '@mui/icons-material/Store';
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+
 
 export const menuItemsAdmin = [
 
@@ -23,15 +25,15 @@ export const menuItemsAdmin = [
         Icon: ShoppingCartCheckoutIcon
     },
     {
-        id: "userOrders",
-        path: "/user-orders",
-        title: "Mis compras",
-        Icon: ShopIcon,
+        id: "cart",
+        path: "/cart",
+        title: "Carrito",
+        Icon: ShoppingCartCheckoutIcon
     },
     {
-        id: "Dashboard",
-        path: "/Dashboard",
-        title: "Dashboard",
+        id: "Login",
+        path: "/Login",
+        title: "Admin",
         Icon: AdminPanelSettingsIcon,
     }
 ]

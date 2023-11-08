@@ -52,47 +52,60 @@ function Navbar(props) {
 
 
       <List>
-        {menuItems.map(({ id, path, title, Icon }) => {
-          return (
-            <Link key={id} to={path}>
-              <ListItem disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    <Icon sx={{ color: "whitesmoke" }} />
-                  </ListItemIcon>
-                  <ListItemText primary={title} sx={{ color: "whitesmoke" }} />
-                </ListItemButton>
-              </ListItem>
-            </Link>
-          );
-        })}
+  {user.rol === rolAdmin ? (
+    <>
+      {menuItemsAdmin.map(({ id, path, title, Icon }) => (
+        <Link key={id} to={path}>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <Icon sx={{ color: "whitesmoke" }} />
+              </ListItemIcon>
+              <ListItemText primary={title} sx={{ color: "whitesmoke" }} />
+            </ListItemButton>
+          </ListItem>
+        </Link>
+      ))}
+      <ListItem disablePadding>
+        <ListItemButton>
+          <ListItemIcon>
+            <DashboardIcon sx={{ color: "whitesmoke" }} />
+          </ListItemIcon>
+          <ListItemText primary={"Dashboard"} sx={{ color: "whitesmoke" }} />
+        </ListItemButton>
+      </ListItem>
+      <ListItem disablePadding>
+    <ListItemButton onClick={handleLogout}>
+      <ListItemIcon>
+        <LogoutIcon sx={{ color: "whitesmoke" }} />
+      </ListItemIcon>
+      <ListItemText primary={"Cerrar sesion"} sx={{ color: "whitesmoke" }} />
+    </ListItemButton>
+  </ListItem>
 
-        {
-          user.rol === rolAdmin &&
-          <Link to={"/dashboard"}>
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <DashboardIcon sx={{ color: "whitesmoke" }} />
-                </ListItemIcon>
-                <ListItemText primary={"Dashboard"} sx={{ color: "whitesmoke" }} />
-              </ListItemButton>
-            </ListItem>
-          </Link>
+    </>
+  ) : (
+    <>
+      {menuItems.map(({ id, path, title, Icon }) => (
+        <Link key={id} to={path}>
+          <ListItem disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <Icon sx={{ color: "whitesmoke" }} />
+              </ListItemIcon>
+              <ListItemText primary={title} sx={{ color: "whitesmoke" }} />
+            </ListItemButton>
+          </ListItem>
+        </Link>
+      ))}
+    </>
+  )}
+  
+</List>
 
-        }
-        <ListItem disablePadding>
-          <ListItemButton onClick={handleLogout}>
-            <ListItemIcon>
-              <LogoutIcon sx={{ color: "whitesmoke" }} />
-            </ListItemIcon>
-            <ListItemText
-              primary={"Cerrar sesion"}
-              sx={{ color: "whitesmoke" }}
-            />
-          </ListItemButton>
-        </ListItem>
-      </List>
+
+
+
     </div>
   );
 
@@ -114,7 +127,51 @@ function Navbar(props) {
           <Link to="/">
             <img src={LogoNatural} style={{ width: "200px" }} alt="Descripción de la imagen" />
           </Link>
-          <IconButton
+
+
+          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+  {user.rol === rolAdmin ? (
+    <>
+      {menuItemsAdmin.map(({ id, path, title }) => (
+        <IconButton
+          component={Link}
+          key={id}
+          to={path}
+          sx={{ color: "whitesmoke", textDecoration: "none" }}
+        >
+          {title}
+        </IconButton>
+      ))}
+      <IconButton
+        component={Link}
+        to={"/dashboard"}
+        sx={{ color: "whitesmoke", textDecoration: "none" }}
+      >
+        Dashboard
+      </IconButton>
+      <IconButton onClick={handleLogout} sx={{ color: "whitesmoke" }}>
+    Cerrar sesión
+  </IconButton>
+    </>
+  ) : (
+    menuItems.map(({ id, path, title }) => (
+      <IconButton
+        component={Link}
+        key={id}
+        to={path}
+        sx={{ color: "whitesmoke", textDecoration: "none" }}
+      >
+        {title}
+      </IconButton>
+    ))
+  )}
+
+  
+</Box>
+
+
+
+          <IconButton sx={{ mr: 2, display: { sm: 'none' } }}
             color="secondary.primary"
             aria-label="open drawer"
             edge="start"
