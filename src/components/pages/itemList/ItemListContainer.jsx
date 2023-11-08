@@ -3,7 +3,6 @@ import { db } from "../../../firebaseConfig";
 import { getDocs, collection } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import { Box, Card, CardActionArea, CardContent, CardMedia, Grid, Typography } from "@mui/material";
-import { createTheme } from "@mui/material";
 import theme from "../../../temaConfig";
 import { ThemeProvider } from "@emotion/react";
 

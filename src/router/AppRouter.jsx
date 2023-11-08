@@ -6,15 +6,18 @@ import Register from "../components/pages/register/Register";
 import ForgotPassword from "../components/pages/forgotPassword/ForgotPassword";
 import Dashboard from "../components/pages/dashboard/Dashboard";
 import ProtectedAdmin from "./ProtectedAdmin";
+import Footer from "../components/layout/footer/Footer";
 
 const AppRouter = () => {
   return (
     <Routes>
-      <Route element={<Navbar />}>
+      <Route element={<div><Navbar /><Footer /></div>}>
         {routes.map(({ id, path, Element }) => (
           <Route key={id} path={path} element={<Element />} />
         ))}
       </Route>
+
+      
 
       {/* PARA LOS USUARIOS ADMIN */}
       <Route element={<ProtectedAdmin />}>
@@ -30,6 +33,7 @@ const AppRouter = () => {
       {/* forgot password  */}
       <Route path="/forgot-password" element={<ForgotPassword />} />
 
+      {/* Nota: Asegúrate de agregar el componente Footer dentro del Route */}
       <Route path="*" element={<h1>Not found</h1>} />
     </Routes>
   );
