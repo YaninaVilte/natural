@@ -3,6 +3,7 @@ import { createTheme } from "@mui/material";
 const theme = createTheme({
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   typography: {
     fontFamily: ['Agbalumo'].join(','),
     h3: {
@@ -24,6 +25,8 @@ const theme = createTheme({
 =======
 =======
 >>>>>>> 0fa45505b7bfb38c9ecd793f4af03a5b84962872
+=======
+>>>>>>> 0fa45505b7bfb38c9ecd793f4af03a5b84962872
     typography: {
         fontFamily: ['Agbalumo'].join(','),
         h3: {
@@ -43,6 +46,9 @@ const theme = createTheme({
         },
     },
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 0fa45505b7bfb38c9ecd793f4af03a5b84962872
+=======
 >>>>>>> 0fa45505b7bfb38c9ecd793f4af03a5b84962872
 =======
 >>>>>>> 0fa45505b7bfb38c9ecd793f4af03a5b84962872

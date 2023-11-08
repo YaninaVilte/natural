@@ -5,7 +5,10 @@ import { Link } from "react-router-dom";
 import { Box, Card, CardActionArea, CardContent, CardMedia, Grid, Typography } from "@mui/material";
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { createTheme } from "@mui/material";
+=======
+>>>>>>> 0fa45505b7bfb38c9ecd793f4af03a5b84962872
 =======
 >>>>>>> 0fa45505b7bfb38c9ecd793f4af03a5b84962872
 =======
