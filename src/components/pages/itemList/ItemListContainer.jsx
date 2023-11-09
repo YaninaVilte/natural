@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import { Box, Card, CardActionArea, CardContent, CardMedia, Grid, Typography } from "@mui/material";
 import theme from "../../../temaConfig";
 import { ThemeProvider } from "@emotion/react";
-
+import { RotatingTriangles } from  'react-loader-spinner'
+import "./itemListContainer.css";
 
 const ItemListContainer = () => {
   const [products, setProducts] = useState([]);
@@ -22,6 +23,28 @@ const ItemListContainer = () => {
       })
       .catch((err) => console.log(err));
   }, []);
+
+
+  if (products.length === 0) {
+    return (
+      <div style={{
+        width: "100%",
+        height: "90vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+            }}>
+      <RotatingTriangles
+        visible={true}
+        ariaLabel="rotating-triangels-loading"
+        wrapperClass="rotating-triangels-wrapper"
+        colors={['#51E5FF', '#7DE2D1', '#FF7E6B']}
+        
+      />
+    </div>
+    
+    );
+}
 
 
   return (
