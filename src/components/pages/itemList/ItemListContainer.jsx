@@ -6,7 +6,6 @@ import { Box, Card, CardActionArea, CardContent, CardMedia, Grid, Typography } f
 import theme from "../../../temaConfig";
 import { ThemeProvider } from "@emotion/react";
 import { RotatingTriangles } from  'react-loader-spinner'
-import "./itemListContainer.css";
 
 const ItemListContainer = () => {
   const [products, setProducts] = useState([]);

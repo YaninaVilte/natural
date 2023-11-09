@@ -15,7 +15,7 @@
     "@fontsource/roboto": "^5.0.5",
     "@mercadopago/sdk-react": "^0.0.13",
     "@mui/icons-material": "^5.14.1",
-    "@mui/material": "^5.14.13",
+    "@mui/material": "^5.14.17",
     "axios": "^1.4.0",
     "firebase": "^10.2.0",
     "formik": "^2.4.2",
