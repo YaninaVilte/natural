@@ -14,7 +14,7 @@ export const menuItems = [
     {
         id: "products",
         path: "/shop",
-        title: "Tienda",
+        title: "Productos",
         Icon: StoreIcon
     },
     {

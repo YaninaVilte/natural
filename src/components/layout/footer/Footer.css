@@ -40,8 +40,6 @@
 .pie-pagina .grupo-1 .red-social a{
     display: inline-block;
     text-decoration: none;
-    width: 45px;
-    height: 45px;
     line-height: 45px;
     color: #fff;
     margin-right: 10px;
@@ -58,9 +56,7 @@
     text-align: center;
     color: #fff;
 }
-.pie-pagina .grupo-2 small{
-    font-size: 15px;
-}
+
 @media screen and (max-width:800px){
     .pie-pagina .grupo-1{
         width: 90%;

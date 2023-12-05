@@ -14,7 +14,7 @@ export const menuItemsAdmin = [
     {
         id: "products",
         path: "/shop",
-        title: "Tienda",
+        title: "Productos",
         Icon: StoreIcon
     },
     {

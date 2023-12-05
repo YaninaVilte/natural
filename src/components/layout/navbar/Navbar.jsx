@@ -10,7 +10,6 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
-
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { useContext, useState } from "react";
@@ -20,7 +19,9 @@ import { menuItemsAdmin } from "../../../router/navigationAdmin";
 import { logout } from "../../../firebaseConfig";
 import { AuthContext } from "../../../context/AuthContext";
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import LogoNatural from "../../../assets/natural.jpg"
+import eneBlanco from "../../../assets/eneBlanco.png"
+import theme from "../../../temaConfig";
+import { ThemeProvider } from "@emotion/react";
 
 
 const drawerWidth = 240;
@@ -114,18 +115,19 @@ function Navbar(props) {
 
   return (
     <Box sx={{ display: "flex"}}>
+      <ThemeProvider theme={theme}>
       <CssBaseline />
       <AppBar component="nav"
         position="fixed"
         sx={{
-          width: "100%",
+          width: "100%", height: "82px", backgroundColor: "#164439",
         }}
       >
         <Toolbar
           sx={{ gap: "20px", display: "flex", justifyContent: "space-between" }}
         >
           <Link to="/">
-            <img src={LogoNatural} style={{ width: "200px" }} alt="Descripción de la imagen" />
+            <img src={eneBlanco} style={{ width: "40px", height: "40px" }} alt="Descripción de la imagen" />
           </Link>
 
 
@@ -137,7 +139,13 @@ function Navbar(props) {
           component={Link}
           key={id}
           to={path}
-          sx={{ color: "whitesmoke", textDecoration: "none" }}
+          sx={{
+            color: "whitesmoke",
+            textDecoration: "none",
+            fontSize: theme.typography.h2.fontSize,
+            fontWeight: theme.typography.h2.fontWeight,
+            fontFamily: theme.typography.h2.fontFamily,
+          }}
         >
           {title}
         </IconButton>
@@ -145,11 +153,23 @@ function Navbar(props) {
       <IconButton
         component={Link}
         to={"/dashboard"}
-        sx={{ color: "whitesmoke", textDecoration: "none" }}
+                    sx={{
+                      color: "whitesmoke",
+                      textDecoration: "none",
+                      fontSize: theme.typography.h2.fontSize,
+                      fontWeight: theme.typography.h2.fontWeight,
+                      fontFamily: theme.typography.h2.fontFamily,
+                    }}
       >
         Dashboard
       </IconButton>
-      <IconButton onClick={handleLogout} sx={{ color: "whitesmoke" }}>
+                  <IconButton onClick={handleLogout} sx={{
+                    color: "whitesmoke",
+                    textDecoration: "none",
+                    fontSize: theme.typography.h2.fontSize,
+                    fontWeight: theme.typography.h2.fontWeight,
+                    fontFamily: theme.typography.h2.fontFamily,
+                  }}>
     Cerrar sesión
   </IconButton>
     </>
@@ -166,7 +186,6 @@ function Navbar(props) {
     ))
   )}
 
-  
 </Box>
 
 
@@ -207,6 +226,7 @@ function Navbar(props) {
         <Toolbar />
         <Outlet />
       </nav>
+      </ThemeProvider>
     </Box>
   );
 }

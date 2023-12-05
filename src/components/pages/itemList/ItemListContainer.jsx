@@ -6,6 +6,43 @@ import { Box, Card, CardActionArea, CardContent, CardMedia, Grid, Typography } f
 import theme from "../../../temaConfig";
 import { ThemeProvider } from "@emotion/react";
 import { RotatingTriangles } from  'react-loader-spinner'
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+import { Icon } from '@iconify/react';
+
+const BootstrapButton = styled(Button)({
+  boxShadow: 'none',
+  textTransform: 'none',
+  fontSize: '11px',
+  padding: '6px 12px',
+  border: '1px solid',
+  backgroundColor: '#164439',
+  borderColor: '#164439',
+  color: ' #FFF',
+  fontFamily: [
+    'Hagrid Trial',
+  ].join(','),
+  '&:hover': {
+    backgroundColor: '#164439',
+    borderColor: '#164439',
+    boxShadow: 'none',
+    // On click
+    // Change to: "Variant3";
+    // Animate: Smart animate;
+    animationName: 'yourAnimationName', // Nombre de la animación
+    animationTimingFunction: 'linear',
+    animationDuration: '200ms',
+    color: '#41A88A',
+    textAlign: 'center',
+    textShadow: '1px 1px 0px rgba(0, 0, 0, 0.25)',
+    fontFamily: 'Hagrid Trial',
+    fontSize: '12px',
+    fontStyle: 'italic',
+    fontWeight: 400,
+    lineHeight: 'normal',
+  },
+});
+
 
 const ItemListContainer = () => {
   const [products, setProducts] = useState([]);
@@ -50,38 +87,41 @@ const ItemListContainer = () => {
     <div>
       <h1>Estoy en el shop</h1>
       <Box sx={{ mt: 2, mx: 3 }}>
-        <Grid container spacing={2} direction="row" sx={{ mt: 2}}>
-      {products.map((product) => {
-        return (
-          <Grid key={product.id} item
-            lg={2} md={3} sm={4} xs={6}>
-              <Link to={`/itemDetail/${product.id}`}>
-            <Card sx={{ maxWidth: 250 }}>
-              <CardActionArea sx={{ mt: 2, mx: 0, my: 0 }}>
-                <CardMedia component="img" src={product.image} alt=""/>
-                  <CardContent>
-                    <ThemeProvider theme={theme}>
-                      <Typography variant="h3">
-                      {product.title}
-                    </Typography>
-                    </ThemeProvider>
-                    
-                      <Typography>
-                        $ {product.unit_price}
-                      </Typography>
-                      <Typography>
-                        Stock {product.stock}
-                      </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-              </Link>
+        <Grid container spacing={2} direction="row" sx={{ mt: 2 }}>
+          <ThemeProvider theme={theme}>
+            {products.map((product) => (
+              <Grid key={product.id} item lg={2} md={3} sm={4} xs={6}>
+                <Link to={`/itemDetail/${product.id}`}>
+                  <Card sx={{ maxWidth: 250 }}>
+                    <CardActionArea sx={{ mt: 2, mx: 0, my: 0 }}>
+                      <CardMedia
+                        component="img"
+                        style={{
+                          width: "306px",
+                          height: "175px"
+                        }}
+                        src={product.image}
+                        alt=""
+                      />
+                      <CardContent>
+                        <Typography variant="h4Custom" sx={{ display: 'block', mb: 1 }}>
+                          {product.title} 
+                        </Typography>
+                        <Typography variant="h2Custom" sx={{ display: 'block'}}>
+                          $ {product.unit_price}
+                        </Typography>
+                        <BootstrapButton variant="contained" disableRipple>
+                          Agregar al carrito <Icon icon="fontisto:shopping-basket" />
+                        </BootstrapButton>
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+                </Link>
               </Grid>
-        );
-      })}
-      </Grid>
+            ))}
+          </ThemeProvider>
+        </Grid>
       </Box>
-      
     </div>
   );
 };
