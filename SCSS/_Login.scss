@@ -1,0 +1,109 @@
+
+// Login.jsx, forgotPasword.jsx y Register comparten los estilos y nombres de clases que están a continuación
+
+.boxContainer {
+    width: 100%;
+    
+    .box {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+
+        .img {
+            width: 154px;
+            height: 26px;
+        }
+
+        .subtitulo {
+            margin-top: 20px;
+            margin-bottom: 50px;
+        }
+
+        .textContainer {
+            display: flex;
+            flex-direction: column;
+            margin-top: 10px;
+            margin-bottom: 10px;
+
+            .textField {
+                width: 592px;
+                margin-top: 10px;
+            }
+        }
+
+        .button {
+            text-transform: none;
+            box-shadow: none;
+            border-radius: 0px;
+            text-transform: none;
+            width: 592px;
+            height: 48px;
+            background-color: #164439;
+            margin-bottom: 10px;
+
+            &:hover {
+                box-shadow: none;
+                background-color: #164439;
+                text-align: center;
+
+                & svg {
+                    color: #41a88a;
+                }
+
+                & .MuiTypography-root {
+                    color: #41a88a;
+                    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.25);
+                    font-style: italic;
+                }
+            }
+        }
+
+        .textContainerRow {
+            display: flex;
+            flex-direction: row;
+            margin-top: 10px;
+            justify-content: center;
+
+        }
+    }
+}
+
+
+@media screen and (max-width: 660px) {
+.boxContainer {
+        .box {
+            margin-left: 40px;
+            margin-right: 40px;
+
+            .textContainer {
+                .textField {
+                    width: 400px;
+                }
+            }
+
+            .button {
+                width: 400px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .boxContainer {
+        .box {
+
+            .textContainer {
+                .textField {
+                    width: 300px;
+                }
+            }
+
+            .button {
+                width: 300px;
+            }
+        }
+    }
+}
