@@ -7,11 +7,12 @@ import ForgotPassword from "../components/pages/forgotPassword/ForgotPassword";
 import Dashboard from "../components/pages/dashboard/Dashboard";
 import ProtectedAdmin from "./ProtectedAdmin";
 import Footer from "../components/layout/footer/Footer";
+import Layout from "../components/layout/Layout";
 
 const AppRouter = () => {
   return (
     <Routes>
-      <Route element={<div><Navbar /><Footer /></div>}>
+      <Route element={<Layout />}>
         {routes.map(({ id, path, Element }) => (
           <Route key={id} path={path} element={<Element />} />
         ))}
@@ -20,7 +21,7 @@ const AppRouter = () => {
       
 
       {/* PARA LOS USUARIOS ADMIN */}
-      <Route element={<ProtectedAdmin />}>
+      <Route element={<ProtectedAdmin />} >
         <Route path="/dashboard" element={<Dashboard />} />
       </Route>
 

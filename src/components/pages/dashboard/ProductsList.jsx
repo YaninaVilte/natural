@@ -12,7 +12,8 @@ import { db } from "../../../firebaseConfig";
 import { deleteDoc, doc } from "firebase/firestore";
 import { useState } from "react";
 import Box from "@mui/material/Box";
-
+import theme from "../../../temaConfig";
+import { ThemeProvider } from "@emotion/react";
 import Modal from "@mui/material/Modal";
 import ProductsForm from "./ProductsForm";
 
@@ -48,51 +49,39 @@ const ProductsList = ({ products, setIsChange }) => {
 
   return (
     <div>
+      <ThemeProvider theme={theme}>
       <Button variant="contained" onClick={() => handleOpen(null)}>
         Agregar nuevo
       </Button>
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              <TableCell align="left">Id</TableCell>
-              <TableCell align="left">Titulo</TableCell>
-              <TableCell align="left">Precio</TableCell>
-              <TableCell align="left">Stock</TableCell>
-              <TableCell align="left">Imagen principal</TableCell>
-              <TableCell align="left">Imagen 1</TableCell>
-              <TableCell align="left">Imagen 2</TableCell>
-              <TableCell align="left">Imagen 3</TableCell>
-              <TableCell align="left">Categoria</TableCell>
-              <TableCell align="left">Acciones</TableCell>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table" >
+            <TableHead>
+              <TableRow sx={{ ...theme.typography.h2Custom }} >
+                <TableCell align="left" sx={{  ...theme.typography.h2Custom }}>Id</TableCell>
+                <TableCell align="left" sx={{ ...theme.typography.h2Custom }}>Titulo</TableCell>
+                <TableCell align="left" sx={{ ...theme.typography.h2Custom }}>Descripción</TableCell>
+                <TableCell align="left" sx={{ ...theme.typography.h2Custom, width: "100px" }}>Precio</TableCell>
+                <TableCell align="left" sx={{ ...theme.typography.h2Custom }}>Stock</TableCell>
+                <TableCell align="left" sx={{ ...theme.typography.h2Custom }}>Imagen principal</TableCell>
+                {/* <TableCell align="left" sx={{ ...theme.typography.h2Custom }}>Imagen 1</TableCell>
+                <TableCell align="left" sx={{ ...theme.typography.h2Custom }}>Imagen 2</TableCell>
+                <TableCell align="left" sx={{ ...theme.typography.h2Custom }}>Imagen 3</TableCell> */}
+                <TableCell align="left" sx={{ ...theme.typography.h2Custom }}>Categoria</TableCell>
+                <TableCell align="left" sx={{ ...theme.typography.h2Custom }}>Acciones</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {products.map((product) => (
-              <TableRow
-                key={product.id}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
+              <TableRow key={product.id} sx={{ "&:last-child td, &:last-child th": { border: 0 } }} >
+                <TableCell component="th" scope="row" align="left"> {product.id} </TableCell>
+                <TableCell component="th" scope="row" align="left"> {product.title} </TableCell>
+                <TableCell component="th" scope="row" align="left"> {product.description} </TableCell>
+                <TableCell component="th" scope="row" align="left"> $ {product.unit_price} </TableCell>
+                <TableCell component="th" scope="row" align="left"> {product.stock} </TableCell>
                 <TableCell component="th" scope="row" align="left">
-                  {product.id}
+                  <img src={product.image} alt="" style={{ width: "80px", height: "80px" }}/>
                 </TableCell>
-                <TableCell component="th" scope="row" align="left">
-                  {product.title}
-                </TableCell>
-                <TableCell component="th" scope="row" align="left">
-                  {product.unit_price}
-                </TableCell>
-                <TableCell component="th" scope="row" align="left">
-                  {product.stock}
-                </TableCell>
-                <TableCell component="th" scope="row" align="left">
-                  <img
-                    src={product.image}
-                    alt=""
-                    style={{ width: "80px", height: "80px" }}
-                  />
-                </TableCell>
-                <TableCell component="th" scope="row" align="left">
+                {/* <TableCell component="th" scope="row" align="left">
                   <img
                     src={product.image1}
                     alt=""
@@ -112,10 +101,8 @@ const ProductsList = ({ products, setIsChange }) => {
                     alt=""
                     style={{ width: "80px", height: "80px" }}
                   />
-                </TableCell>
-                <TableCell component="th" scope="row" align="left">
-                  {product.category}
-                </TableCell>
+                </TableCell> */}
+                <TableCell component="th" scope="row" align="left"> {product.category} </TableCell>
                 <TableCell component="th" scope="row" align="left">
                   <IconButton onClick={() => handleOpen(product)}>
                     <EditIcon color="primary" />
@@ -130,21 +117,12 @@ const ProductsList = ({ products, setIsChange }) => {
         </Table>
       </TableContainer>
 
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+      <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
         <Box sx={style}>
-          <ProductsForm
-            handleClose={handleClose}
-            setIsChange={setIsChange}
-            productSelected={productSelected}
-            setProductSelected={setProductSelected}
-          />
+          <ProductsForm handleClose={handleClose} setIsChange={setIsChange} productSelected={productSelected} setProductSelected={setProductSelected}/>
         </Box>
       </Modal>
+      </ThemeProvider>
     </div>
   );
 };

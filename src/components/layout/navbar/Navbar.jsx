@@ -4,24 +4,20 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { useContext, useState } from "react";
-import LogoutIcon from "@mui/icons-material/Logout";
-import { menuItems } from "../../../router/navigation";
 import { menuItemsAdmin } from "../../../router/navigationAdmin";
 import { logout } from "../../../firebaseConfig";
 import { AuthContext } from "../../../context/AuthContext";
-import DashboardIcon from '@mui/icons-material/Dashboard';
 import eneBlanco from "../../../assets/eneBlanco.png"
 import theme from "../../../temaConfig";
 import { ThemeProvider } from "@emotion/react";
+import { Typography } from "@mui/material";
+import { Icon } from '@iconify/react';
+
 
 
 const drawerWidth = 240;
@@ -30,8 +26,12 @@ function Navbar(props) {
   const { logoutContext, user } = useContext(AuthContext);
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [profileDrawerOpen, setProfileDrawerOpen] = useState(false);
+  const [profileAdminDrawerOpen, setProfileAdminDrawerOpen] = useState(false);
+
+
   const navigate = useNavigate();
-  const rolAdmin = import.meta.env.VITE_ROL_ADMIN
+  const rolAdmin = import.meta.env.VITE_ROL_ADMIN;
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -43,69 +43,57 @@ function Navbar(props) {
     navigate("/");
   };
 
+
+
   const drawer = (
     <div>
       <Toolbar />
+      <List sx={{ display: "flex", flexDirection: "column", marginLeft: "15px", lineHeight: "2.5" }}>
+        {menuItemsAdmin.map(({ id, path, title }) => (
+          <Link component={Link} key={id} to={path} sx={{}}>
+            <Typography variant="drawer">{title}</Typography>
+          </Link>
+        ))}
 
-
-
-
-
-
-      <List>
-  {user.rol === rolAdmin ? (
-    <>
-      {menuItemsAdmin.map(({ id, path, title, Icon }) => (
-        <Link key={id} to={path}>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <Icon sx={{ color: "whitesmoke" }} />
-              </ListItemIcon>
-              <ListItemText primary={title} sx={{ color: "whitesmoke" }} />
-            </ListItemButton>
-          </ListItem>
+        <Link component={Link} to={"/cart"}>
+          <Typography variant="drawer">Carrito</Typography>
         </Link>
-      ))}
-      <ListItem disablePadding>
-        <ListItemButton>
-          <ListItemIcon>
-            <DashboardIcon sx={{ color: "whitesmoke" }} />
-          </ListItemIcon>
-          <ListItemText primary={"Dashboard"} sx={{ color: "whitesmoke" }} />
-        </ListItemButton>
-      </ListItem>
-      <ListItem disablePadding>
-    <ListItemButton onClick={handleLogout}>
-      <ListItemIcon>
-        <LogoutIcon sx={{ color: "whitesmoke" }} />
-      </ListItemIcon>
-      <ListItemText primary={"Cerrar sesion"} sx={{ color: "whitesmoke" }} />
-    </ListItemButton>
-  </ListItem>
 
-    </>
-  ) : (
-    <>
-      {menuItems.map(({ id, path, title, Icon }) => (
-        <Link key={id} to={path}>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <Icon sx={{ color: "whitesmoke" }} />
-              </ListItemIcon>
-              <ListItemText primary={title} sx={{ color: "whitesmoke" }} />
-            </ListItemButton>
-          </ListItem>
-        </Link>
-      ))}
-    </>
-  )}
+
+        {user && user.email && user.rol !== rolAdmin ? (
+          <>
+            <Link component={Link} to={""} sx={{}}>
+              <Typography variant="drawer">Mis Pedidos</Typography>
+            </Link>
+            <Link component={Link} to={""} sx={{}}>
+              <Typography variant="drawer">Favoritos</Typography>
+            </Link>
+            <Link onClick={handleLogout} sx={{}}>
+              <Typography variant="drawer">Cerrar sesión</Typography>
+            </Link>
+          </>
+        ) : user && user.rol === rolAdmin ? (
+            <>
+              <Link component={Link} to={"/dashboard"} sx={{}}>
+                <Typography variant="drawer">Dashboard</Typography>
+              </Link>
+              <Link component={Link} to={""} sx={{}}>
+                <Typography variant="drawer">Pedidos</Typography>
+              </Link>
+              <Link component={Link} to={""} sx={{}}>
+                <Typography variant="drawer">Favoritos</Typography>
+              </Link>
+              <Link onClick={handleLogout} sx={{}}>
+                <Typography variant="drawer">Cerrar sesión</Typography>
+              </Link>
+          </>
+        ) : (
+          <Link component={Link} to={"/Login"} >
+                <Typography variant="drawer">Iniciar sesión</Typography>
+          </Link>
+        )}
   
 </List>
-
-
-
 
     </div>
   );
@@ -117,114 +105,88 @@ function Navbar(props) {
     <Box sx={{ display: "flex"}}>
       <ThemeProvider theme={theme}>
       <CssBaseline />
-      <AppBar component="nav"
-        position="fixed"
-        sx={{
-          width: "100%", height: "82px", backgroundColor: "#164439",
-        }}
-      >
-        <Toolbar
-          sx={{ gap: "20px", display: "flex", justifyContent: "space-between" }}
-        >
-          <Link to="/">
-            <img src={eneBlanco} style={{ width: "40px", height: "40px" }} alt="Descripción de la imagen" />
-          </Link>
+        <AppBar component="nav" position="fixed" sx={{ width: "100%", height: "82px", backgroundColor: "#164439", display: "flex", alignContent: "center" }}>
+        <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+          <Toolbar sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignContent: "center" }}>
+            
+            <Link to="/"><img src={eneBlanco} style={{ width: "40px", height: "40px" }} alt="Descripción de la imagen" /></Link>
+              {menuItemsAdmin.map(({ id, path, title }) => (
+                <Link component={Link} key={id} to={path} sx={{}}>
+                  <Typography variant="h4" sx={{ fontSize: "16px" }}>{title}</Typography>
+                </Link>
+              ))}
+
+              <Link component={Link} to={"/cart"}>
+                <Icon icon="fontisto:shopping-basket" width="24" height="24" color="#FFFFFF" />
+              </Link>
+              
+              
+              {user && user.email && user.rol !== rolAdmin ? (
+                <>
+                  <Link onClick={() => setProfileDrawerOpen(true)}>
+                    <Typography variant="h4" sx={{ fontSize: "16px" }}>Perfil</Typography>
+                  </Link>
+                </>
+              ) : user && user.rol === rolAdmin ? (
+                <>
+                    <Link onClick={() => setProfileAdminDrawerOpen(true)}>
+                      <Typography variant="h4" sx={{ fontSize: "16px" }}>Perfil</Typography>
+                    </Link>
+                </>
+              ) : (
+                <Link component={Link} to={"/Login"} >
+                  <Typography variant="h4" sx={{ fontSize: "16px" }}>Iniciar sesión</Typography>
+                </Link>
+              )}
 
 
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-  {user.rol === rolAdmin ? (
-    <>
-      {menuItemsAdmin.map(({ id, path, title }) => (
-        <IconButton
-          component={Link}
-          key={id}
-          to={path}
-          sx={{
-            color: "whitesmoke",
-            textDecoration: "none",
-            fontSize: theme.typography.h2.fontSize,
-            fontWeight: theme.typography.h2.fontWeight,
-            fontFamily: theme.typography.h2.fontFamily,
-          }}
-        >
-          {title}
-        </IconButton>
-      ))}
-      <IconButton
-        component={Link}
-        to={"/dashboard"}
-                    sx={{
-                      color: "whitesmoke",
-                      textDecoration: "none",
-                      fontSize: theme.typography.h2.fontSize,
-                      fontWeight: theme.typography.h2.fontWeight,
-                      fontFamily: theme.typography.h2.fontFamily,
-                    }}
-      >
-        Dashboard
-      </IconButton>
-                  <IconButton onClick={handleLogout} sx={{
-                    color: "whitesmoke",
-                    textDecoration: "none",
-                    fontSize: theme.typography.h2.fontSize,
-                    fontWeight: theme.typography.h2.fontWeight,
-                    fontFamily: theme.typography.h2.fontFamily,
-                  }}>
-    Cerrar sesión
-  </IconButton>
-    </>
-  ) : (
-    menuItems.map(({ id, path, title }) => (
-      <IconButton
-        component={Link}
-        key={id}
-        to={path}
-        sx={{ color: "whitesmoke", textDecoration: "none" }}
-      >
-        {title}
-      </IconButton>
-    ))
-  )}
-
-</Box>
+              <Drawer container={container} variant="temporary" open={profileDrawerOpen} anchor="right" onClose={() => setProfileDrawerOpen(false)} ModalProps={{ keepMounted: true }}
+                sx={{ "& .MuiDrawer-paper": { boxSizing: "border-box", marginTop: "85px", width: drawerWidth, height: "250px", backgroundColor: "#F8F8F8", }, }}>
+                <Toolbar />
+                <List sx={{ display: "flex", flexDirection: "column", marginLeft: "15px", lineHeight: "2.5" }}>
+                      <Link component={Link} to={""} sx={{}}>
+                    <Typography variant="drawer" onClick={() => setProfileDrawerOpen(false)}>Mis Pedidos</Typography>
+                      </Link>
+                      <Link component={Link} to={""} sx={{}}>
+                    <Typography variant="drawer" onClick={() => setProfileDrawerOpen(false)}>Favoritos</Typography>
+                      </Link>
+                      <Link onClick={handleLogout} sx={{}}>
+                    <Typography variant="drawer" onClick={() => setProfileDrawerOpen(false)}>Cerrar sesión</Typography>
+                      </Link>
+                </List>
+              </Drawer>
 
 
+              <Drawer container={container} variant="temporary" open={profileAdminDrawerOpen} anchor="right" onClose={() => setProfileAdminDrawerOpen(false)} ModalProps={{ keepMounted: true }}
+                sx={{ "& .MuiDrawer-paper": { boxSizing: "border-box", marginTop: "85px", width: drawerWidth, height: "250px", backgroundColor: "#F8F8F8", }, }}>
+                <Toolbar />
+                <List sx={{ display: "flex", flexDirection: "column", marginLeft: "15px", lineHeight: "2.5" }}>
+                  <Link component={Link} to={"/dashboard"} sx={{}} >
+                    <Typography variant="drawer" onClick={() => setProfileAdminDrawerOpen(false)}>Dashboard</Typography>
+                  </Link>
+                  <Link component={Link} to={""} sx={{}}>
+                    <Typography variant="drawer" onClick={() => setProfileAdminDrawerOpen(false)}>Pedidos</Typography>
+                  </Link>
+                  <Link component={Link} to={""} sx={{}}>
+                    <Typography variant="drawer" onClick={() => setProfileAdminDrawerOpen(false)} >Favoritos</Typography>
+                  </Link>
+                  <Link onClick={handleLogout} sx={{}}>
+                    <Typography variant="drawer" onClick={() => setProfileAdminDrawerOpen(false)} >Cerrar sesión</Typography>
+                  </Link>
+                </List>
+              </Drawer>
 
-          <IconButton sx={{ mr: 2, display: { sm: 'none' } }}
-            color="secondary.primary"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-          >
+
+            </Toolbar>
+        </Box>
+          <IconButton sx={{ mr: 2, display: { sm: 'none' } }} color="secondary.primary" aria-label="open drawer" edge="start" onClick={handleDrawerToggle}>
             <MenuIcon color="secondary.primary" />
           </IconButton>
-        </Toolbar>
       </AppBar>
       <nav>
 
-
-        <Drawer
-          container={container}
-          variant="temporary"
-          open={mobileOpen}
-          anchor={"right"}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true,
-          }}
-          sx={{
-            display: { xs: "block" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-              backgroundColor: "#1976d2",
-            },
-          }}
-        >
-          {drawer}
-        </Drawer>
+          <Drawer container={container} variant="temporary" open={mobileOpen} anchor={"right"} onClose={handleDrawerToggle} ModalProps={{ keepMounted: true, }} sx={{ display: { xs: "block" }, "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth, height: "360px", backgroundColor: "##F8F8F8F", }, }}>{drawer}</Drawer>
         <Toolbar />
-        <Outlet />
       </nav>
       </ThemeProvider>
     </Box>

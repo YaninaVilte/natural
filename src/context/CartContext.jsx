@@ -40,6 +40,13 @@ const CartContextComponent = ({ children }) => {
     setCart(newArr)
   }
 
+  const getTotalItems = () => {
+    let total = cart.reduce((acc, elemento) => {
+      return acc + elemento.quantity
+    }, 0)
+    return total
+  }
+
   const getTotalPrice = ()=>{
     const total = cart.reduce( (acc, elemento)=>{
         return acc + (elemento.unit_price * elemento.quantity)
@@ -53,7 +60,8 @@ const CartContextComponent = ({ children }) => {
         getQuantityById,
         clearCart,
         deleteById,
-        getTotalPrice
+        getTotalPrice,
+        getTotalItems,
     }
   return <CartContext.Provider value={data}>{children}</CartContext.Provider>;
 };
