@@ -17,7 +17,7 @@ import theme from "../../../temaConfig";
 import { ThemeProvider } from "@emotion/react";
 import { Typography } from "@mui/material";
 import { Icon } from '@iconify/react';
-
+import naturalBlanco from "../../../assets/naturalBlanco.png"
 
 
 const drawerWidth = 240;
@@ -105,11 +105,11 @@ function Navbar(props) {
     <Box sx={{ display: "flex"}}>
       <ThemeProvider theme={theme}>
       <CssBaseline />
-        <AppBar component="nav" position="fixed" sx={{ width: "100%", height: "82px", backgroundColor: "#164439", display: "flex", alignContent: "center" }}>
-        <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-          <Toolbar sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignContent: "center" }}>
+        <AppBar component="nav" position="fixed" sx={{ width: "100%", backgroundColor: "#164439", display: "flex", }}>
+        <Box sx={{ display: { xs: 'none', sm: 'block', } }}>
+          <Toolbar sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center",  height: "82px" }}>
             
-            <Link to="/"><img src={eneBlanco} style={{ width: "40px", height: "40px" }} alt="Descripción de la imagen" /></Link>
+              <Link to="/"><img src={eneBlanco} style={{ width: "40px", height: "40px", alignItems: "center" }} alt="N" /></Link>
               {menuItemsAdmin.map(({ id, path, title }) => (
                 <Link component={Link} key={id} to={path} sx={{}}>
                   <Typography variant="h4" sx={{ fontSize: "16px" }}>{title}</Typography>
@@ -179,15 +179,17 @@ function Navbar(props) {
 
             </Toolbar>
         </Box>
-          <IconButton sx={{ mr: 2, display: { sm: 'none' } }} color="secondary.primary" aria-label="open drawer" edge="start" onClick={handleDrawerToggle}>
+          
+      </AppBar>
+        <nav style={{ width: "100%", backgroundColor: "#164439", position: "fixed" }}>
+            
+          <IconButton sx={{ mr: 2, display: { sm: 'none' }, height: "82px", marginLeft: "20px", color: "#FFF" }} color="secondary.primary" aria-label="open drawer" edge="start" onClick={handleDrawerToggle}>
             <MenuIcon color="secondary.primary" />
           </IconButton>
-      </AppBar>
-      <nav>
-
-          <Drawer container={container} variant="temporary" open={mobileOpen} anchor={"right"} onClose={handleDrawerToggle} ModalProps={{ keepMounted: true, }} sx={{ display: { xs: "block" }, "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth, height: "360px", backgroundColor: "##F8F8F8F", }, }}>{drawer}</Drawer>
-        <Toolbar />
+          <Drawer container={container} variant="temporary" open={mobileOpen} anchor={"left"} onClose={handleDrawerToggle} ModalProps={{ keepMounted: true, }} sx={{ display: { xs: "block" }, "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth, height: "360px", }, }}>{drawer}</Drawer>
+          <Link to="/"><img src={naturalBlanco} style={{ width: "30%", alignItems: "center" }} alt="Natural" /></Link>
       </nav>
+      
       </ThemeProvider>
     </Box>
   );
