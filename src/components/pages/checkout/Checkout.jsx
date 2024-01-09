@@ -14,6 +14,8 @@ import {
   serverTimestamp,
   getDoc,
 } from "firebase/firestore";
+
+
 const Checkout = () => {
   const { cart, getTotalPrice, clearCart } = useContext(CartContext);
   const { user } = useContext(AuthContext);
