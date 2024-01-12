@@ -48,31 +48,31 @@ function Navbar(props) {
   const drawer = (
     <div>
       <Toolbar />
-      <List sx={{ display: "flex", flexDirection: "column", marginLeft: "15px", lineHeight: "2.5" }}>
-        {menuItemsAdmin.map(({ id, path, title }) => (
-          <Link component={Link} key={id} to={path} sx={{}}>
-            <Typography variant="drawer">{title}</Typography>
+        <List sx={{ display: "flex", flexDirection: "column", marginLeft: "15px", lineHeight: "2.5" }}>
+          {menuItemsAdmin.map(({ id, path, title }) => (
+            <Link component={Link} key={id} to={path} sx={{}}>
+              <Typography variant="drawer">{title}</Typography>
+            </Link>
+          ))}
+
+          <Link component={Link} to={"/cart"}>
+            <Typography variant="drawer">Carrito</Typography>
           </Link>
-        ))}
-
-        <Link component={Link} to={"/cart"}>
-          <Typography variant="drawer">Carrito</Typography>
-        </Link>
 
 
-        {user && user.email && user.rol !== rolAdmin ? (
-          <>
-            <Link component={Link} to={""} sx={{}}>
-              <Typography variant="drawer">Mis Pedidos</Typography>
-            </Link>
-            <Link component={Link} to={""} sx={{}}>
-              <Typography variant="drawer">Favoritos</Typography>
-            </Link>
-            <Link onClick={handleLogout} sx={{}}>
-              <Typography variant="drawer">Cerrar sesión</Typography>
-            </Link>
-          </>
-        ) : user && user.rol === rolAdmin ? (
+          {user && user.email && user.rol !== rolAdmin ? (
+            <>
+              <Link component={Link} to={""} sx={{}}>
+                <Typography variant="drawer">Mis Pedidos</Typography>
+              </Link>
+              <Link component={Link} to={""} sx={{}}>
+                <Typography variant="drawer">Favoritos</Typography>
+              </Link>
+              <Link onClick={handleLogout} sx={{}}>
+                <Typography variant="drawer">Cerrar sesión</Typography>
+              </Link>
+            </>
+          ) : user && user.rol === rolAdmin ? (
             <>
               <Link component={Link} to={"/dashboard"} sx={{}}>
                 <Typography variant="drawer">Dashboard</Typography>
@@ -86,26 +86,25 @@ function Navbar(props) {
               <Link onClick={handleLogout} sx={{}}>
                 <Typography variant="drawer">Cerrar sesión</Typography>
               </Link>
-          </>
-        ) : (
+            </>
+          ) : (
           <Link component={Link} to={"/Login"} >
                 <Typography variant="drawer">Iniciar sesión</Typography>
           </Link>
         )}
   
-</List>
+      </List>
 
     </div>
   );
 
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
+  const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: "flex"}}>
+    <Box sx={{ display: "flex", position:'sticky', top:'0', left:'0', zIndex:'9999'}}>
       <ThemeProvider theme={theme}>
       <CssBaseline />
-        <AppBar component="nav" position="fixed" sx={{ width: "100%", backgroundColor: "#164439", display: "flex", }}>
+        <AppBar component="nav" position="sticky" sx={{ top:'0', left:'0', width: "100%", backgroundColor: "#164439", display: "flex" }}>
         <Box sx={{ display: { xs: 'none', sm: 'block', } }}>
           <Toolbar sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center",  height: "82px" }}>
             
@@ -181,14 +180,14 @@ function Navbar(props) {
         </Box>
           
       </AppBar>
-        <nav style={{ width: "100%", backgroundColor: "#164439", position: "fixed" }}>
+        {/* <nav style={{ width: "100%", backgroundColor: "#164439", position: "fixed" }}>
             
           <IconButton sx={{ mr: 2, display: { sm: 'none' }, height: "82px", marginLeft: "20px", color: "#FFF" }} color="secondary.primary" aria-label="open drawer" edge="start" onClick={handleDrawerToggle}>
             <MenuIcon color="secondary.primary" />
           </IconButton>
           <Drawer container={container} variant="temporary" open={mobileOpen} anchor={"left"} onClose={handleDrawerToggle} ModalProps={{ keepMounted: true, }} sx={{ display: { xs: "block" }, "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth, height: "360px", }, }}>{drawer}</Drawer>
           <Link to="/"><img src={naturalBlanco} style={{ width: "30%", alignItems: "center" }} alt="Natural" /></Link>
-      </nav>
+      </nav> */}
       
       </ThemeProvider>
     </Box>

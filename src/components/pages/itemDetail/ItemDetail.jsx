@@ -17,21 +17,23 @@ const ButtonBuy = styled(Button)({
   textTransform: 'none',
   width: "261px",
   height: "63px",
-  backgroundColor: '#41A88A',
+  backgroundColor: '#308d72',
   marginLeft: "5px",
+  textShadow: '0px 0px 5px rgba(0, 0, 0, 0.5)',
+  transition: 'all .2s ease',
   '&:hover': {
     boxShadow: 'none',
-    backgroundColor: '#41A88A',
+    backgroundColor: '#2c735e',
     textAlign: 'center',
     '& svg': {
       color: '#FFF)',
     },
     '& .MuiTypography-root': {
       color: '#FFF',
-      textShadow: '0px 1px 0px rgba(0, 0, 0, 0.25)',
-      fontStyle: 'italic',
+      // textShadow: '0px 1px 0px rgba(0, 0, 0, 0.25)',
+      // fontStyle: 'italic',
       fontFamily: "Hagrid Trial",
-      fontSize: "15px",
+      // fontSize: "15px",
     },
   },
 });
@@ -107,14 +109,14 @@ const ItemDetail = () => {
       <h1>detalle</h1>
         <div className="itemDetailContainer">
               {product && (
-            <div className="imgContainer">
+                <div className="imgContainer">
                   <CardMedia component="img" src={product.image} alt="Imagen del producto seleccionado"/>
                 </div>
               )}
             <div>
               {product && (
               <div className="itemDetail">
-                  <h4>Categoría: {product.category}</h4>
+                    <span style={{backgroundColor:'#41a88a', width:'fit-content', color:'#FFF', padding:'0 .2em', borderRadius:'.2em'}}>{product.category}</span>
                 <Typography variant="h1" className="titleDetail">{product.title}</Typography>
                 <Typography variant="h2Description" className="descriptionDetail" >{product.description}</Typography>
                   <Typography variant="h1Custom">${product.unit_price}</Typography>
@@ -129,8 +131,8 @@ const ItemDetail = () => {
                     {product?.stock >= 6 && <Typography variant="stock"> En stock </Typography>}
                 </div>
                 <div className="counterItemDetail">
-                  <Typography variant="h3Counter">{counter}</Typography>
                   <Typography className="subAddOne" onClick={subOne}>-</Typography>
+                  <Typography variant="h3Counter">{counter}</Typography>
                   <Typography className="subAddOne" onClick={addOne}>+</Typography>
                 </div>
               </div>
@@ -147,8 +149,8 @@ const ItemDetail = () => {
 
         <div className="serviceContainer">
         <Service icon="ic:baseline-delivery-dining" title="Envíos" subtitle="Express" />
-        <Service icon="material-symbols:store" title="Productos" subtitle="seleccionados" />
-        <Service icon="ic:twotone-support-agent" title="Atención" subtitle="personalizada" />
+        <Service icon="material-symbols:store" title="Productos" subtitle="Seleccionados" />
+        <Service icon="ic:twotone-support-agent" title="Atención" subtitle="Personalizada" />
       </div>
 
 
