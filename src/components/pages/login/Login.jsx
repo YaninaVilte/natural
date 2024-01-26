@@ -71,7 +71,7 @@ const Login = () => {
         <Typography variant="h2" className="subtitulo">Compra más rápido y lleva el control de tus pedidos, ¡en un solo lugar!</Typography>
       <form onSubmit={handleSubmit}>
           <div>
-            <div style={{ marginBottom: "20px" }} className="textContainer" >
+              <div style={{ marginBottom: "1.25rem" }} className="textContainer" >
                 <Typography variant="h4Custom">Email:</Typography>
                 <TextField name="email" placeholder="Ejem:Tunombre@gmail.com" className="textField" onChange={handleChange} value={values.email} error={errors.email} helperText={errors.email} />
             </div>
@@ -99,7 +99,7 @@ const Login = () => {
                   />
                 </FormControl>
             </div>
-          <Link to="/forgot-password" style={{ marginTop: "10px" }}><Typography variant="reset">¿Olvidaste tu contraseña?</Typography></Link>
+              <Link to="/forgot-password" style={{ marginTop: "0.625rem" }}><Typography variant="reset">¿Olvidaste tu contraseña?</Typography></Link>
               <div className="textContainer">
               <div>
                 <Button variant="contained" type="submit" className="button"><Typography variant="h4">Iniciar sesión</Typography>

@@ -27,12 +27,12 @@
           align-items: center;
 }
 .boxContainer .box .img {
-  width: 154px;
-  height: 26px;
+  width: 9.625rem;
+  height: 1.625rem;
 }
 .boxContainer .box .subtitulo {
-  margin-top: 20px;
-  margin-bottom: 50px;
+  margin-top: 1.25rem;
+  margin-bottom: 3.125rem;
 }
 .boxContainer .box .textContainer {
   display: -webkit-box;
@@ -42,12 +42,12 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 0.625rem;
+  margin-bottom: 0.625rem;
 }
 .boxContainer .box .textContainer .textField {
-  width: 592px;
-  margin-top: 10px;
+  width: 37rem;
+  margin-top: 0.625rem;
 }
 .boxContainer .box .button {
   text-transform: none;
@@ -55,10 +55,10 @@
           box-shadow: none;
   border-radius: 0px;
   text-transform: none;
-  width: 592px;
-  height: 48px;
+  width: 37rem;
+  height: 3rem;
   background-color: #164439;
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;
 }
 .boxContainer .box .button:hover {
   -webkit-box-shadow: none;
@@ -82,7 +82,7 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  margin-top: 10px;
+  margin-top: 0.625rem;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -90,22 +90,22 @@
 
 @media screen and (max-width: 660px) {
   .boxContainer .box {
-    margin-left: 40px;
-    margin-right: 40px;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
   }
   .boxContainer .box .textContainer .textField {
-    width: 400px;
+    width: 25rem;
   }
   .boxContainer .box .button {
-    width: 400px;
+    width: 25rem;
   }
 }
 @media screen and (max-width: 450px) {
   .boxContainer .box .textContainer .textField {
-    width: 300px;
+    width: 18.75rem;
   }
   .boxContainer .box .button {
-    width: 300px;
+    width: 18.75rem;
   }
 }
 /* === Estilos: ItemListContainer */
@@ -310,7 +310,7 @@
 .carrusel {
   background: #164439;
   width: 100%;
-  height: 633px;
+  height: 39.563rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -332,14 +332,14 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  width: 443px;
-  height: 105px;
+  width: 27.063rem;
+  height: 6.563rem;
 }
 .carrusel img {
-  width: 532px;
-  height: 369px;
-  border-top-right-radius: 200px;
-  border-bottom-left-radius: 200px;
+  width: 33.25rem;
+  height: 23.063rem;
+  border-top-right-radius: 12.5rem;
+  border-bottom-left-radius: 12.5rem;
 }
 
 @media screen and (max-width: 1100px) {
@@ -356,19 +356,19 @@
             justify-content: center;
   }
   .carrusel .carruselContainer {
-    width: 900px;
-    height: 105px;
+    width: 56.25rem;
+    height: 6.563rem;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
   }
   .carrusel img {
-    margin-top: 50px;
+    margin-top: 3.125rem;
   }
 }
 @media screen and (max-width: 900px) {
   .carrusel {
-    height: 500px;
+    height: 31.25rem;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -695,7 +695,7 @@
 
 .cart {
   width: 100%;
-  margin-top: 80px;
+  margin-top: 5rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -711,13 +711,13 @@
           align-items: center;
 }
 .cart .tableContainer {
-  width: 685px;
-  max-height: 415px;
+  width: 42.813rem;
+  max-height: 42.813rem;
   border-radius: 3px;
   -webkit-box-shadow: 3px 4px 11px 0px rgba(0, 0, 0, 0.1);
           box-shadow: 3px 4px 11px 0px rgba(0, 0, 0, 0.1);
   overflow: auto;
-  margin-top: 20px;
+  margin-top: 1.25rem;
 }
 
 .cartStatus {
@@ -735,31 +735,31 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-top: 40px;
+  margin-top: 2.5rem;
 }
 .cartStatus .cartLine {
   width: 10%;
-  height: 1px;
-  margin-left: 5px;
-  margin-right: 5px;
+  height: 0.063rem;
+  margin-left: 0.313rem;
+  margin-right: 0.313rem;
 }
 
 .productContainer {
   position: relative;
 }
 .productContainer img {
-  width: 67px;
-  height: 68px;
+  width: 4.188rem;
+  height: 4.25rem;
   border-radius: 2px;
 }
 .productContainer .deleteProductContainer {
   position: absolute;
-  bottom: 4.5px;
+  bottom: 0.281rem;
   left: 0;
   cursor: pointer;
   background: #41A88A;
-  width: 25px;
-  height: 25px;
+  width: 1.563rem;
+  height: 1.563rem;
 }
 .productContainer .deleteProductContainer svg {
   position: absolute;
@@ -768,12 +768,12 @@
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   color: #FFF;
-  width: 14px;
-  height: 14px;
+  width: 0.875rem;
+  height: 0.875rem;
 }
 .productContainer .titleProductContainer {
-  width: 156px;
-  margin-left: 10px;
+  width: 9.75rem;
+  margin-left: 0.625rem;
 }
 
 .quantityContainer {
@@ -781,40 +781,40 @@
   display: -ms-flexbox;
   display: flex;
   background: #EEE;
-  width: 88px;
-  height: 36px;
+  width: 5.5rem;
+  height: 2.25rem;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-top: 6px;
-  margin-right: 20px;
+  margin-top: 0.375rem;
+  margin-right: 1.25rem;
 }
 .quantityContainer .quantity {
   background: #FFF;
-  width: 35.71px;
-  height: 28.8px;
-  line-height: 28.8px;
+  width: 2.232rem;
+  height: 1.8rem;
+  line-height: 1.8rem;
   text-align: center;
-  margin-left: 2.5px;
+  margin-left: 0.156rem;
 }
 .quantityContainer .quantitySubAdd {
   color: #9A9A9A;
-  width: 28px;
-  height: 36px;
+  width: 1.75rem;
+  height: 2.25rem;
   text-align: center;
-  line-height: 36px;
+  line-height: 2.25rem;
 }
 
 .subTotalContainer {
   position: sticky;
   bottom: 0;
-  padding: 10px;
+  padding: 0.625rem;
   background: #F8F8F8;
 }
 .subTotalContainer .subTotal {
   background: #FFF;
-  width: 627px;
-  height: 35px;
+  width: 39.188rem;
+  height: 2.188rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -835,16 +835,16 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 1.25rem;
   width: 50%;
-  margin-bottom: 70px;
+  margin-bottom: 4.375rem;
 }
 .optionsContainer .LinkOptions {
   text-decoration: none;
 }
 .optionsContainer .LinkOptions SVG {
-  width: 14px;
-  height: 14px;
+  width: 0.875rem;
+  height: 0.875rem;
 }
 
 @media screen and (max-width: 720px) {
@@ -856,7 +856,7 @@
   }
   .cartResponsive {
     width: 100%;
-    margin-top: 80px;
+    margin-top: 5rem;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -873,12 +873,12 @@
   }
   .cartResponsive .tableContainerResponsive {
     width: 80%;
-    max-height: 415px;
+    max-height: 25.938rem;
     border-radius: 3px;
     -webkit-box-shadow: 3px 4px 11px 0px rgba(0, 0, 0, 0.1);
             box-shadow: 3px 4px 11px 0px rgba(0, 0, 0, 0.1);
     overflow: auto;
-    margin-top: 20px;
+    margin-top: 1.25rem;
   }
   .cartStatusResponsive {
     display: -webkit-box;
@@ -893,32 +893,32 @@
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    margin-top: 40px;
+    margin-top: 2.5rem;
     width: 90%;
   }
   .cartStatusResponsive .cartLineResponsive {
     width: 10%;
-    height: 1px;
-    margin-left: 5px;
-    margin-right: 5px;
+    height: 0.063rem;
+    margin-left: 0.313rem;
+    margin-right: 0.313rem;
   }
   .productContainerResponsive {
     position: relative;
-    margin-right: 20px;
+    margin-right: 1.25rem;
   }
   .productContainerResponsive img {
-    width: 90px;
+    width: 5.625rem;
     height: 9cap;
     border-radius: 2px;
   }
   .productContainerResponsive .deleteProductContainerResponsive {
     position: absolute;
-    bottom: 4.5px;
+    bottom: 0.281rem;
     left: 0;
     cursor: pointer;
     background: #41A88A;
-    width: 30px;
-    height: 30px;
+    width: 1.875rem;
+    height: 1.875rem;
   }
   .productContainerResponsive .deleteProductContainerResponsive svg {
     position: absolute;
@@ -927,11 +927,11 @@
     -webkit-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
     color: #FFF;
-    width: 22px;
-    height: 22px;
+    width: 1.375rem;
+    height: 1.375rem;
   }
   .detailProductContainerResponsive {
-    margin-left: 10px;
+    margin-left: 0.625rem;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -951,40 +951,40 @@
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    margin-top: 15px;
+    margin-top: 0.938rem;
   }
   .quantityContainerResponsive {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
     background: #EEE;
-    width: 88px;
-    height: 36px;
+    width: 5.5rem;
+    height: 2.25rem;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    margin-top: 6px;
-    margin-right: 20px;
+    margin-top: 0.375rem;
+    margin-right: 1.25rem;
   }
   .quantityContainerResponsive .quantityResponsive {
     background: #FFF;
-    width: 35.71px;
-    height: 28.8px;
-    line-height: 28.8px;
+    width: 2.232rem;
+    height: 1.8rem;
+    line-height: 1.8rem;
     text-align: center;
-    margin-left: 2.5px;
+    margin-left: 0.156rem;
   }
   .quantityContainerResponsive .quantitySubAddResponsive {
     color: #9A9A9A;
-    width: 28px;
-    height: 36px;
+    width: 1.75rem;
+    height: 2.25rem;
     text-align: center;
-    line-height: 36px;
+    line-height: 2.25rem;
   }
   .subTotalContainerResponsive {
     position: sticky;
     bottom: 0;
-    padding: 10px;
+    padding: 0.625rem;
     background: #F8F8F8;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -996,8 +996,8 @@
   }
   .subTotalContainerResponsive .subTotalResponsive {
     background: #FFF;
-    width: 627px;
-    height: 35px;
+    width: 39.188rem;
+    height: 2.188rem;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1017,15 +1017,15 @@
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
-    margin-top: 20px;
+    margin-top: 1.25rem;
     width: 80%;
-    margin-bottom: 70px;
+    margin-bottom: 4.375rem;
   }
   .optionsContainerResponsive .LinkOptionsResponsive {
     text-decoration: none;
   }
   .optionsContainerResponsive .LinkOptionsResponsive SVG {
-    width: 14px;
-    height: 14px;
+    width: 0.875rem;
+    height: 0.875rem;
   }
 }

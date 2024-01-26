@@ -62,15 +62,15 @@ const Register = () => {
           <Typography variant="h2" className="subtitulo">Compra más rápido y lleva el control de tus pedidos, ¡en un solo lugar!</Typography>
           <form onSubmit={handleSubmit}>
             <div>
-              <div style={{ marginBottom: "20px" }} className="textContainer" >
+              <div style={{ marginBottom: "1.25rem" }} className="textContainer" >
                 <Typography variant="h4Custom">Nombre:</Typography>
                 <TextField name="name" className="textField" onChange={handleChange} value={values.name} error={errors.name} helperText={errors.name} />
               </div>
-              <div style={{ marginBottom: "20px" }} className="textContainer" >
+              <div style={{ marginBottom: "1.25rem" }} className="textContainer" >
                 <Typography variant="h4Custom">Apellido:</Typography>
                 <TextField name="last_name" className="textField" onChange={handleChange} value={values.last_name} error={errors.last_name} helperText={errors.last_name} />
               </div>
-              <div style={{ marginBottom: "10px" }} className="textContainer" >
+              <div style={{ marginBottom: "0.625rem" }} className="textContainer" >
                 <Typography variant="h4Custom">Email:</Typography>
                 <TextField name="email" placeholder="Ejem:Tunombre@gmail.com" className="textField" onChange={handleChange} value={values.email} error={errors.email} helperText={errors.email} />
               </div>
@@ -101,7 +101,7 @@ const Register = () => {
               <div className="textContainer">
                 <FormControl variant="outlined" className="textField">
                   <Typography variant="h4Custom">Confirmar contraseña</Typography>
-                  <TextField sx={{ marginBottom: "20px" }}
+                  <TextField sx={{ marginBottom: "1.25rem" }}
                     id="outlined-adornment-password"
                     type={showPassword ? "text" : "password"}
                     name="confirmPassword"

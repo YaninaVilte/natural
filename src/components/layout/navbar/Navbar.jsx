@@ -48,7 +48,7 @@ function Navbar(props) {
   const drawer = (
     <div>
       <Toolbar />
-      <List sx={{ display: "flex", flexDirection: "column", marginLeft: "15px", lineHeight: "2.5" }}>
+      <List sx={{ display: "flex", flexDirection: "column", marginLeft: "0.938rem", lineHeight: "2.5" }}>
         {menuItemsAdmin.map(({ id, path, title }) => (
           <Link component={Link} key={id} to={path} sx={{}}>
             <Typography variant="drawer">{title}</Typography>
@@ -107,12 +107,12 @@ function Navbar(props) {
       <CssBaseline />
         <AppBar component="nav" position="fixed" sx={{ width: "100%", backgroundColor: "#164439", display: "flex", }}>
         <Box sx={{ display: { xs: 'none', sm: 'block', } }}>
-          <Toolbar sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center",  height: "82px" }}>
+            <Toolbar sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", height: "5.125rem" }}>
             
-              <Link to="/"><img src={eneBlanco} style={{ width: "40px", height: "40px", alignItems: "center" }} alt="N" /></Link>
+              <Link to="/"><img src={eneBlanco} style={{ width: "2.5rem", height: "2.5rem", alignItems: "center" }} alt="N" /></Link>
               {menuItemsAdmin.map(({ id, path, title }) => (
                 <Link component={Link} key={id} to={path} sx={{}}>
-                  <Typography variant="h4" sx={{ fontSize: "16px" }}>{title}</Typography>
+                  <Typography variant="h4" sx={{ fontSize: "1rem" }}>{title}</Typography>
                 </Link>
               ))}
 
@@ -124,26 +124,26 @@ function Navbar(props) {
               {user && user.email && user.rol !== rolAdmin ? (
                 <>
                   <Link onClick={() => setProfileDrawerOpen(true)}>
-                    <Typography variant="h4" sx={{ fontSize: "16px" }}>Perfil</Typography>
+                    <Typography variant="h4" sx={{ fontSize: "1rem" }}>Perfil</Typography>
                   </Link>
                 </>
               ) : user && user.rol === rolAdmin ? (
                 <>
                     <Link onClick={() => setProfileAdminDrawerOpen(true)}>
-                      <Typography variant="h4" sx={{ fontSize: "16px" }}>Perfil</Typography>
+                      <Typography variant="h4" sx={{ fontSize: "1rem" }}>Perfil</Typography>
                     </Link>
                 </>
               ) : (
                 <Link component={Link} to={"/Login"} >
-                  <Typography variant="h4" sx={{ fontSize: "16px" }}>Iniciar sesión</Typography>
+                      <Typography variant="h4" sx={{ fontSize: "1rem" }}>Iniciar sesión</Typography>
                 </Link>
               )}
 
 
               <Drawer container={container} variant="temporary" open={profileDrawerOpen} anchor="right" onClose={() => setProfileDrawerOpen(false)} ModalProps={{ keepMounted: true }}
-                sx={{ "& .MuiDrawer-paper": { boxSizing: "border-box", marginTop: "85px", width: drawerWidth, height: "250px", backgroundColor: "#F8F8F8", }, }}>
+                sx={{ "& .MuiDrawer-paper": { boxSizing: "border-box", marginTop: "5.313rem", width: drawerWidth, height: "15.625rem", backgroundColor: "#F8F8F8", }, }}>
                 <Toolbar />
-                <List sx={{ display: "flex", flexDirection: "column", marginLeft: "15px", lineHeight: "2.5" }}>
+                <List sx={{ display: "flex", flexDirection: "column", marginLeft: "0.938rem", lineHeight: "2.5" }}>
                       <Link component={Link} to={""} sx={{}}>
                     <Typography variant="drawer" onClick={() => setProfileDrawerOpen(false)}>Mis Pedidos</Typography>
                       </Link>
@@ -158,9 +158,9 @@ function Navbar(props) {
 
 
               <Drawer container={container} variant="temporary" open={profileAdminDrawerOpen} anchor="right" onClose={() => setProfileAdminDrawerOpen(false)} ModalProps={{ keepMounted: true }}
-                sx={{ "& .MuiDrawer-paper": { boxSizing: "border-box", marginTop: "85px", width: drawerWidth, height: "250px", backgroundColor: "#F8F8F8", }, }}>
+                sx={{ "& .MuiDrawer-paper": { boxSizing: "border-box", marginTop: "5.313rem", width: drawerWidth, height: "15.625rem", backgroundColor: "#F8F8F8", }, }}>
                 <Toolbar />
-                <List sx={{ display: "flex", flexDirection: "column", marginLeft: "15px", lineHeight: "2.5" }}>
+                <List sx={{ display: "flex", flexDirection: "column", marginLeft: "0.938rem", lineHeight: "2.5" }}>
                   <Link component={Link} to={"/dashboard"} sx={{}} >
                     <Typography variant="drawer" onClick={() => setProfileAdminDrawerOpen(false)}>Dashboard</Typography>
                   </Link>
@@ -183,10 +183,10 @@ function Navbar(props) {
       </AppBar>
         <nav style={{ width: "100%", backgroundColor: "#164439", position: "fixed" }}>
             
-          <IconButton sx={{ mr: 2, display: { sm: 'none' }, height: "82px", marginLeft: "20px", color: "#FFF" }} color="secondary.primary" aria-label="open drawer" edge="start" onClick={handleDrawerToggle}>
+          <IconButton sx={{ mr: 2, display: { sm: 'none' }, height: "5.125rem", marginLeft: "1.25rem", color: "#FFF" }} color="secondary.primary" aria-label="open drawer" edge="start" onClick={handleDrawerToggle}>
             <MenuIcon color="secondary.primary" />
           </IconButton>
-          <Drawer container={container} variant="temporary" open={mobileOpen} anchor={"left"} onClose={handleDrawerToggle} ModalProps={{ keepMounted: true, }} sx={{ display: { xs: "block" }, "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth, height: "360px", }, }}>{drawer}</Drawer>
+          <Drawer container={container} variant="temporary" open={mobileOpen} anchor={"left"} onClose={handleDrawerToggle} ModalProps={{ keepMounted: true, }} sx={{ display: { xs: "block" }, "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth, height: "22.5rem", }, }}>{drawer}</Drawer>
           <Link to="/"><img src={naturalBlanco} style={{ width: "30%", alignItems: "center" }} alt="Natural" /></Link>
       </nav>
       

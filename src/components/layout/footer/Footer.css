@@ -16,12 +16,12 @@
     margin: auto;
     display:grid;
     grid-template-columns: repeat(5, 1fr);
-    padding: 45px 0px;
+    padding: 2.813rem 0rem;
 }
 
 .pie-pagina .grupo-1 .box {
-    width: 153px;
-    height: 83px;
+    width: 9.563rem;
+    height: 5.188rem;
     /* display: flex;
     justify-content: center;
     align-items: center; */
@@ -40,9 +40,9 @@
 .pie-pagina .grupo-1 .red-social a{
     display: inline-block;
     text-decoration: none;
-    line-height: 45px;
+    line-height: 2.813rem;
     color: #fff;
-    margin-right: 10px;
+    margin-right: 0.625rem;
     background-color: #164439;
     text-align: center;
     transition: all 300ms ease;
@@ -52,7 +52,7 @@
 }
 .pie-pagina .grupo-2{
     background-color: #164439;
-    padding: 15px 10px;
+    padding: 0.938rem 0.625rem;
     text-align: center;
     color: #fff;
 }
@@ -61,7 +61,7 @@
     .pie-pagina .grupo-1{
         width: 90%;
         grid-template-columns: repeat(1, 1fr);
-        grid-gap:30px;
-        padding: 35px 0px;
+        grid-gap:1.875rem;
+        padding: 2.188rem 0rem;
     }
 }

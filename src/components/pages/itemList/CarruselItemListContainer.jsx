@@ -11,7 +11,7 @@ const CarouselItemListContainer = () => {
         <div>
             <div className="carrusel">
                 <div className="carruselContainer">
-                    <Typography variant="h1" sx= {{ fontSize: "2.5rem", marginBottom: "30px" }}>¡Nuestros productos estrellas!</Typography>
+                    <Typography variant="h1" sx={{ fontSize: "2.5rem", marginBottom: "1.875rem" }}>¡Nuestros productos estrellas!</Typography>
                     <Typography variant="carrusel">Estos son los productos que nuestros clientes adoran.</Typography>
                     <Typography variant="carrusel" sx={{ fontWeight: "600" }} >¿Cuál será tu próximo favorito?</Typography>
                 </div>
@@ -19,7 +19,7 @@ const CarouselItemListContainer = () => {
             </div>
             <div className="carrusel">
                 <div className="carruselContainer">
-                    <Typography variant="h1" sx={{ fontSize: "2.5rem", marginBottom: "30px" }}>¡Envíos express!</Typography>
+                    <Typography variant="h1" sx={{ fontSize: "2.5rem", marginBottom: "1.875rem" }}>¡Envíos express!</Typography>
                     <Typography variant="carrusel">Hacemos que comer saludable sea aún más fácil.</Typography>
                     <Typography variant="carrusel" sx={{ fontWeight: "600" }} >Compra ahora y disfruta del envío gratis en productos seleccionados.</Typography>
                 </div>
@@ -27,7 +27,7 @@ const CarouselItemListContainer = () => {
             </div>
             <div className="carrusel">
                 <div className="carruselContainer">
-                    <Typography variant="h1" sx={{ fontSize: "2.5rem", marginBottom: "30px" }}>Atención personalizada</Typography>
+                    <Typography variant="h1" sx={{ fontSize: "2.5rem", marginBottom: "1.875rem" }}>Atención personalizada</Typography>
                     <Typography variant="carrusel">Estamos aquí para asegurarnos de que tu experiencia con nosotros sea excepcional en cada paso del camino y <Typography variant="carrusel" sx={{ fontWeight: "600" }} >estamos comprometidos a superar tus expectativas.</Typography></Typography>
                     
                 </div>

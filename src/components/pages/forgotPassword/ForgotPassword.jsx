@@ -37,7 +37,7 @@ const ForgotPassword = () => {
           <Typography variant="h2" className="subtitulo">¿Olvidaste tu contraseña?</Typography>
           <form onSubmit={handleSubmit}>
             <div>
-              <div style={{ marginBottom: "20px" }} className="textContainer" >
+              <div style={{ marginBottom: "1.25rem" }} className="textContainer" >
                 <Typography variant="h4Custom">Email:</Typography>
                 <TextField name="email" placeholder="Ejem:Tunombre@gmail.com" className="textField" onChange={handleChange} value={values.email} error={errors.email} helperText={errors.email} />
               </div>

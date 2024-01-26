@@ -104,8 +104,8 @@ const ItemListContainer = () => {
             {products.map((product) => (
               <div key={product.id} className="cardContainer">
                   <CardMedia component="img" src={product.image} alt="Imagen del producto"/>
-                  <Typography variant="h4Custom" sx={{ display: 'block', marginLeft: "12px", mb: 1 }}>{product.title} </Typography>
-                  <Typography variant="h2Custom" sx={{ display: 'block', marginLeft: "12px", }}>$ {product.unit_price}</Typography>
+                <Typography variant="h4Custom" sx={{ display: 'block', marginLeft: "0.75rem", mb: 1 }}>{product.title} </Typography>
+                <Typography variant="h2Custom" sx={{ display: 'block', marginLeft: "0.75rem", }}>$ {product.unit_price}</Typography>
                   <div className="butonDetailContainer">
                   <Link to={`/itemDetail/${product.id}`}>
                     <Button variant="contained" disableRipple className="buttonToDetail"><Typography variant="detalle">Ver detalle</Typography>
