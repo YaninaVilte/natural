@@ -1,7 +1,7 @@
 export const menuNavigate = [
     {
         id: "home",
-        path: "/shop",
+        path: "/category/todos",
         title: "Todos",
         icon: "mdi:printer-point-of-sale-cog-outline"
     },
@@ -18,20 +18,20 @@ export const menuNavigate = [
         icon: "ph:hamburger-bold"
     },
     {
-        id: "frutas Congeladas",
-        path: "/category/frutas Congeladas",
+        id: "frutasCongeladas",
+        path: "/category/frutas_congeladas",
         title: "Frutas Congeladas",
         icon: "fluent-emoji-high-contrast:strawberry"
     },
     {
-        id: "sin TACC",
-        path: "/category/sin TACC",
+        id: "sinTacc",
+        path: "/category/sin_tacc",
         title: "Sin TACC",
         icon: "lucide:wheat"
     },
     {
-        id: "verduras Congeladas",
-        path: "/category/verduras Congeladas",
+        id: "verdurasCongeladas",
+        path: "/category/verduras_congeladas",
         title: "Verduras Congeladas",
         icon: "tabler:carrot"
     },

@@ -48,7 +48,6 @@ const Slider = ({ space, uniqueSlide, navigationActive, paginationActive, catego
         }
     }, []);
     
-
     let swiperModules = [A11y];
     navigationActive && swiperModules.push(Navigation)
     paginationActive && swiperModules.push(Pagination)
@@ -94,7 +93,7 @@ const Slider = ({ space, uniqueSlide, navigationActive, paginationActive, catego
                             <Typography variant="carrusel">{middleText}</Typography>
                             <Typography variant="carrusel" sx={{ fontWeight: "600" }}>{boldEndText}</Typography>
                         </div>
-                        <img src={`src/assets/${img}`} alt="Brand image" />
+                        <img src={`${import.meta.env.BASE_URL}src/assets/${img}`} alt="Brand image" />
                     </div>
                     </SwiperSlide>
                 ))

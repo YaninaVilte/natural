@@ -1,27 +1,27 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const CartContext = createContext();
 
 const CartContextComponent = ({ children }) => {
   const [cart, setCart] = useState( JSON.parse(localStorage.getItem("cart")) || []);
 
-  const addToCart = (product)=>{
-    let existe = cart.some( e => e.id === product.id) 
-    if(existe){
-        let newArr = cart.map( elemento => {
-            if(elemento.id === product.id){
-                // lo modifico y lo agrego al nuevo arreglo
-                return {...elemento, quantity: product.quantity }
-            }else{
-                return elemento
-            }
-        })
-        localStorage.setItem("cart", JSON.stringify(newArr) )
-        setCart(newArr)
+  useEffect(()=>{
+    localStorage.setItem('cart', JSON.stringify(cart))
+  }, [cart])
+
+  const addToCart = (productId, productQuantity, productStock) =>{
+    const addProduct = {productId, productQuantity};
+    const productsAOnCart = [...cart];
+    const existingProduct = productsAOnCart.find((el)=>el.productId === addProduct.productId);
+
+    if(existingProduct){
+    (existingProduct.productQuantity + productQuantity) >= productStock ?
+    existingProduct.productQuantity = productStock :
+    existingProduct.productQuantity += productQuantity 
     }else{
-      localStorage.setItem("cart", JSON.stringify([...cart, product ]) )
-        setCart([...cart, product ])
+      productsAOnCart.push(addProduct);
     }
+    setCart(productsAOnCart);
   }
 
   const getQuantityById = (id)=>{

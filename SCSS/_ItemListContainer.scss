@@ -100,7 +100,7 @@
                                     border-radius: .15em;
                                     transition: all .3s ease;
                                     &:hover {
-                                        box-shadow: 0px 5px 3px 0px #d7a192;
+                                        box-shadow: 0 .313em .188em 0 #d7a192;
                                         & svg {
                                             color: #FFC8B9;
                                         }
@@ -113,14 +113,14 @@
                                         }
                                     }
                                     & svg {
-                                        width: 40px;
-                                        height: 40px;
+                                        width: 2.5em;
+                                        height: 2.5em;
                                         transition: color 0.3s ease;
                                         color: white;
                                     }
                                     .MuiTypography-root {
                                         align-items: center;
-                                        margin-top: 10px;
+                                        margin-top: .625em;
                                         color: white;
                                     }
                                 }
@@ -155,20 +155,32 @@
     .cardContainer {
         width: 20.62em;
         height: 20.62em;
-        border-radius: 2px;
+        border-radius: .2em;
         background: var(--Card, #F8F8F8);
-        box-shadow: 3px 4px 11px 0px rgba(0, 0, 0, 0.10);
+        box-shadow: .188em .25em .688em 0 rgba(0, 0, 0, 0.10);
         margin: .6em;
         position: relative;
         display: flex;
         flex-direction: column;
         align-items: center;
 
+        .heart-icon{
+            position: absolute;
+            top: .5em;
+            right: .5em;
+            fill: #164439;
+            width: 2em;
+            height: 2em;
+            cursor: pointer;
+            filter: drop-shadow(0 0 .125em #FFF);
+            transition: all .2s ease;
+        }
+
         .MuiCardMedia-root {
             width: 95%;
             height: 55%;
             margin: 0.8em;
-            border-top-right-radius: 6.25em;
+            border-radius: .2em 6.25em .2em .2em;
         }
 
         .MuiTypography-root{
@@ -199,7 +211,7 @@
             width: 70%;
             height: 2.5em;
             background-color: #164439;
-            border-radius: 0;
+            border-radius: .2em;
             .MuiTypography-root,
             svg{
                 font-size: 1em;
@@ -216,7 +228,7 @@
 
                 & .MuiTypography-root {
                     color: #41a88a;
-                    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.25);
+                    text-shadow: .063em .063em 0 rgba(0, 0, 0, 0.25);
                 }
             }
         }
