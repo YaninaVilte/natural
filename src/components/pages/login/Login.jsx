@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, IconButton, InputAdornment, OutlinedInput, TextField, Tooltip, Typography, } from "@mui/material";
+import { Box, Button, FormControl, IconButton, InputAdornment, TextField, Tooltip, Typography, } from "@mui/material";
 import GoogleIcon from "@mui/icons-material/Google";
 import { Link, useNavigate } from "react-router-dom";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
@@ -9,28 +9,32 @@ import { AuthContext } from "../../../context/AuthContext";
 import natural from "../../../assets/natural.png"
 import theme from "../../../temaConfig";
 import { ThemeProvider } from "@emotion/react";
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 const Login = () => {
   const {handleLogin} = useContext(AuthContext)
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-
   const handleClickShowPassword = () => setShowPassword(!showPassword);
 
-  const [userCredentials, setUserCredentials] = useState({
-    email: "",
-    password: "",
-  });
-  
+  const { handleSubmit, handleChange, values, errors } = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
 
-  const handleChange = (e) => {
-    setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value });
-  };
+    validationSchema: Yup.object({
+      email: Yup.string()
+        .email('Email no válido')
+        .required('Email es obligatorio'),
+      password: Yup.string()
+        .min(6, 'La contraseña debe tener al menos 6 caracteres').required('Contraseña es obligatoria'),
+    }),
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+    onSubmit: async (values) => {
     try {
-      const res = await onSigIn(userCredentials);
+      const res = await onSigIn(values);
       if(res?.user){
         const userCollection = collection(db, "users")
         const userRef = doc(userCollection, res.user.uid )
@@ -45,7 +49,9 @@ const Login = () => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }
+
+});
 
   const googleSingIn = async ()=>{
     let res = await loginGoogle()
@@ -65,22 +71,35 @@ const Login = () => {
         <Typography variant="h2" className="subtitulo">Compra más rápido y lleva el control de tus pedidos, ¡en un solo lugar!</Typography>
       <form onSubmit={handleSubmit}>
           <div>
-            <div style={{ marginBottom: "20px" }} className="textContainer" >
-              <Typography variant="h4Custom">Email:</Typography>
-              <TextField name="email" placeholder="Ejem:Tunombre@gmail.com" className="textField" onChange={handleChange} />
+              <div style={{ marginBottom: "1.25rem" }} className="textContainer" >
+                <Typography variant="h4Custom">Email:</Typography>
+                <TextField name="email" placeholder="Ejem:Tunombre@gmail.com" className="textField" onChange={handleChange} value={values.email} error={errors.email} helperText={errors.email} />
             </div>
             <div className="textContainer">
-            <Typography variant="h4Custom">Contraseña:</Typography>
-              <FormControl className="textField" >
-              <OutlinedInput name="password" onChange={handleChange} id="outlined-adornment-password" type={showPassword ? "text" : "password"} endAdornment={
-                <InputAdornment position="end">
-                  <IconButton aria-label="toggle password visibility" onClick={handleClickShowPassword} edge="end"> {showPassword ? ( <VisibilityOff color="primary" />) : ( <Visibility color="primary" /> )}
-                  </IconButton>
-                </InputAdornment>
-                } label="Contraseña"/>
-            </FormControl>
+                <FormControl variant="outlined" className="textField">
+                  <Typography variant="h4Custom">Contraseña:</Typography>
+                  <TextField id="outlined-adornment-password" type={showPassword ? "text" : "password"} name="password" onChange={handleChange} value={values.password} error={errors.password} helperText={errors.password} InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          edge="end"
+                        >
+                          {showPassword ? (
+                            <VisibilityOff style={{ color: "#164439" }} />
+                          ) : (
+                            <Visibility style={{ color: "#164439" }} />
+                          )}
+
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                  />
+                </FormControl>
             </div>
-          <Link to="/forgot-password" style={{ marginTop: "10px" }}><Typography variant="reset">¿Olvidaste tu contraseña?</Typography></Link>
+              <Link to="/forgot-password" style={{ marginTop: "0.625rem" }}><Typography variant="reset">¿Olvidaste tu contraseña?</Typography></Link>
               <div className="textContainer">
               <div>
                 <Button variant="contained" type="submit" className="button"><Typography variant="h4">Iniciar sesión</Typography>

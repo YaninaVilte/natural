@@ -18,12 +18,12 @@ const Footer = () => {
                 <div className="box">
                     <figure>
                         <a href="#">
-                        <img src={eneBlanco} style={{ width: '303.351px', height: '302.212px', transform: 'rotate(-30deg)', flexShrink: 0, }} alt="Descripción de la imagen" />
+                                <img src={eneBlanco} style={{ width: '18.959rem', height: '18.888rem', transform: 'rotate(-30deg)', flexShrink: 0, }} alt="Descripción de la imagen" />
                         </a>
                     </figure>
                 </div>
                 <div className="box">
-                <img src={naturalBlanco} style={{ width: '144px', height: '24px', flexShrink: 0 }} alt="Descripción de la imagen" />
+                        <img src={naturalBlanco} style={{ width: '9rem', height: '1.5rem', flexShrink: 0 }} alt="Descripción de la imagen" />
                     <Typography variant="h6">Comida saludable congelada</Typography>
                 </div>
                 <div className="box">
@@ -43,9 +43,9 @@ const Footer = () => {
                 <div className="box">
                     <Typography variant="h4">Seguinos en nuestras redes</Typography>
                     <div className="red-social">
-                        <a href="#" className="fa fa-instagram"><img src={instagram} style={{ width: '24px', height: '24px' }} alt="Descripción de la imagen" /></a>
-                        <a href="#" className="fa fa-twitter"><img src={twitter} style={{ width: '24px', height: '24px' }} alt="Descripción de la imagen" /></a>
-                        <a href="#" className="fa fa-facebook"><img src={facebook} style={{ width: '24px', height: '24px' }} alt="Descripción de la imagen" /></a>
+                            <a href="#" className="fa fa-instagram"><img src={instagram} style={{ width: '1.5rem', height: '1.5rem' }} alt="Descripción de la imagen" /></a>
+                            <a href="#" className="fa fa-twitter"><img src={twitter} style={{ width: '1.5rem', height: '1.5rem' }} alt="Descripción de la imagen" /></a>
+                            <a href="#" className="fa fa-facebook"><img src={facebook} style={{ width: '1.5rem', height: '1.5rem' }} alt="Descripción de la imagen" /></a>
                     </div>
                 </div>
             </div>

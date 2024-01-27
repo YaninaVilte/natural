@@ -22,7 +22,7 @@ const Cart = () => {
         <Typography variant="h4Custom">Compra/Carrito de compras</Typography>
 
         <div className="cartStatus">
-          <Typography variant="titulo" sx={{ fontSize: "14px" }}>Productos</Typography>
+            <Typography variant="titulo" sx={{ fontSize: "0.875rem" }}>Productos</Typography>
           <img src={lineCart} className="cartLine" alt="Linea recta" />
           <Typography variant="h4" style={{ color: "#164439" }} >Detalle de entrega</Typography>
           <img src={lineCart} className="cartLine" alt="Linea recta" />
@@ -51,7 +51,7 @@ const Cart = () => {
                           </div>
                         </div>
                         <div className="titleProductContainer">
-                          <Typography variant="h4Custom" sx={{ fontSize: "13px" }}>{product.title}</Typography>
+                          <Typography variant="h4Custom" sx={{ fontSize: "0.813rem" }}>{product.title}</Typography>
                         </div>
                       </TableCell>
                       <TableCell component="th" scope="row" align="left">

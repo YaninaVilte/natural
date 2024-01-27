@@ -155,7 +155,7 @@ const ProductsForm = ({
           width: "100%",
           display: "flex",
           flexDirection: "column",
-          gap: "20px",
+          gap: "1.25rem",
         }}
       >
         <TextField
@@ -198,7 +198,7 @@ const ProductsForm = ({
         )}
         {selectedImage && (
           <div>
-            <img src={selectedImage} alt="Imagen Seleccionada" style={{ maxWidth: "100px" }} />
+            <img src={selectedImage} alt="Imagen Seleccionada" style={{ maxWidth: "6.25rem" }} />
             <Button onClick={() => setSelectedImage("")}>Eliminar Imagen</Button>
             <Button variant="contained" type="submit">
               {productSelected ? "modificar" : "crear"}
@@ -215,7 +215,7 @@ const ProductsForm = ({
         )}
         {selectedImage1 && (
           <div>
-            <img src={selectedImage1} alt="Imagen Seleccionada" style={{ maxWidth: "100px" }} />
+            <img src={selectedImage1} alt="Imagen Seleccionada" style={{ maxWidth: "6.25rem" }} />
             <Button onClick={() => setSelectedImage1("")}>Eliminar Imagen</Button>
             <Button variant="contained" type="submit">
               {productSelected ? "modificar" : "crear"}
@@ -232,7 +232,7 @@ const ProductsForm = ({
         )}
         {selectedImage2 && (
           <div>
-            <img src={selectedImage2} alt="Imagen Seleccionada" style={{ maxWidth: "100px" }} />
+            <img src={selectedImage2} alt="Imagen Seleccionada" style={{ maxWidth: "6.25rem" }} />
             <Button onClick={() => setSelectedImage2("")}>Eliminar Imagen</Button>
             <Button variant="contained" type="submit">
               {productSelected ? "modificar" : "crear"}
@@ -249,7 +249,7 @@ const ProductsForm = ({
         )}
         {selectedImage3 && (
           <div>
-            <img src={selectedImage3} alt="Imagen Seleccionada" style={{ maxWidth: "100px" }} />
+            <img src={selectedImage3} alt="Imagen Seleccionada" style={{ maxWidth: "6.25rem" }} />
             <Button onClick={() => setSelectedImage3("")}>Eliminar Imagen</Button>
             <Button variant="contained" type="submit">
               {productSelected ? "modificar" : "crear"}
