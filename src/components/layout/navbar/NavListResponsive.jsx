@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 import { menuItemsAdmin } from "../../../router/navigationAdmin";
 
-function DrawerResponsive() {
+function NavListResponsive() {
     const { logoutContext, user } = useContext(AuthContext);
 
     const navigate = useNavigate();
@@ -21,7 +21,7 @@ function DrawerResponsive() {
     return (
         <div>
             <Toolbar />
-            <List sx={{ display: "flex", flexDirection: "column", marginLeft: "0.938rem", lineHeight: "2.5" }}>
+            <List sx={{ display: "flex", flexDirection: "column", marginLeft: "0.938rem", lineHeight: "2.5", width: "10rem" }}>
                 {menuItemsAdmin.map(({ id, path, title }) => (
                     <Link component={Link} key={id} to={path} sx={{}}>
                         <Typography variant="drawer">{title}</Typography>
@@ -69,4 +69,4 @@ function DrawerResponsive() {
 
 }
 
-export default DrawerResponsive;
+export default NavListResponsive;
