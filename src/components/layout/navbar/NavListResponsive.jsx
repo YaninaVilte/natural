@@ -1,11 +1,11 @@
-import { List, Toolbar, Typography } from "@mui/material";
+import { Box, List, ListItem, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../../firebaseConfig";
 import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 import { menuItemsAdmin } from "../../../router/navigationAdmin";
 
-function NavListResponsive() {
+function NavListResponsive( setDrawerOpen ) {
     const { logoutContext, user } = useContext(AuthContext);
 
     const navigate = useNavigate();
@@ -14,56 +14,63 @@ function NavListResponsive() {
         logout();
         logoutContext();
         navigate("/");
+        setDrawerOpen(false);
     };
 
     const rolAdmin = import.meta.env.VITE_ROL_ADMIN;
 
     return (
-        <div>
-            <Toolbar />
-            <List sx={{ display: "flex", flexDirection: "column", marginLeft: "0.938rem", lineHeight: "2.5", width: "10rem" }}>
+        <Box sx={{  }}>
+            <nav>
                 {menuItemsAdmin.map(({ id, path, title }) => (
-                    <Link component={Link} key={id} to={path} sx={{}}>
-                        <Typography variant="drawer">{title}</Typography>
-                    </Link>
+                    <ListItem key={id}>
+                        <Link component={Link} to={path} onClick={() => setDrawerOpen(false)}>
+                            <Typography variant="drawer">{title}</Typography>
+                        </Link>
+                    </ListItem>
                 ))}
-
                 {user && user.email && user.rol !== rolAdmin ? (
-                    <>
-                        <Link component={Link} to={""} sx={{}}>
-                            <Typography variant="drawer">Mis Pedidos</Typography>
-                        </Link>
-                        <Link component={Link} to={""} sx={{}}>
-                            <Typography variant="drawer">Favoritos</Typography>
-                        </Link>
-                        <Link onClick={handleLogout} sx={{}}>
-                            <Typography variant="drawer">Cerrar sesión</Typography>
-                        </Link>
-                    </>
+                    <List >
+                        <ListItem onClick={() => setDrawerOpen(false)}>
+                            <Link component={Link} to={"/favorites"}>
+                                    <Typography variant="drawer">Favoritos</Typography>
+                                </Link>
+                            </ListItem>
+                        <ListItem>
+                            <Link onClick={handleLogout}>
+                                <Typography variant="drawer">Cerrar sesión</Typography>
+                                </Link>
+                            </ListItem>
+                        </List>
                 ) : user && user.rol === rolAdmin ? (
-                    <>
-                        <Link component={Link} to={"/dashboard"} sx={{}}>
-                            <Typography variant="drawer">Dashboard</Typography>
-                        </Link>
-                        <Link component={Link} to={""} sx={{}}>
-                            <Typography variant="drawer">Pedidos</Typography>
-                        </Link>
-                        <Link component={Link} to={""} sx={{}}>
-                            <Typography variant="drawer">Favoritos</Typography>
-                        </Link>
-                        <Link onClick={handleLogout} sx={{}}>
-                            <Typography variant="drawer">Cerrar sesión</Typography>
-                        </Link>
-                    </>
+                        <List>
+                            <ListItem onClick={() => setDrawerOpen(false)}>
+                                    <Link component={Link} to={"/dashboard"}>
+                                        <Typography variant="drawer">Dashboard</Typography>
+                                    </Link>
+                                </ListItem>
+                            <ListItem onClick={() => setDrawerOpen(false)}>
+                                    <Link component={Link} to={"/favorites"}>
+                                        <Typography variant="drawer">Favoritos</Typography>
+                                    </Link>
+                                </ListItem>
+                            <ListItem>
+                                <Link onClick={handleLogout}>
+                                    <Typography variant="drawer">Cerrar sesión</Typography>
+                                    </Link>
+                                </ListItem>
+                            </List>
                 ) : (
-                    <Link component={Link} to={"/Login"} >
-                        <Typography variant="drawer">Iniciar sesión</Typography>
-                    </Link>
+                <List >
+                    <ListItem onClick={() => setDrawerOpen(false)}>
+                        <Link component={Link} to={"/Login"} >
+                            <Typography variant="drawer">Iniciar sesión</Typography>
+                        </Link>
+                    </ListItem>
+                </List>
                 )}
-
-            </List>
-
-        </div>
+            </nav>
+        </Box>
 
     );
 

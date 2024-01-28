@@ -4,7 +4,7 @@ import { logout } from "../../../firebaseConfig";
 import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 
-function NavList() {
+function NavList(setListOpen ) {
     const { logoutContext, user } = useContext(AuthContext);
 
     const navigate = useNavigate();
@@ -13,28 +13,24 @@ function NavList() {
         logout();
         logoutContext();
         navigate("/");
+        setListOpen(false);
     };
 
     const rolAdmin = import.meta.env.VITE_ROL_ADMIN;
 
 
     return (
-        <Box sx={{ width: "15rem", marginTop: "3rem", height: "11rem" }}>
+        <Box sx={{ }}>
             <nav>
                     {user && user.email && user.rol !== rolAdmin ? (
-                    <List>
-                            <ListItem>
-                                <Link component={Link} to={""} sx={{}}>
-                                    <Typography variant="drawer">Mis Pedidos</Typography>
-                                </Link>
-                            </ListItem>
-                            <ListItem>
-                                <Link component={Link} to={""} sx={{}}>
+                    <List >
+                        <ListItem onClick={() => setListOpen(false)}>
+                            <Link component={Link} to={"/favorites"} >
                                     <Typography variant="drawer">Favoritos</Typography>
                                 </Link>
                             </ListItem>
-                            <ListItem>
-                                <Link onClick={handleLogout} sx={{}}>
+                            <ListItem >
+                                <Link onClick={handleLogout}>
                                     <Typography variant="drawer">Cerrar sesión</Typography>
                                 </Link>
                             </ListItem>
@@ -42,30 +38,25 @@ function NavList() {
                     ) : user && user.rol === rolAdmin ? (
                         <>
                             <List>
-                                <ListItem>
-                                    <Link component={Link} to={"/dashboard"} sx={{}}>
+                                <ListItem onClick={() => setListOpen(false)}>
+                                    <Link component={Link} to={"/dashboard"}>
                                         <Typography variant="drawer">Dashboard</Typography>
                                     </Link>
                                 </ListItem>
-                                <ListItem>
-                                    <Link component={Link} to={""} sx={{}}>
-                                        <Typography variant="drawer">Pedidos</Typography>
-                                    </Link>
-                                </ListItem>
-                                <ListItem>
-                                    <Link component={Link} to={""} sx={{}}>
+                                <ListItem onClick={() => setListOpen(false)}>
+                                    <Link component={Link} to={"/favorites"}>
                                         <Typography variant="drawer">Favoritos</Typography>
                                     </Link>
                                 </ListItem>
-                                <ListItem>
-                                    <Link onClick={handleLogout} sx={{}}>
+                                <ListItem > 
+                                    <Link onClick={handleLogout}>
                                         <Typography variant="drawer">Cerrar sesión</Typography>
                                     </Link>
                                 </ListItem>
                             </List>
                         </>
                     ) : (
-                        <Link component={Link} to={"/Login"} >
+                            <Link component={Link} to={"/Login"} onClick={() => setListOpen(false)}>
                             <Typography variant="drawer">Iniciar sesión</Typography>
                         </Link>
                     )}

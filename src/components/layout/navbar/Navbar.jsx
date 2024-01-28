@@ -23,7 +23,7 @@ import NavList from "./NavList";
 function Navbar() {
   const { user } = useContext(AuthContext);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [pruebaOpen, setPruebaOpen] = useState(false);
+  const [listOpen, setListOpen] = useState(false);
 
 
   
@@ -39,7 +39,7 @@ function Navbar() {
               </div>
               <div style={{ display: "flex", alignItems: "center", flexGrow: 1 }}>
                 {menuItemsAdmin.map(({ id, path, title }) => (
-                  <Link component={Link} key={id} to={path} sx={{ }}>
+                  <Link component={Link} key={id} to={path}>
                     <Typography variant="h4" sx={{ fontSize: "1rem", marginRight: "1.5rem" }}>{title}</Typography>
                   </Link>
                 ))}
@@ -53,7 +53,7 @@ function Navbar() {
                 <div style={{ marginLeft: "1.5rem" }}>
                   {user && user.email ? (
                     <>
-                      <Link onClick={() => setPruebaOpen(true)} >
+                      <Link onClick={() => setListOpen(true)} >
                         <Typography variant="h4" sx={{ fontSize: "1rem" }}>Perfil</Typography>
                       </Link>
                     </>
@@ -65,8 +65,14 @@ function Navbar() {
                 </div>
               </div>
 
-              <Drawer open={pruebaOpen} anchor="right" onClose={() => setPruebaOpen(false)} >
-                <NavList />
+              <Drawer open={listOpen} anchor="right" onClose={() => setListOpen(false)} elemento PaperProps={{
+                sx: {
+                  width: "15rem",
+                  height: "9rem",
+                  zIndex: "1", backgroundColor: "#F8F8F8", marginTop: "5.2rem"
+                },
+              }}>
+                <NavList setListOpen={setListOpen} />
               </Drawer>
               
             </Toolbar>
@@ -86,8 +92,13 @@ function Navbar() {
             <Icon icon="fontisto:shopping-basket" width="24" height="24" color="#FFFFFF" style={{ marginRight: "1.25rem" }} />
           </Link>
 
-          <Drawer open={drawerOpen} anchor="left" onClose={() => setDrawerOpen(false)}>
-            <NavListResponsive />
+          <Drawer open={drawerOpen} anchor="left" onClose={() => setDrawerOpen(false)} PaperProps={{
+            sx: {
+              width: "15rem",
+              height: "14rem", backgroundColor: "#F8F8F8", marginTop: "5.2rem"
+            },
+          }}>
+            <NavListResponsive setDrawerOpen={setDrawerOpen} />
           </Drawer>
 
       </nav>

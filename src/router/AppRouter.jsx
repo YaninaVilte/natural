@@ -1,12 +1,10 @@
 import { Route, Routes } from "react-router-dom";
-import Navbar from "../components/layout/navbar/Navbar";
 import { routes } from "./routes";
 import Login from "../components/pages/login/Login";
 import Register from "../components/pages/register/Register";
 import ForgotPassword from "../components/pages/forgotPassword/ForgotPassword";
 import Dashboard from "../components/pages/dashboard/Dashboard";
 import ProtectedAdmin from "./ProtectedAdmin";
-import Footer from "../components/layout/footer/Footer";
 import Layout from "../components/layout/Layout";
 
 const AppRouter = () => {
