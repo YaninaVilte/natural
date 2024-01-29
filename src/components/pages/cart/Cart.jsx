@@ -30,9 +30,9 @@ const Cart = () => {
         </div>
 
         <TableContainer component={Paper} className="tableContainer">
-          <Table stickyHeader sx={{ }} aria-label="simple table">
-              <TableHead sx={{}} >
-              <TableRow sx={{ }}>
+          <Table stickyHeader aria-label="simple table">
+              <TableHead >
+              <TableRow >
                 <TableCell align="left" sx={{ background: "#F8F8F8" }}><Typography variant="h2Custom" sx={{fontWeight: "700" }}>Producto</Typography></TableCell>
                 <TableCell align="left" sx={{ background: "#F8F8F8" }}><Typography variant="h2Custom" sx={{ fontWeight: "700" }}>Cantidad</Typography></TableCell>
                 <TableCell align="left" sx={{ background: "#F8F8F8" }}><Typography variant="h2Custom" sx={{ fontWeight: "700" }}>Precio</Typography></TableCell>
