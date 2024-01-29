@@ -4,7 +4,7 @@ import { logout } from "../../../firebaseConfig";
 import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 
-function NavList(setListOpen) {
+function NavList({ setListOpen }) {
     const { logoutContext, user } = useContext(AuthContext);
 
     const navigate = useNavigate();
@@ -37,12 +37,12 @@ function NavList(setListOpen) {
                 ) : user && user.rol === rolAdmin ? (
                     <>
                         <List>
-                            <ListItem onClick={() => setListOpen(false)}>
+                                <ListItem onClick={() => setListOpen(false)}>
                                 <Link component={Link} to={"/dashboard"}>
                                     <Typography variant="drawer">Dashboard</Typography>
                                 </Link>
                             </ListItem>
-                            <ListItem onClick={() => setListOpen(false)}>
+                                <ListItem onClick={() => setListOpen(false)}>
                                 <Link component={Link} to={"/favorites"}>
                                     <Typography variant="drawer">Favoritos</Typography>
                                 </Link>
@@ -55,7 +55,7 @@ function NavList(setListOpen) {
                         </List>
                     </>
                 ) : (
-                    <Link component={Link} to={"/Login"} onClick={() => setListOpen(false)}>
+                            <Link component={Link} to={"/Login"} onClick={() => setListOpen(false)}>
                         <Typography variant="drawer">Iniciar sesión</Typography>
                     </Link>
                 )}

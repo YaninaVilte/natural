@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 import { menuItemsAdmin } from "../../../router/navigationAdmin";
 
-function NavListResponsive(setDrawerOpen) {
+function NavListResponsive({setDrawerOpen}) {
     const { logoutContext, user } = useContext(AuthContext);
 
     const navigate = useNavigate();
@@ -44,12 +44,12 @@ function NavListResponsive(setDrawerOpen) {
                     </List>
                 ) : user && user.rol === rolAdmin ? (
                     <List>
-                        <ListItem onClick={() => setDrawerOpen(false)}>
+                            <ListItem onClick={() => setDrawerOpen(false)}>
                             <Link component={Link} to={"/dashboard"}>
                                 <Typography variant="drawer">Dashboard</Typography>
                             </Link>
                         </ListItem>
-                        <ListItem onClick={() => setDrawerOpen(false)}>
+                            <ListItem onClick={() => setDrawerOpen(false)}>
                             <Link component={Link} to={"/favorites"}>
                                 <Typography variant="drawer">Favoritos</Typography>
                             </Link>
@@ -62,7 +62,7 @@ function NavListResponsive(setDrawerOpen) {
                     </List>
                 ) : (
                     <List >
-                        <ListItem onClick={() => setDrawerOpen(false)}>
+                                <ListItem onClick={() => setDrawerOpen(false)}>
                             <Link component={Link} to={"/Login"} >
                                 <Typography variant="drawer">Iniciar sesión</Typography>
                             </Link>

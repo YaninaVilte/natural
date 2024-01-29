@@ -68,7 +68,6 @@ function Navbar() {
               <Drawer open={listOpen} anchor="right" onClose={() => setListOpen(false)} elemento PaperProps={{
                 sx: {
                   width: "15rem",
-                  height: "9rem",
                   zIndex: "1", backgroundColor: "#F8F8F8", marginTop: "5.2rem"
                 },
               }}>
@@ -94,8 +93,7 @@ function Navbar() {
 
           <Drawer open={drawerOpen} anchor="left" onClose={() => setDrawerOpen(false)} PaperProps={{
             sx: {
-              width: "15rem",
-              height: "14rem", backgroundColor: "#F8F8F8", marginTop: "5.2rem"
+              width: "15rem", backgroundColor: "#F8F8F8", marginTop: "5.2rem"
             },
           }}>
             <NavListResponsive setDrawerOpen={setDrawerOpen} />
