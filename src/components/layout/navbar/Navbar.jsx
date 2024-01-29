@@ -26,89 +26,12 @@ function Navbar() {
   const [listOpen, setListOpen] = useState(false);
 
 
-<<<<<<< HEAD
   
-=======
-  const navigate = useNavigate();
-  const rolAdmin = import.meta.env.VITE_ROL_ADMIN;
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
-
-  const handleLogout = () => {
-    logout();
-    logoutContext();
-    navigate("/");
-  };
-
-
-
-  const drawer = (
-    <div>
-      <Toolbar />
-        <List sx={{ display: "flex", flexDirection: "column", marginLeft: "15px", lineHeight: "2.5" }}>
-          {menuItemsAdmin.map(({ id, path, title }) => (
-            <Link component={Link} key={id} to={path} sx={{}}>
-              <Typography variant="drawer">{title}</Typography>
-            </Link>
-          ))}
-
-          <Link component={Link} to={"/cart"}>
-            <Typography variant="drawer">Carrito</Typography>
-          </Link>
-
-
-          {user && user.email && user.rol !== rolAdmin ? (
-            <>
-              <Link component={Link} to={""} sx={{}}>
-                <Typography variant="drawer">Mis Pedidos</Typography>
-              </Link>
-              <Link component={Link} to={""} sx={{}}>
-                <Typography variant="drawer">Favoritos</Typography>
-              </Link>
-              <Link onClick={handleLogout} sx={{}}>
-                <Typography variant="drawer">Cerrar sesión</Typography>
-              </Link>
-            </>
-          ) : user && user.rol === rolAdmin ? (
-            <>
-              <Link component={Link} to={"/dashboard"} sx={{}}>
-                <Typography variant="drawer">Dashboard</Typography>
-              </Link>
-              <Link component={Link} to={""} sx={{}}>
-                <Typography variant="drawer">Pedidos</Typography>
-              </Link>
-              <Link component={Link} to={""} sx={{}}>
-                <Typography variant="drawer">Favoritos</Typography>
-              </Link>
-              <Link onClick={handleLogout} sx={{}}>
-                <Typography variant="drawer">Cerrar sesión</Typography>
-              </Link>
-            </>
-          ) : (
-          <Link component={Link} to={"/Login"} >
-                <Typography variant="drawer">Iniciar sesión</Typography>
-          </Link>
-        )}
-  
-      </List>
-
-    </div>
-  );
-
-  const container = window !== undefined ? () => window().document.body : undefined;
-
->>>>>>> secondDevelop
   return (
     <Box sx={{ display: "flex", position:'sticky', top:'0', left:'0', zIndex:'9999'}}>
       <ThemeProvider theme={theme}>
       <CssBaseline />
-<<<<<<< HEAD
         <AppBar component="nav" position="fixed" sx={{ width: "100%", backgroundColor: "#164439", display: "flex" }}>
-=======
-        <AppBar component="nav" position="sticky" sx={{ top:'0', left:'0', width: "100%", backgroundColor: "#164439", display: "flex" }}>
->>>>>>> secondDevelop
         <Box sx={{ display: { xs: 'none', sm: 'block', } }}>
             <Toolbar sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", height: "5.125rem" }}>
               <div style={{ display: "flex", alignItems: "center", marginRight: "2.5rem" }}>
@@ -156,7 +79,6 @@ function Navbar() {
         </Box>
           
       </AppBar>
-<<<<<<< HEAD
 
         <nav style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", height: "5.125rem", width: "100%", backgroundColor: "#164439" }}>
 
@@ -180,17 +102,6 @@ function Navbar() {
           </Drawer>
 
       </nav>
-=======
-        {/* <nav style={{ width: "100%", backgroundColor: "#164439", position: "fixed" }}>
-            
-          <IconButton sx={{ mr: 2, display: { sm: 'none' }, height: "5.125rem", marginLeft: "1.25rem", color: "#FFF" }} color="secondary.primary" aria-label="open drawer" edge="start" onClick={handleDrawerToggle}>
-            <MenuIcon color="secondary.primary" />
-          </IconButton>
-          <Drawer container={container} variant="temporary" open={mobileOpen} anchor={"left"} onClose={handleDrawerToggle} ModalProps={{ keepMounted: true, }} sx={{ display: { xs: "block" }, "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth, height: "22.5rem", }, }}>{drawer}</Drawer>
-          <Link to="/"><img src={naturalBlanco} style={{ width: "30%", alignItems: "center" }} alt="Natural" /></Link>
-      </nav> */}
-      
->>>>>>> secondDevelop
       </ThemeProvider>
 
     </Box>
