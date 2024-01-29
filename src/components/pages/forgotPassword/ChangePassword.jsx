@@ -21,9 +21,6 @@ const Register = () => {
 
   const { handleSubmit, handleChange, values, errors, touched, setErrors } = useFormik({
     initialValues: {
-      name: "",
-      last_name: "",
-      email: "",
       password: "",
       confirmPassword: "",
     },
@@ -31,15 +28,6 @@ const Register = () => {
     onSubmit: async (values) => {
       // Esquema de validación directamente en onSubmit
       const validationSchema = Yup.object({
-        name: Yup.string()
-          .required('Nombre es obligatorio')
-          .matches(/^[A-Za-záéíóúÁÉÍÓÚñÑüÜ\s']+$/, 'No debe contener números, símbolos o esatr vacío el campo'),
-        last_name: Yup.string()
-          .required('Apellido es obligatorio')
-          .matches(/^[A-Za-záéíóúÁÉÍÓÚñÑüÜ\s']+$/, 'No debe contener números, símbolos o esatr vacío el campo'),
-        email: Yup.string()
-          .email('Email no válido')
-          .required('Email es obligatorio'),
         password: Yup.string()
           .min(6, 'La contraseña debe tener al menos 6 caracteres')
           .required('Contraseña es obligatoria'),
@@ -51,14 +39,37 @@ const Register = () => {
       try {
         let userTokenAccess = localStorage.getItem('userTokenAccess');
         const result = await validationSchema.validate(values, { abortEarly: false });
+
+        function getParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+              token: params.get('token'),
+              email: params.get('email'),
+            };
+        }
+          
+        const { token, email } = getParams();
+        
+        // Verificar si se proporcionaron ambos parámetros
+        if (!token || !email) {
+            toast.error("No se encontraron los parametros necesarios", {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+        return;
+        }
         
         const userData = {
-          name: result.name,
-          last_name: result.last_name,
-          email: result.email,
-          role: 'USER',
           password: result.password,
-          repeatedPassword: result.password
+          repeatedPassword: result.confirmPassword,
+          token,
+          email
         };
 
         let fetchOptions = {
@@ -71,18 +82,22 @@ const Register = () => {
             fetchOptions.headers['Authorization'] = `Bearer ${userTokenAccess}`;
         }
 
-        axios.post('https://naturalicy-back-production.up.railway.app/api/sessions/register', userData, fetchOptions)
+    
+        axios.post('https://naturalicy-back-production.up.railway.app/api/sessions/changePassword', userData, fetchOptions)
         .then(res=>{
-          toast.success("¡Se envío un mail de validación al correo especificado!", {
+            setTimeout(() => {
+                navigate('/login')
+            }, 2500);  
+            toast.success("¡Se modificó la contraseña de tu cuenta!", {
             position: "bottom-center",
-            autoClose: 5000,
+            autoClose: 1500,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
             theme: "light",
-          });
+            });
         })
         .catch(error=>console.log(error))
       
@@ -106,43 +121,9 @@ const Register = () => {
         <ThemeProvider theme={theme}>
           <ToastContainer />
           <img src={natural} alt="Nombre del emprendimiento: Natural" />
-          <Typography variant="h2" className="subtitulo">Compra más rápido y lleva el control de tus pedidos, ¡en un solo lugar!</Typography>
+          <Typography variant="h2" className="subtitulo">¡Rellena los campos para obtener tu nueva contraseña!</Typography>
           <form onSubmit={handleSubmit}>
             <div>
-              <div style={{ marginBottom: "1.25rem" }} className="textContainer" >
-                <Typography variant="h4Custom">Nombre:</Typography>
-                <TextField 
-                name="name"
-                className="textField"
-                onChange={handleChange}
-                
-                value={values.name}
-                error={touched.email && errors.email?true:false}
-                helperText={errors.name?errors.name:''} />
-              </div>
-              <div style={{ marginBottom: "1.25rem" }} className="textContainer" >
-                <Typography variant="h4Custom">Apellido:</Typography>
-                <TextField
-                name="last_name"
-                className="textField"
-                onChange={handleChange}
-                
-                value={values.last_name}
-                error={touched.last_name && errors.last_name?true:false}
-                helperText={errors.last_name?errors.last_name:''} />
-              </div>
-              <div style={{ marginBottom: "0.625rem" }} className="textContainer" >
-                <Typography variant="h4Custom">Email:</Typography>
-                <TextField
-                name="email"
-                placeholder="Ejem:Tunombre@gmail.com"
-                className="textField"
-                onChange={handleChange}
-                
-                value={values.email}
-                error={touched.email && errors.email?true:false}
-                helperText={errors.email?errors.email:''} />
-              </div>
               <div className="textContainer">
                 <FormControl variant="outlined" className="textField">
                   <Typography variant="h4Custom">Contraseña:</Typography>
@@ -212,13 +193,11 @@ const Register = () => {
               <div>
                 <div>
                   <Button variant="contained" type="submit" className="button">
-                    <Typography variant="h4">Crear cuenta</Typography>
+                    <Typography variant="h4">Modificar contraseña</Typography>
                   </Button>
                 </div>
                 <div className="textContainerRow">
-                  <Typography variant="h5" align="center" sx={{ color: "#164439" }}>¿Ya tenés una cuenta?</Typography>
-                  <Box m={0.1} />
-                  <Typography variant="h5" onClick={() => navigate("/login")} sx={{ textTransform: "none", cursor: "pointer", color: "#164439", fontWeight: "500" }}>Iniciá sesión</Typography>
+                  <Typography variant="h5" onClick={() => navigate("/")} sx={{ textTransform: "none", cursor: "pointer", color: "#164439", fontWeight: "500" }}>Regresar</Typography>
                 </div>
               </div>
             </div>
