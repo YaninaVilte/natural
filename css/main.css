@@ -26,21 +26,18 @@
   height: 1.625rem;
 }
 .boxContainer .box .subtitulo {
-  margin-top: 1.25rem;
-  margin-bottom: 3.125rem;
+  margin: 1em 0;
 }
 .boxContainer .box .textContainer {
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  margin-top: 0.625rem;
-  margin-bottom: 0.625rem;
+  flex-direction: column;
 }
 .boxContainer .box .textContainer .textField {
-  width: 37rem;
+  width: 100%;
   margin-top: 0.625rem;
+}
+.boxContainer .box .textContainer .textField .MuiInputBase-root {
+  height: 2.5em;
 }
 .boxContainer .box .button {
   text-transform: none;
@@ -67,14 +64,9 @@
 }
 .boxContainer .box .textContainerRow {
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
   margin-top: 0.625rem;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
 }
 
 @media screen and (max-width: 660px) {
@@ -233,6 +225,7 @@
   flex: 1;
 }
 .products-section-container .itemContainer {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -538,8 +531,6 @@ html {
 .cart {
   width: 100%;
   margin-top: 5rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -556,17 +547,10 @@ html {
 
 .cartStatus {
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -ms-flex-line-pack: center;
-      align-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: row;
+  justify-content: space-around;
+  align-content: center;
+  align-items: center;
   margin-top: 2.5rem;
 }
 .cartStatus .cartLine {
@@ -612,9 +596,7 @@ html {
   background: #EEE;
   width: 5.5rem;
   height: 2.25rem;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   margin-top: 0.375rem;
   margin-right: 1.25rem;
 }
@@ -644,8 +626,6 @@ html {
   background: #FFF;
   width: 39.188rem;
   height: 2.188rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   align-items: center;
   color: #000;
@@ -653,13 +633,8 @@ html {
 
 .optionsContainer {
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  flex-direction: row;
+  justify-content: space-between;
   margin-top: 1.25rem;
   width: 50%;
   margin-bottom: 4.375rem;
@@ -682,8 +657,6 @@ html {
   .cartResponsive {
     width: 100%;
     margin-top: 5rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -699,15 +672,9 @@ html {
   }
   .cartStatusResponsive {
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
     margin-top: 2.5rem;
     width: 90%;
   }
@@ -746,20 +713,13 @@ html {
   }
   .detailProductContainerResponsive {
     margin-left: 0.625rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     flex-direction: column;
   }
   .quantityPriceContainerResponsive {
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    flex-direction: row;
+    align-items: center;
     margin-top: 0.938rem;
   }
   .quantityContainerResponsive {
@@ -767,9 +727,7 @@ html {
     background: #EEE;
     width: 5.5rem;
     height: 2.25rem;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    align-items: center;
     margin-top: 0.375rem;
     margin-right: 1.25rem;
   }
@@ -800,21 +758,14 @@ html {
     background: #FFF;
     width: 39.188rem;
     height: 2.188rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     align-items: center;
     color: #000;
   }
   .optionsContainerResponsive {
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
+    flex-direction: row;
+    justify-content: space-between;
     margin-top: 1.25rem;
     width: 80%;
     margin-bottom: 4.375rem;

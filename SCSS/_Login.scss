@@ -18,19 +18,20 @@
         }
 
         .subtitulo {
-            margin-top: 1.25rem;
-            margin-bottom: 3.125rem;
+            margin: 1em 0;
         }
 
         .textContainer {
             display: flex;
             flex-direction: column;
-            margin-top: 0.625rem;
-            margin-bottom: 0.625rem;
+            
 
             .textField {
-                width: 37rem;
+                width: 100%;
                 margin-top: 0.625rem;
+                .MuiInputBase-root{
+                    height: 2.5em;
+                }
             }
         }
 

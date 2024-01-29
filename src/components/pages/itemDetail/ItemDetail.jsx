@@ -59,10 +59,7 @@ const ItemDetail = () => {
   const [counter, setCounter] = useState(1);
   
   useEffect(() => {
-    axios
-      .get(
-        `https://naturalicy-back-production.up.railway.app/api/products/${id}`
-      )
+    axios.get(`https://naturalicy-back-production.up.railway.app/api/products/${id}`)
       .then((res) => {
         setProduct(res.data.product);
       });
