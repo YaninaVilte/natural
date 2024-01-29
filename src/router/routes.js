@@ -1,4 +1,5 @@
 import Cart from "../components/pages/cart/Cart";
+import Favorites from "../components/pages/favorites/FavoritesComponent";
 import Checkout from "../components/pages/checkout/Checkout";
 import Home from "../components/pages/home/Home";
 import ItemDetail from "../components/pages/itemDetail/ItemDetail";
@@ -30,6 +31,11 @@ export const routes = [
     id: "cart",
     path: "/cart",
     Element: Cart,
+  },
+  {
+    id: "favorites",
+    path: "/favorites",
+    Element: Favorites,
   },
   {
     id: "checkout",

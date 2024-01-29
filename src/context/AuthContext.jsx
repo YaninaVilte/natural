@@ -14,7 +14,7 @@ const AuthContextComponent = ({ children }) => {
   const handleLogin = (userLogged) => {
     setUser(userLogged);
     setIsLogged(true);
-    localStorage.setItem("userInfo", JSON.stringify(userLogged.email));
+    localStorage.setItem("userInfo", JSON.stringify({email:userLogged.email, rol:userLogged.rol}));
     localStorage.setItem("isLogged", JSON.stringify(true));
   };
 

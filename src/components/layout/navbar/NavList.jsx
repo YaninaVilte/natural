@@ -18,7 +18,6 @@ function NavList(setListOpen ) {
 
     const rolAdmin = import.meta.env.VITE_ROL_ADMIN;
 
-
     return (
         <Box sx={{ }}>
             <nav>
