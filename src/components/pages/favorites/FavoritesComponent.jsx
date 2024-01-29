@@ -32,30 +32,27 @@ const Favorites = () => {
         const url = 'https://naturalicy-back-production.up.railway.app/api/products/selected';
 
         let fetchOptions = {
-            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify([{id:"659857ac68d4f2ebb581d6e6"}])
         };
 
         if (userTokenAccess) {
             fetchOptions.headers['Authorization'] = `Bearer ${userTokenAccess}`;
         }
-        console.log(favorites)
+
         let productsArray = []
         favorites.map(element=>{
-            productsArray.push(`${element.productId}`)
+            productsArray.push({id:element.productId})
         })
-        
-        fetch(url, fetchOptions)
-        .then(res=>res.json())
+
+        axios.post(url, [{id:'659857ac68d4f2ebb581d6e6'}], fetchOptions)
         .then(res=>{
-            console.log(res)
+          setProducts(res.data.products)
+          setFavoritesContentState(true)
         })
         .catch(error=>console.log(error))
-        // axios.post(url, [{id:"659857ac68d4f2ebb581d6e6"}], fetchOptions)
-    }, [])
+      }, [])
 
   const itemsPerPage = 10;
   
@@ -116,7 +113,7 @@ const Favorites = () => {
           <Slider space={0} uniqueSlide={true} navigationActive={false} paginationActive={true} categories={headBrandsMock} sliderType={'headBrands'}/>
       </div>
       <div className="itemListContainer">
-    
+        <Typography variant="h2" sx={{ display:'block', fontSize:'1.5em', width:'100%', textAlign:'center', paddingBottom:'1.5em' }}>Tus productos favoritos</Typography>
         <div className="itemsFilterContainer">
           <div className="itemsContainer">
             <div className="itemContainer">
@@ -160,7 +157,7 @@ const Favorites = () => {
     </ThemeProvider>
     :
     <ThemeProvider theme={theme}>
-        <Typography variant="h2" sx={{ display: 'block'}}>No hay productos en favoritos</Typography>
+        <Typography variant="h2" sx={{ display:'block', height:'70vh', display:'flex', justifyContent:'center', alignItems:'center'}}>No hay productos en favoritos</Typography>
     </ThemeProvider>
     }
     </div>
