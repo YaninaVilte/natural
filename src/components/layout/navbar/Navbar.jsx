@@ -26,13 +26,13 @@ function Navbar() {
   const [listOpen, setListOpen] = useState(false);
 
 
-  
+
   return (
-    <Box sx={{ display: "flex", position:'sticky', top:'0', left:'0', zIndex:'9999'}}>
+    <Box sx={{ display: "flex", position: 'sticky', top: '0', left: '0', zIndex: '9999' }}>
       <ThemeProvider theme={theme}>
-      <CssBaseline />
+        <CssBaseline />
         <AppBar component="nav" position="fixed" sx={{ width: "100%", backgroundColor: "#164439", display: "flex" }}>
-        <Box sx={{ display: { xs: 'none', sm: 'block', } }}>
+          <Box sx={{ display: { xs: 'none', sm: 'block', } }}>
             <Toolbar sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", height: "5.125rem" }}>
               <div style={{ display: "flex", alignItems: "center", marginRight: "2.5rem" }}>
                 <Link to="/"><img src={eneBlanco} style={{ width: "2.5rem", height: "2.5rem", alignItems: "center" }} alt="N" /></Link>
@@ -59,7 +59,7 @@ function Navbar() {
                     </>
                   ) : (
                     <Link component={Link} to={"/Login"} >
-                          <Typography variant="h4" sx={{ fontSize: "1rem" }}>Iniciar sesión</Typography>
+                      <Typography variant="h4" sx={{ fontSize: "1rem" }}>Iniciar sesión</Typography>
                     </Link>
                   )}
                 </div>
@@ -74,11 +74,11 @@ function Navbar() {
               }}>
                 <NavList setListOpen={setListOpen} />
               </Drawer>
-              
+
             </Toolbar>
-        </Box>
-          
-      </AppBar>
+          </Box>
+
+        </AppBar>
 
         <nav style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", height: "5.125rem", width: "100%", backgroundColor: "#164439" }}>
 
@@ -101,7 +101,7 @@ function Navbar() {
             <NavListResponsive setDrawerOpen={setDrawerOpen} />
           </Drawer>
 
-      </nav>
+        </nav>
       </ThemeProvider>
 
     </Box>
