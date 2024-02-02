@@ -1,19 +1,35 @@
 import { Box, List, ListItem, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
-import { logout } from "../../../firebaseConfig";
 import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
+import axios from "axios";
 
-function NavList(setListOpen ) {
+function NavList( setListOpen ) {
     const { logoutContext, user } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        logout();
-        logoutContext();
-        navigate("/");
-        setListOpen(false);
+
+        let userTokenAccess = localStorage.getItem('userTokenAccess');
+
+        let fetchOptions = {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+
+        if (userTokenAccess) {
+            fetchOptions.headers['Authorization'] = `Bearer ${userTokenAccess}`;
+        }
+
+        axios.get('https://naturalicy-back-production.up.railway.app/api/sessions/logout', fetchOptions)
+        .then(res => {
+            logoutContext();
+            // setListOpen(false);
+            navigate("/");
+        })
+        .catch((error) => console.log("Error:", error))
     };
 
     const rolAdmin = import.meta.env.VITE_ROL_ADMIN;

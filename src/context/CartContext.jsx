@@ -8,41 +8,37 @@ const CartContextComponent = ({ children }) => {
   useEffect(()=>{
     localStorage.setItem('cart', JSON.stringify(cart))
   }, [cart])
-
   const addToCart = (productId, productQuantity, productStock) =>{
     const addProduct = {productId, productQuantity};
     const productsAOnCart = [...cart];
     const existingProduct = productsAOnCart.find((el)=>el.productId === addProduct.productId);
-
+    // console.log(productQuantity)
     if(existingProduct){
-    (existingProduct.productQuantity + productQuantity) >= productStock ?
-    existingProduct.productQuantity = productStock :
-    existingProduct.productQuantity += productQuantity 
+
+    (existingProduct.productQuantity + parseInt(productQuantity, 10)) >= parseInt(productStock, 10) ?
+    existingProduct.productQuantity = parseInt(productStock, 10) :
+    existingProduct.productQuantity += parseInt(productQuantity, 10)
     }else{
       productsAOnCart.push(addProduct);
     }
+    console.log(productsAOnCart)
     setCart(productsAOnCart);
   }
 
   const getQuantityById = (id)=>{
-    let product = cart.find( elemento => elemento.id === id)
-    return product?.quantity
-  }
-
-  const clearCart = ()=>{
-    setCart( [] )
-    localStorage.removeItem("cart")
+    let product = cart.find( elemento => elemento.productId === id)
+    return product?.productQuantity
   }
 
   const deleteById = (id)=>{
-    const newArr = cart.filter( elemento => elemento.id !== id)
+    const newArr = cart.filter( elemento => elemento.productId !== id)
     localStorage.setItem("cart", JSON.stringify(newArr))
     setCart(newArr)
   }
 
   const getTotalItems = () => {
     let total = cart.reduce((acc, elemento) => {
-      return acc + elemento.quantity
+      return acc + elemento.productQuantity
     }, 0)
     return total
   }
@@ -58,7 +54,6 @@ const CartContextComponent = ({ children }) => {
         cart,
         addToCart,
         getQuantityById,
-        clearCart,
         deleteById,
         getTotalPrice,
         getTotalItems,

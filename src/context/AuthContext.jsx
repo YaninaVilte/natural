@@ -23,6 +23,7 @@ const AuthContextComponent = ({ children }) => {
     setIsLogged(false);
     localStorage.removeItem("userInfo");
     localStorage.removeItem("isLogged");
+    localStorage.removeItem("userTokenAccess");
   };
 
   let data = {

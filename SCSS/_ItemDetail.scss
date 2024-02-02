@@ -58,7 +58,9 @@ html{
                 .titleDetail{
                     width: 100%;
                     margin-bottom: 1em;
-        
+                    white-space: nowrap;
+                    overflow-x: clip;
+                    text-overflow: ellipsis;
                 }
                 .descriptionDetail {
                     display: block;
@@ -102,6 +104,7 @@ html{
                         cursor: pointer;
                         font-size: 1.4em;
                         width: 1.2em;
+                        height: 100%;
                         text-align: center;
                         border-radius: .2em 50% 50% .2em;
                         transition: all .2s ease;
@@ -120,6 +123,7 @@ html{
                         cursor: pointer;
                         font-size: 1.4em;
                         width: 1.2em;
+                        height: 100%;
                         text-align: center;
                         border-radius: 50% .2em .2em 50%;
                         transition: all .2s ease;

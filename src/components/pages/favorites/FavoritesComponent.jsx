@@ -46,7 +46,7 @@ const Favorites = () => {
             productsArray.push({id:element.productId})
         })
 
-        axios.post(url, [{id:'659857ac68d4f2ebb581d6e6'}], fetchOptions)
+        axios.post(url, productsArray, fetchOptions)
         .then(res=>{
           setProducts(res.data.products)
           setFavoritesContentState(true)
@@ -103,7 +103,6 @@ const Favorites = () => {
     
     );
   }
-
 
   return (
     <div className="products-section-container">

@@ -2,8 +2,6 @@ import { Box, Button, FormControl, IconButton, InputAdornment, TextField, Typogr
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { signUp, db } from "../../../firebaseConfig";
-import { setDoc, doc } from "firebase/firestore"
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import natural from "../../../assets/natural.png"
