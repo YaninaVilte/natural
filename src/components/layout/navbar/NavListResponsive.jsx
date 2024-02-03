@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 import { menuItemsAdmin } from "../../../router/navigationAdmin";
 
-function NavListResponsive( setDrawerOpen ) {
+function NavListResponsive({setDrawerOpen}) {
     const { logoutContext, user } = useContext(AuthContext);
 
     const navigate = useNavigate();
@@ -35,7 +35,7 @@ function NavListResponsive( setDrawerOpen ) {
     const rolAdmin = import.meta.env.VITE_ROL_ADMIN;
 
     return (
-        <Box sx={{  }}>
+        <Box sx={{}}>
             <nav>
                 {menuItemsAdmin.map(({ id, path, title }) => (
                     <ListItem key={id}>
@@ -47,42 +47,42 @@ function NavListResponsive( setDrawerOpen ) {
                 {user && user.email && user.rol !== rolAdmin ? (
                     <List >
                         <ListItem onClick={() => setDrawerOpen(false)}>
-                            <Link to={"/favorites"}>
-                                    <Typography variant="drawer">Favoritos</Typography>
-                                </Link>
-                            </ListItem>
+                            <Link component={Link} to={"/favorites"}>
+                                <Typography variant="drawer">Favoritos</Typography>
+                            </Link>
+                        </ListItem>
                         <ListItem>
                             <Link onClick={handleLogout}>
                                 <Typography variant="drawer">Cerrar sesión</Typography>
-                                </Link>
-                            </ListItem>
-                        </List>
+                            </Link>
+                        </ListItem>
+                    </List>
                 ) : user && user.rol === rolAdmin ? (
-                        <List>
+                    <List>
                             <ListItem onClick={() => setDrawerOpen(false)}>
-                                    <Link to={"/dashboard"}>
-                                        <Typography variant="drawer">Dashboard</Typography>
-                                    </Link>
-                                </ListItem>
+                            <Link component={Link} to={"/dashboard"}>
+                                <Typography variant="drawer">Dashboard</Typography>
+                            </Link>
+                        </ListItem>
                             <ListItem onClick={() => setDrawerOpen(false)}>
-                                    <Link to={"/favorites"}>
-                                        <Typography variant="drawer">Favoritos</Typography>
-                                    </Link>
-                                </ListItem>
-                            <ListItem>
-                                <Link onClick={handleLogout}>
-                                    <Typography variant="drawer">Cerrar sesión</Typography>
-                                    </Link>
-                                </ListItem>
-                            </List>
+                            <Link component={Link} to={"/favorites"}>
+                                <Typography variant="drawer">Favoritos</Typography>
+                            </Link>
+                        </ListItem>
+                        <ListItem>
+                            <Link onClick={handleLogout}>
+                                <Typography variant="drawer">Cerrar sesión</Typography>
+                            </Link>
+                        </ListItem>
+                    </List>
                 ) : (
-                <List >
-                    <ListItem onClick={() => setDrawerOpen(false)}>
-                        <Link to={"/Login"} >
-                            <Typography variant="drawer">Iniciar sesión</Typography>
-                        </Link>
-                    </ListItem>
-                </List>
+                    <List >
+                                <ListItem onClick={() => setDrawerOpen(false)}>
+                            <Link component={Link} to={"/Login"} >
+                                <Typography variant="drawer">Iniciar sesión</Typography>
+                            </Link>
+                        </ListItem>
+                    </List>
                 )}
             </nav>
         </Box>

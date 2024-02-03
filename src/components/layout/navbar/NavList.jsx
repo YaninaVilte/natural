@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 import axios from "axios";
 
-function NavList( setListOpen ) {
+function NavList({ setListOpen }) {
     const { logoutContext, user } = useContext(AuthContext);
 
     const navigate = useNavigate();
@@ -35,12 +35,31 @@ function NavList( setListOpen ) {
     const rolAdmin = import.meta.env.VITE_ROL_ADMIN;
 
     return (
-        <Box sx={{ }}>
+        <Box sx={{}}>
             <nav>
-                    {user && user.email && user.rol !== rolAdmin ? (
+                {user && user.email && user.rol !== rolAdmin ? (
                     <List >
                         <ListItem onClick={() => setListOpen(false)}>
                             <Link component={Link} to={"/favorites"} >
+                                <Typography variant="drawer">Favoritos</Typography>
+                            </Link>
+                        </ListItem>
+                        <ListItem >
+                            <Link onClick={handleLogout}>
+                                <Typography variant="drawer">Cerrar sesión</Typography>
+                            </Link>
+                        </ListItem>
+                    </List>
+                ) : user && user.rol === rolAdmin ? (
+                    <>
+                        <List>
+                                <ListItem onClick={() => setListOpen(false)}>
+                                <Link component={Link} to={"/dashboard"}>
+                                    <Typography variant="drawer">Dashboard</Typography>
+                                </Link>
+                            </ListItem>
+                                <ListItem onClick={() => setListOpen(false)}>
+                                <Link component={Link} to={"/favorites"}>
                                     <Typography variant="drawer">Favoritos</Typography>
                                 </Link>
                             </ListItem>
@@ -50,31 +69,12 @@ function NavList( setListOpen ) {
                                 </Link>
                             </ListItem>
                         </List>
-                    ) : user && user.rol === rolAdmin ? (
-                        <>
-                            <List>
-                                <ListItem onClick={() => setListOpen(false)}>
-                                    <Link component={Link} to={"/dashboard"}>
-                                        <Typography variant="drawer">Dashboard</Typography>
-                                    </Link>
-                                </ListItem>
-                                <ListItem onClick={() => setListOpen(false)}>
-                                    <Link component={Link} to={"/favorites"}>
-                                        <Typography variant="drawer">Favoritos</Typography>
-                                    </Link>
-                                </ListItem>
-                                <ListItem > 
-                                    <Link onClick={handleLogout}>
-                                        <Typography variant="drawer">Cerrar sesión</Typography>
-                                    </Link>
-                                </ListItem>
-                            </List>
-                        </>
-                    ) : (
+                    </>
+                ) : (
                             <Link component={Link} to={"/Login"} onClick={() => setListOpen(false)}>
-                            <Typography variant="drawer">Iniciar sesión</Typography>
-                        </Link>
-                    )}
+                        <Typography variant="drawer">Iniciar sesión</Typography>
+                    </Link>
+                )}
             </nav>
         </Box>
 

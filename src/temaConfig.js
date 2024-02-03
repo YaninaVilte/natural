@@ -85,7 +85,7 @@ const theme = createTheme({
     drawer: {
       color: '#9A9A9A',
       fontWeight: 300,
-      fontSize: '12px',
+      fontSize: '14px',
     },
     stock: {
       fontWeight: 500,

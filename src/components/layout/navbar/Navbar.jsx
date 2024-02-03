@@ -26,13 +26,12 @@ function Navbar() {
   const [listOpen, setListOpen] = useState(false);
 
 
-  
   return (
-    <Box sx={{ display: "flex", position:'sticky', top:'0', left:'0', zIndex:'9999'}}>
+    <Box sx={{ display: "flex", position: 'sticky', top: '0', left: '0', zIndex: '9999' }}>
       <ThemeProvider theme={theme}>
-      <CssBaseline />
+        <CssBaseline />
         <AppBar component="nav" position="fixed" sx={{ width: "100%", backgroundColor: "#164439", display: "flex" }}>
-        <Box sx={{ display: { xs: 'none', sm: 'block', } }}>
+          <Box sx={{ display: { xs: 'none', sm: 'block', } }}>
             <Toolbar sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", height: "5.125rem" }}>
               <div style={{ display: "flex", alignItems: "center", marginRight: "2.5rem" }}>
                 <Link to="/"><img src={eneBlanco} style={{ width: "2.5rem", height: "2.5rem", alignItems: "center" }} alt="N" /></Link>
@@ -59,7 +58,7 @@ function Navbar() {
                     </>
                   ) : (
                     <Link component={Link} to={"/Login"} >
-                          <Typography variant="h4" sx={{ fontSize: "1rem" }}>Iniciar sesión</Typography>
+                      <Typography variant="h4" sx={{ fontSize: "1rem" }}>Iniciar sesión</Typography>
                     </Link>
                   )}
                 </div>
@@ -68,17 +67,16 @@ function Navbar() {
               <Drawer open={listOpen} anchor="right" onClose={() => setListOpen(false)} elemento PaperProps={{
                 sx: {
                   width: "15rem",
-                  height: "9rem",
                   zIndex: "1", backgroundColor: "#F8F8F8", marginTop: "5.2rem"
                 },
               }}>
                 <NavList setListOpen={setListOpen} />
               </Drawer>
-              
+
             </Toolbar>
-        </Box>
-          
-      </AppBar>
+          </Box>
+
+        </AppBar>
 
         <nav style={{ display: "flex", flexDirection: "row", justifyContent: "space-around", alignItems: "center", height: "5.125rem", width: "100%", backgroundColor: "#164439" }}>
 
@@ -94,14 +92,13 @@ function Navbar() {
 
           <Drawer open={drawerOpen} anchor="left" onClose={() => setDrawerOpen(false)} PaperProps={{
             sx: {
-              width: "15rem",
-              height: "14rem", backgroundColor: "#F8F8F8", marginTop: "5.2rem"
+              width: "15rem", backgroundColor: "#F8F8F8", marginTop: "5.2rem"
             },
           }}>
             <NavListResponsive setDrawerOpen={setDrawerOpen} />
           </Drawer>
 
-      </nav>
+        </nav>
       </ThemeProvider>
 
     </Box>
