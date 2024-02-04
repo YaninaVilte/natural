@@ -115,7 +115,7 @@ const Register = () => {
                 name="name"
                 className="textField"
                 onChange={handleChange}
-                
+              
                 value={values.name}
                 error={touched.email && errors.email?true:false}
                 helperText={errors.name?errors.name:''} />

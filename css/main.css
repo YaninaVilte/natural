@@ -1056,3 +1056,194 @@ html {
     height: 0.875rem;
   }
 }
+/* === Estilos: Checkout*/
+/* === Estilos: ContactDetail*/
+.contactDetail {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.contactDetail .contactContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 2rem;
+}
+.contactDetail .contactContainer .contactImg {
+  width: 9.625rem;
+  height: 1.625rem;
+}
+.contactDetail .contactContainer .contactBox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: right;
+      -ms-flex-pack: right;
+          justify-content: right;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  margin-top: 3rem;
+  width: 30rem;
+}
+.contactDetail .contactContainer .contactBox .infoBox {
+  width: 20rem;
+}
+.contactDetail .contactContainer .contactBox .infoBox .textContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.contactDetail .contactContainer .contactStatus {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 2.5rem;
+  width: 30rem;
+}
+.contactDetail .contactContainer .contactStatus .contactLine {
+  width: 10%;
+  height: 0.063rem;
+  margin-left: 0.313rem;
+  margin-right: 0.313rem;
+}
+.contactDetail .contactContainer .optionsContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 1.25rem;
+  margin-bottom: 4.375rem;
+  width: 30rem;
+}
+.contactDetail .contactContainer .optionsContainer .LinkOptions {
+  text-decoration: none;
+}
+.contactDetail .contactContainer .optionsContainer .LinkOptions SVG {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+@media screen and (max-width: 600px) {
+  .contactDetail .contactContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 25rem;
+  }
+  .contactDetail .contactContainer .subtitulo {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+  .contactDetail .contactContainer .contactStatus {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    width: 25rem;
+  }
+  .contactDetail .contactContainer .contactBox {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 25rem;
+  }
+  .contactDetail .contactContainer .contactBox .infoBox {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-line-pack: center;
+        align-content: center;
+  }
+  .contactDetail .contactContainer .contactBox .controlersBox {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-bottom: 1rem;
+  }
+  .contactDetail .contactContainer .optionsContainer {
+    width: 25rem;
+  }
+}
+@media screen and (max-width: 400px) {
+  .contactDetail .contactContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .contactDetail .contactContainer .contactStatus {
+    width: 18rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .contactDetail .optionsContainer {
+    width: 18rem;
+  }
+}

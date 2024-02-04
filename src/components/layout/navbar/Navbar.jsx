@@ -79,7 +79,18 @@ function Navbar() {
 
         </AppBar>
 
-        <nav style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", height: "5.125rem", width: "100%", backgroundColor: "#164439" }}>
+        <nav style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+          height: "5.125rem",
+          width: "100%",
+          backgroundColor: "#164439",
+          '@media screen and (min-width: 600px)': {
+            display: 'none',
+          }
+        }}>
 
           <IconButton sx={{ display: { sm: 'none' }, height: "5.125rem", marginLeft: "1.25rem", color: "#FFF" }} color="secondary.primary" aria-label="open drawer" edge="start" onClick={() => setDrawerOpen(true)}>
             <MenuIcon color="secondary.primary" />
