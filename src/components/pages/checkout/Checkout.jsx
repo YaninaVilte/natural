@@ -22,10 +22,6 @@ const Checkout = () => {
     locale: "es-AR",
   });
   const [preferenceId, setPreferenceId] = useState(null);
-  const [userData, setUserData] = useState({
-    cp: "",
-    phone: "",
-  });
   const [orderId, setOrderId] = useState(null);
   const [shipmentCost, setShipmentCost] = useState(0)
 
@@ -104,8 +100,8 @@ const Checkout = () => {
     const order = {
       ...storedOrder,
       items: cart,
-      total: total + shipmentCost,
-      email: user.email,
+      total: total,
+      // email: user.email,
     };
     localStorage.setItem("order", JSON.stringify(order));
     console.log("Updated Order Details:", order);
@@ -160,7 +156,7 @@ const Checkout = () => {
 
                   <div className="detailInfoCheckout">
                     <Typography variant="h4Custom" sx={{ fontWeight: "500", lineHeight: "112%" }}>Calle: </Typography>
-                    <Typography variant="h4Custom" sx={{ fontSize: "0.813rem" }}>{storedOrder.street}</Typography>
+                    <Typography variant="h4Custom" sx={{ fontSize: "0.813rem" }}>{storedOrder.street_name}</Typography>
                   </div>
 
                   <div className="detailInfoCheckout">
@@ -170,17 +166,17 @@ const Checkout = () => {
 
                   <div className="detailInfoCheckout">
                     <Typography variant="h4Custom" sx={{ fontWeight: "500", lineHeight: "112%" }}>Departamento: </Typography>
-                    <Typography variant="h4Custom" sx={{ fontSize: "0.813rem" }}>{storedOrder.department}</Typography>
+                    <Typography variant="h4Custom" sx={{ fontSize: "0.813rem" }}>{storedOrder.apartment}</Typography>
                   </div>
 
                   <div className="detailInfoCheckout">
                     <Typography variant="h4Custom" sx={{ fontWeight: "500", lineHeight: "112%" }}>Código postal: </Typography>
-                    <Typography variant="h4Custom" sx={{ fontSize: "0.813rem" }}>{storedOrder.cp}</Typography>
+                    <Typography variant="h4Custom" sx={{ fontSize: "0.813rem" }}>{storedOrder.zip_code}</Typography>
                   </div>
 
                   <div className="detailInfoCheckout">
                     <Typography variant="h4Custom" sx={{ marginBottom: "1rem", fontWeight: "500", lineHeight: "112%" }}>Observaciones: </Typography>
-                    <Typography variant="h4Custom" sx={{ fontSize: "0.813rem" }}>{storedOrder.observations}</Typography>
+                    <Typography variant="h4Custom" sx={{ fontSize: "0.813rem" }}>{storedOrder.aditional_info}</Typography>
                   </div>
                 </div>
                 <div>

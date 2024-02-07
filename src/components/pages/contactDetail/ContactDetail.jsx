@@ -22,11 +22,11 @@ const ContactDetail = () => {
             last_name: "",
             email: "",
             phone: "",
-            street: "",
+            street_name: "",
             street_number: "",
-            department: "",
-            cp: "",
-            observations: "",
+            apartment: "",
+            zip_code: "",
+            aditional_info: "",
         },
         validationSchema: Yup.object({
             name: Yup.string()
@@ -42,15 +42,15 @@ const ContactDetail = () => {
                 .required('*Campo requerido')
                 .matches(/^[0-9]+$/, 'Solo se permiten números')
                 .length(10, 'Debe contener 10 números'),
-            street: Yup.string()
+            street_name: Yup.string()
                 .required('*Campo requerido')
                 .matches(/^[a-zA-Z0-9\s]+$/, 'Solo se permiten letras y números'),
             street_number: Yup.string()
                 .required('*Campo requerido')
                 .matches(/^[0-9]+$/, 'Solo se permiten números'),
-            department: Yup.string()
+            apartment: Yup.string()
                 .matches(/^[a-zA-Z0-9\s]+$/, 'Solo se permiten letras y números'),
-            cp: Yup.string()
+            zip_code: Yup.string()
                 .required('*Campo requerido')
                 .matches(/^[0-9]+$/, 'Solo se permiten números')
                 .length(4, 'Debe contener 4 números'),
@@ -168,13 +168,13 @@ const ContactDetail = () => {
                             <div style={{ marginBottom: "1.25rem" }} className="textContainer" >
                                 <Typography variant="h4Custom">Calle:</Typography>
                                 <TextField
-                                    name="street"
+                                    name="street_name"
                                     className="textField"
 
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
-                                    value={formik.values.street}
-                                    helperText={formik.touched.street && formik.errors.street ? formik.errors.street : ''} />
+                                    value={formik.values.street_name}
+                                    helperText={formik.touched.street_name && formik.errors.street_name ? formik.errors.street_name : ''} />
                             </div>
                             <div style={{ marginBottom: "1.25rem" }} className="textContainer" >
                                 <Typography variant="h4Custom">Número:</Typography>
@@ -190,34 +190,34 @@ const ContactDetail = () => {
                             <div style={{ marginBottom: "1.25rem" }} className="textContainer" >
                                 <Typography variant="h4Custom">Departamento:</Typography>
                                 <TextField
-                                    name="department"
+                                    name="apartment"
                                     className="textField"
 
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
-                                    value={formik.values.department}
-                                    helperText={formik.touched.department && formik.errors.department ? formik.errors.department : ''} />
+                                    value={formik.values.apartment}
+                                    helperText={formik.touched.apartment && formik.errors.apartment ? formik.errors.apartment : ''} />
                             </div>
                             <div style={{ marginBottom: "1.25rem" }} className="textContainer" >
                                 <Typography variant="h4Custom">Código postal:</Typography>
                                 <TextField
-                                    name="cp"
+                                    name="zip_code"
                                     className="textField"
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
-                                    value={formik.values.cp}
-                                    helperText={formik.touched.cp && formik.errors.cp ? formik.errors.cp : ''} />
+                                    value={formik.values.zip_code}
+                                    helperText={formik.touched.zip_code && formik.errors.zip_code ? formik.errors.zip_code : ''} />
                             </div>
                             <div style={{ marginBottom: "1.25rem" }} className="textContainer" >
                                 <Typography variant="h4Custom">Observaciones:</Typography>
                                 <TextField
-                                    name="observations"
+                                    name="aditional_info"
                                     className="textField"
 
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
-                                    value={formik.values.observations}
-                                    helperText={formik.touched.observations && formik.errors.observations ? formik.errors.observations : ''} />
+                                    value={formik.values.aditional_info}
+                                    helperText={formik.touched.aditional_info && formik.errors.aditional_info ? formik.errors.aditional_info : ''} />
                             </div>
                         </div>
 
