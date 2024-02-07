@@ -6,22 +6,16 @@ import { Button, Typography } from "@mui/material";
 import { AuthContext } from "../../../context/AuthContext";
 import { Link, useLocation } from "react-router-dom";
 import { db } from "../../../firebaseConfig";
-import {
-  addDoc,
-  collection,
-  doc,
-  updateDoc,
-  serverTimestamp,
-  getDoc,
-} from "firebase/firestore";
+import { addDoc, collection, doc, updateDoc, serverTimestamp, getDoc } from "firebase/firestore";
 import theme from "../../../temaConfig";
 import { ThemeProvider } from "@emotion/react";
 import natural from "../../../assets/natural.png"
 import lineCart from "../../../assets/lineCart.png"
-import { Icon } from '@iconify/react';
+import CartCheckout from "./CartCheckout";
 
 
 const Checkout = () => {
+
   const { cart, getTotalPrice, clearCart } = useContext(CartContext);
   const { user } = useContext(AuthContext);
   initMercadoPago(import.meta.env.VITE_PUBLICKEY, {
@@ -102,30 +96,19 @@ const Checkout = () => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
-  useEffect(() => {
-    let contactDetails = JSON.parse(localStorage.getItem("order"));
-    setUserData({
-      name: contactDetails.name,
-      last_name: contactDetails.last_name,
-      email: contactDetails.email,
-      phone: contactDetails.phone,
-      street: contactDetails.street,
-      street_number: contactDetails.street_number,
-      department: contactDetails.department,
-      cp: contactDetails.cp,
-      observations: contactDetails.observations,
-    });
-  }, [paramValue]);
-
+  const storedOrder = JSON.parse(localStorage.getItem("order"));
 
   const handleBuy = async () => {
-    let contactDetails = JSON.parse(localStorage.getItem("order"));
-    let order = {
+    const storedOrder = JSON.parse(localStorage.getItem("order"));
+    console.log("Order Details from localStorage:", storedOrder);
+    const order = {
+      ...storedOrder,
       items: cart,
       total: total + shipmentCost,
       email: user.email,
     };
     localStorage.setItem("order", JSON.stringify(order));
+    console.log("Updated Order Details:", order);
     const id = await createPreference();
     if (id) {
       setPreferenceId(id);
@@ -133,56 +116,79 @@ const Checkout = () => {
   };
 
 
-
-
-
   return (
-    <div>
+    <div className="checkoutContainer">
       {
         !orderId ? <>
           <ThemeProvider theme={theme}>
-            <div className="checkoutContainer">
-              <img src={natural} alt="Nombre del emprendimiento: Natural" className="checkoutImg" />
-              <Typography variant="h2">Compra más rápido y lleva el control de tus pedidos, ¡en un solo lugar!</Typography>
-              <div className="cartStatus">
-                <Typography variant="h4" style={{ color: "#164439" }}>Productos</Typography>
+            <div className="checkoutBox">
+              <div className="principalCheckout">
+                <img src={natural} alt="Nombre del emprendimiento: Natural" className="checkoutImg" />
+                <Typography variant="h2">Compra más rápido y lleva el control de tus pedidos, ¡en un solo lugar!</Typography>
+              </div>
+              <div className="cartStatusCheckout">
+                <Typography variant="h4" style={{ color: "#164439", alignItems:"center" }}>Productos</Typography>
                 <img src={lineCart} className="cartLine" alt="Linea recta" />
                 <Typography variant="h4" style={{ color: "#164439" }} >Detalle de entrega</Typography>
                 <img src={lineCart} className="cartLine" alt="Linea recta" />
                 <Typography variant="titulo" sx={{ fontSize: "0.875rem" }} >Medios de pago</Typography>
               </div>
-              <Typography variant="h4" style={{ color: "#164439" }}>
-                Datos sobre el envío:
-              </Typography>
-              <Typography variant="body1">
-                Nombre: {userData.name}
-              </Typography>
-              <Typography variant="body1">
-                Apellido: {userData.last_name}
-              </Typography>
-              <Typography variant="body1">
-                Email: {userData.email}
-              </Typography>
-              <Typography variant="body1">
-                Teléfono: {userData.phone}
-              </Typography>
-              <Typography variant="body1">
-                Calle: {userData.street}
-              </Typography>
-              <Typography variant="body1">
-                Número: {userData.street_number}
-              </Typography>
-              <Typography variant="body1">
-                Departamento: {userData.department}
-              </Typography>
-              <Typography variant="body1">
-                Código postal: {userData.cp}
-              </Typography>
-              <Typography variant="body1">
-                Observaciones: {userData.observations}
-              </Typography>
-              <Button onClick={handleBuy}>Seleccione metodo de pago</Button>
+              <div className="infoCheckoutContainer">
+                <div className="infoCheckout">
+                  <Typography variant="h2Custom" sx={{ fontWeight: "700", borderBottom: "1px solid rgba(224, 224, 224, 1)", padding: "1rem" }}>Datos sobre el envío:</Typography>
+
+
+                  <div className="detailInfoCheckout">
+                    <Typography variant="h4Custom" sx={{ fontWeight: "500", lineHeight: "112%" }}>Nombre: </Typography>
+                    <Typography variant="h4Custom" sx={{ fontSize: "0.813rem" }}>{storedOrder.name}</Typography>
+                  </div>
+
+                  <div className="detailInfoCheckout">
+                    <Typography variant="h4Custom" sx={{ fontWeight: "500", lineHeight: "112%" }}>Apellido: </Typography>
+                    <Typography variant="h4Custom" sx={{ fontSize: "0.813rem" }}>{storedOrder.last_name}</Typography>
+                  </div>
+
+                  <div className="detailInfoCheckout">
+                    <Typography variant="h4Custom" sx={{ fontWeight: "500", lineHeight: "112%" }}>Email: </Typography>
+                    <Typography variant="h4Custom" sx={{ fontSize: "0.813rem" }}>{storedOrder.email}</Typography>
+                  </div>
+
+                  <div className="detailInfoCheckout">
+                    <Typography variant="h4Custom" sx={{ fontWeight: "500", lineHeight: "112%" }}>Teléfono: </Typography>
+                    <Typography variant="h4Custom" sx={{ fontSize: "0.813rem" }}>{storedOrder.phone}</Typography>
+                  </div>
+
+                  <div className="detailInfoCheckout">
+                    <Typography variant="h4Custom" sx={{ fontWeight: "500", lineHeight: "112%" }}>Calle: </Typography>
+                    <Typography variant="h4Custom" sx={{ fontSize: "0.813rem" }}>{storedOrder.street}</Typography>
+                  </div>
+
+                  <div className="detailInfoCheckout">
+                    <Typography variant="h4Custom" sx={{ fontWeight: "500", lineHeight: "112%" }}>Número: </Typography>
+                    <Typography variant="h4Custom" sx={{ fontSize: "0.813rem" }}>{storedOrder.street_number}</Typography>
+                  </div>
+
+                  <div className="detailInfoCheckout">
+                    <Typography variant="h4Custom" sx={{ fontWeight: "500", lineHeight: "112%" }}>Departamento: </Typography>
+                    <Typography variant="h4Custom" sx={{ fontSize: "0.813rem" }}>{storedOrder.department}</Typography>
+                  </div>
+
+                  <div className="detailInfoCheckout">
+                    <Typography variant="h4Custom" sx={{ fontWeight: "500", lineHeight: "112%" }}>Código postal: </Typography>
+                    <Typography variant="h4Custom" sx={{ fontSize: "0.813rem" }}>{storedOrder.cp}</Typography>
+                  </div>
+
+                  <div className="detailInfoCheckout">
+                    <Typography variant="h4Custom" sx={{ marginBottom: "1rem", fontWeight: "500", lineHeight: "112%" }}>Observaciones: </Typography>
+                    <Typography variant="h4Custom" sx={{ fontSize: "0.813rem" }}>{storedOrder.observations}</Typography>
+                  </div>
+                </div>
+                <div>
+                  <CartCheckout />
+                </div>
+              </div>
             </div>
+            <Button onClick={handleBuy}>Seleccione metodo de pago</Button>
           </ThemeProvider>
         </> : <>
           <h4>El pago se realizo con exito</h4>
