@@ -829,5 +829,290 @@ html {
     width: 60% !important;
   }
 }
+/* === Estilos: Checkout*/
+.checkoutContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.checkoutContainer .checkoutBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.checkoutContainer .checkoutBox .principalCheckout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.checkoutContainer .checkoutBox .infoCheckoutContainer {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.checkoutContainer .checkoutBox .infoCheckoutContainer .infoCheckout {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  margin-right: 2rem;
+}
+.checkoutContainer .checkoutBox .infoCheckoutContainer .infoCheckout .detailInfoCheckout {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 20rem;
+  margin-top: 0.7rem;
+  margin-left: 0.5rem;
+}
+
+.cartStatusCheckout {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-content: center;
+  align-items: center;
+  margin-top: 2.5rem;
+}
+.cartStatusCheckout .cartLine {
+  width: 10%;
+  height: 0.063rem;
+  margin-left: 0.313rem;
+  margin-right: 0.313rem;
+}
+
+.css-hfbky5-MuiTypography-root {
+  margin: 0;
+  color: #164439;
+  font-weight: 500;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 16px;
+}
+
+@media screen and (max-width: 800px) {
+  .checkoutContainer .checkoutBox .infoCheckoutContainer .infoCheckout {
+    margin-right: 1rem;
+  }
+  .checkoutContainer .checkoutBox .infoCheckoutContainer .infoCheckout .detailInfoCheckout {
+    width: 16rem;
+  }
+}
+@media screen and (max-width: 800px) {
+  .checkoutContainer .checkoutBox .infoCheckoutContainer .infoCheckout {
+    margin-right: 1rem;
+  }
+  .checkoutContainer .checkoutBox .infoCheckoutContainer .infoCheckout .detailInfoCheckout {
+    width: 16rem;
+  }
+}
+@media screen and (max-width: 700px) {
+  .checkoutContainer .checkoutBox .infoCheckoutContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .checkoutContainer .checkoutBox .infoCheckoutContainer .infoCheckout {
+    width: 25rem;
+    height: auto;
+    margin-bottom: 1rem;
+    margin-right: 0rem;
+  }
+}
+@media screen and (max-width: 500px) {
+  .checkoutContainer .checkoutBox .cartStatusCheckout {
+    width: 20rem;
+  }
+}
+@media screen and (max-width: 450px) {
+  .checkoutContainer .checkoutBox .infoCheckoutContainer .infoCheckout {
+    width: 20rem;
+  }
+}
+/* === Estilos: ContactDetail*/
+.contactDetail {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.contactDetail .contactContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+.contactDetail .contactContainer .contactImg {
+  width: 9.625rem;
+  height: 1.625rem;
+}
+.contactDetail .contactContainer .contactBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: right;
+  align-items: baseline;
+  margin-top: 3rem;
+  width: 30rem;
+}
+.contactDetail .contactContainer .contactBox .infoBox {
+  width: 20rem;
+}
+.contactDetail .contactContainer .contactBox .infoBox .textContainer {
+  display: flex;
+  flex-direction: column;
+}
+.contactDetail .contactContainer .contactStatus {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-content: center;
+  align-items: center;
+  margin-top: 2.5rem;
+  width: 30rem;
+}
+.contactDetail .contactContainer .contactStatus .contactLine {
+  width: 10%;
+  height: 0.063rem;
+  margin-left: 0.313rem;
+  margin-right: 0.313rem;
+}
+.contactDetail .contactContainer .optionsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 1.25rem;
+  margin-bottom: 4.375rem;
+  width: 30rem;
+}
+.contactDetail .contactContainer .optionsContainer .LinkOptions {
+  text-decoration: none;
+}
+.contactDetail .contactContainer .optionsContainer .LinkOptions SVG {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+@media screen and (max-width: 600px) {
+  .contactDetail .contactContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25rem;
+  }
+  .contactDetail .contactContainer .subtitulo {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+  .contactDetail .contactContainer .contactStatus {
+    justify-content: center;
+    width: 25rem;
+  }
+  .contactDetail .contactContainer .contactBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25rem;
+  }
+  .contactDetail .contactContainer .contactBox .infoBox {
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
+  .contactDetail .contactContainer .contactBox .controlersBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  .contactDetail .contactContainer .optionsContainer {
+    width: 25rem;
+  }
+}
+@media screen and (max-width: 400px) {
+  .contactDetail .contactContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .contactDetail .contactContainer .contactStatus {
+    width: 18rem;
+    display: flex;
+  }
+  .contactDetail .optionsContainer {
+    width: 18rem;
+  }
+}
+/* === Estilos: CartCheckout*/
+.cartCheckout {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 25rem;
+}
+.cartCheckout .tablecartCheckout {
+  max-height: 25.938rem;
+  border-radius: 3px;
+  box-shadow: 3px 4px 11px 0px rgba(0, 0, 0, 0.1);
+  overflow: auto;
+}
+
+.productContainerCartCheckout {
+  position: relative;
+  margin-right: 1.25rem;
+}
+.productContainerCartCheckout img {
+  width: 5.625rem;
+  height: 9cap;
+  border-radius: 2px;
+}
+
+.detailProductContainerCheckout {
+  margin-left: 0.625rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.subTotalCartCheckut {
+  position: sticky;
+  bottom: 0;
+  padding: 0.625rem;
+  background: #F8F8F8;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 800px) {
+  .productContainerCartCheckout {
+    display: none;
+  }
+  .tablecartCheckout {
+    width: 1rem;
+  }
+  .cartCheckout {
+    width: 22rem;
+  }
+}
+@media screen and (max-width: 700px) {
+  .productContainerCartCheckout {
+    display: block;
+  }
+  .cartCheckout {
+    width: 25rem;
+  }
+}
+@media screen and (max-width: 450px) {
+  .cartCheckout {
+    width: 20rem;
+  }
+}
 
 /*# sourceMappingURL=main.css.map */
