@@ -1,11 +1,10 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Box, CardMedia, Typography } from "@mui/material";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { FavoritesContext } from "../../../context/FavoritesContext.jsx";
 import theme from "../../../temaConfig";
 import { ThemeProvider } from "@emotion/react";
-import { RotatingTriangles } from  'react-loader-spinner'
 import Button from '@mui/material/Button';
 import { Icon } from '@iconify/react';
 import Slider from '../itemList/Slider.jsx'
@@ -21,13 +20,8 @@ const Favorites = () => {
   const [currentItems, setCurrentItems] = useState([]);
   const [favoritesContentState, setFavoritesContentState] = useState(null);
   
-  const navigate = useNavigate();
-  const location = useLocation();
-  const path = location.pathname;
-
   let userTokenAccess = localStorage.getItem('userTokenAccess');
 
-  
   useEffect(()=>{
         const url = 'https://naturalicy-back-production.up.railway.app/api/products/selected';
 
@@ -48,8 +42,10 @@ const Favorites = () => {
 
         axios.post(url, productsArray, fetchOptions)
         .then(res=>{
-          setProducts(res.data.products)
-          setFavoritesContentState(true)
+          if(res.data.products?.length > 0) {
+            setProducts(res.data.products)
+            setFavoritesContentState(true)
+          }
         })
         .catch(error=>console.log(error))
       }, [])
@@ -83,34 +79,10 @@ const Favorites = () => {
     addToFavorites(id)
   }
 
-  if (products.length === 0) {
-    return (
-      <div style={{
-        width: "100%",
-        height: "90vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        }}>
-        <RotatingTriangles
-          visible={true}
-          ariaLabel="rotating-triangels-loading"
-          wrapperClass="rotating-triangels-wrapper"
-          colors={['#51E5FF', '#7DE2D1', '#FF7E6B']}
-          
-        />
-      </div>
-    
-    );
-  }
-
   return (
     <div className="products-section-container">
       {favoritesContentState
       ?<ThemeProvider theme={theme}>
-      <div className="headBrands-container">
-          <Slider space={0} uniqueSlide={true} navigationActive={false} paginationActive={true} categories={headBrandsMock} sliderType={'headBrands'}/>
-      </div>
       <div className="itemListContainer">
         <Typography variant="h2" sx={{ display:'block', fontSize:'1.5em', width:'100%', textAlign:'center', paddingBottom:'1.5em' }}>Tus productos favoritos</Typography>
         <div className="itemsFilterContainer">
@@ -156,7 +128,7 @@ const Favorites = () => {
     </ThemeProvider>
     :
     <ThemeProvider theme={theme}>
-        <Typography variant="h2" sx={{ display:'block', height:'70vh', display:'flex', justifyContent:'center', alignItems:'center'}}>No hay productos en favoritos</Typography>
+        <Typography variant="h2" sx={{ height:'70vh', display:'flex', justifyContent:'center', alignItems:'center'}}>No hay productos en favoritos</Typography>
     </ThemeProvider>
     }
     </div>

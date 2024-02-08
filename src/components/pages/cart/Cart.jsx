@@ -40,8 +40,8 @@ const Cart = () => {
         
         axios.post(url, productIds, fetchOptions)
         .then(res=>{
-          setProductsOnCart(res.data.products)
           if(res.data.products?.length > 0) {
+            setProductsOnCart(res.data.products)
             let total = 0;
             res.data.products.map(element=>{
               total += element.quantity * element.price;
@@ -166,7 +166,13 @@ const Cart = () => {
               </TableBody>
             </Table >
             <div className="subTotalContainer">
-            <Typography variant="stock" className="subTotal" style={{backgroundColor:'#F8F8F8'}}>Subtotal (sin envío) ${totalPrice}</Typography>
+            <Typography variant="stock" className="subTotal" style={{backgroundColor:'#F8F8F8'}}>Subtotal (sin envío) {totalPrice.toLocaleString('es-AR', {
+              style: 'currency',
+              currency: 'ARS',
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 2,
+              })}
+            </Typography>
             </div>
           </TableContainer>
         <div className="optionsContainer">

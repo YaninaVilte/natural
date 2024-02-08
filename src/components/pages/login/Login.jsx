@@ -122,7 +122,7 @@ const Login = () => {
                   helperText={errors.email?errors.email:''}
                 />
               </div>
-              <div className="textContainer">
+              <div className="textContainer" style={{marginBottom:'1.3em'}}>
                 <FormControl variant="outlined" className="textField">
                   <Typography variant="h4Custom">Contraseña:</Typography>
                   <TextField
@@ -153,11 +153,7 @@ const Login = () => {
                   />
                 </FormControl>
               </div>
-              <Link to="/forgot-password" style={{ marginTop: "0.625rem" }}>
-                <Typography variant="reset">
-                  ¿Olvidaste tu contraseña?
-                </Typography>
-              </Link>
+              
               <div className="textContainer">
                 <div>
                   <Button variant="contained" type="submit" className="button">
@@ -187,6 +183,30 @@ const Login = () => {
                       Crear cuenta
                     </Typography>
                   </div>
+                    <Link to="/forgot-password" style={{ textAlign:'center'}}>
+                      <Typography variant="h5" onClick={() => navigate("/register")} sx={{
+                        textTransform: "none",
+                        cursor: "pointer",
+                        color: "#164439",
+                        marginTop:'.7em',
+                        fontWeight: "500",
+                      }}
+                    >
+                      ¿Olvidaste tu contraseña?
+                    </Typography>
+                    </Link>
+                    <Link to="/shop" style={{ textAlign:'center'}}>
+                      <Typography variant="h5" sx={{
+                        textTransform: "none",
+                        cursor: "pointer",
+                        color: "#164439",
+                        marginTop:'.7em',
+                        fontWeight: "500",
+                      }}
+                    >
+                      Volver al inicio
+                    </Typography>
+                    </Link>
                 </div>
               </div>
             </div>
