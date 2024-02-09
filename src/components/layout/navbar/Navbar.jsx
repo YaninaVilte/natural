@@ -86,10 +86,7 @@ function Navbar() {
           alignItems: "center",
           height: "5.125rem",
           width: "100%",
-          backgroundColor: "#164439",
-          '@media screen and (min-width: 600px)': {
-            display: 'none',
-          }
+          backgroundColor: "#164439"
         }}>
 
           <IconButton sx={{ display: { sm: 'none' }, height: "5.125rem", marginLeft: "1.25rem", color: "#FFF" }} color="secondary.primary" aria-label="open drawer" edge="start" onClick={() => setDrawerOpen(true)}>

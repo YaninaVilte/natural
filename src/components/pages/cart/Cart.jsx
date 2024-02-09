@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { CartContext } from "../../../context/CartContext";
 import { Link } from "react-router-dom";
-import { Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 import lineCart from "../../../assets/lineCart.png"
 import { Icon } from '@iconify/react';
 import TableContainer from '@mui/material/TableContainer';
@@ -9,6 +8,14 @@ import Paper from '@mui/material/Paper';
 import theme from "../../../temaConfig";
 import { ThemeProvider } from "@emotion/react";
 import ResponsiveCart from "./ResponsiveCart";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  Typography,
+} from "@mui/material";
 
 const Cart = () => {
   const { cart, clearCart, deleteById, getTotalPrice } = useContext(CartContext);
