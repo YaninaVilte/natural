@@ -1,13 +1,7 @@
 import { initializeApp } from "firebase/app";
 
 import {
-  signInWithEmailAndPassword,
-  getAuth,
-  signOut,
-  signInWithPopup,
-  GoogleAuthProvider,
-  createUserWithEmailAndPassword,
-  sendPasswordResetEmail
+  getAuth
 } from "firebase/auth";
 
 import {getFirestore} from "firebase/firestore"
@@ -32,46 +26,6 @@ export const db = getFirestore(app)
 const storage = getStorage(app)
 
 // LOS SERVICIOS
-
-// auth
-
-// Login
-
-export const onSigIn = async ({ email, password }) => {
-  try {
-    const res = await signInWithEmailAndPassword(auth, email, password);
-    return res;
-  } catch (error) {
-    console.log(error);
-  }
-};
-// logout
-
-export const logout = () => {
-  signOut(auth);
-};
-// login con google
-
-let googleProvider = new GoogleAuthProvider();
-
-export const loginGoogle = async () => {
-  const res = await signInWithPopup(auth, googleProvider);
-  return res;
-};
-
-// registro
-
-export const signUp = async ({email, password}) => {
-    let res = await createUserWithEmailAndPassword(auth, email, password)
-    return res
-};
-
-// olvide la contraseña
-
-export const forgotPassword = async (email)=>{
-    let res = await sendPasswordResetEmail(auth, email)
-    return res    
-}
 
 // storage
 

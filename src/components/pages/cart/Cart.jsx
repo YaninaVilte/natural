@@ -1,6 +1,11 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../../context/CartContext";
+<<<<<<< HEAD
 import { Link } from "react-router-dom";
+=======
+import { Link, useNavigate } from "react-router-dom";
+import { Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
+>>>>>>> secondDevelop
 import lineCart from "../../../assets/lineCart.png"
 import { Icon } from '@iconify/react';
 import TableContainer from '@mui/material/TableContainer';
@@ -8,6 +13,7 @@ import Paper from '@mui/material/Paper';
 import theme from "../../../temaConfig";
 import { ThemeProvider } from "@emotion/react";
 import ResponsiveCart from "./ResponsiveCart";
+<<<<<<< HEAD
 import {
   Table,
   TableBody,
@@ -16,23 +22,111 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
+=======
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+>>>>>>> secondDevelop
 
 const Cart = () => {
-  const { cart, clearCart, deleteById, getTotalPrice } = useContext(CartContext);
+  const { cart, addToCart, deleteById } = useContext(CartContext);
+  const [productsOnCart, setProductsOnCart] = useState([])
+  const [totalPrice, setTotalPrice] = useState(0)
+  const navigate = useNavigate();
 
-  let total = getTotalPrice()
+  let productIds = [];
+
+  useEffect(()=>{
+    let userTokenAccess = localStorage.getItem('userTokenAccess');
+    const url = 'https://naturalicy-back-production.up.railway.app/api/carts/selected';
+
+        let fetchOptions = {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+
+        if (userTokenAccess) {
+            fetchOptions.headers['Authorization'] = `Bearer ${userTokenAccess}`;
+        }
+        cart.map(element=>{
+          productIds.push({id:element.productId, quantity:element.productQuantity})
+        })
+        
+        axios.post(url, productIds, fetchOptions)
+        .then(res=>{
+          if(res.data.products?.length > 0) {
+            setProductsOnCart(res.data.products)
+            let total = 0;
+            res.data.products.map(element=>{
+              total += element.quantity * element.price;
+            })
+            setTotalPrice(total)
+          }
+        })
+        .catch(error=>console.log(error))
+  },[cart]);
+
+  const onAdd = (product, operation) => {
+    if(operation === 'add'){
+      if(product.quantity>=product.stock){
+        if(product.quantity >= product.stock){
+          toast.error(`Se alcanzó el numero máximo de stock`, {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          return
+        }
+      }else{
+        addToCart(product.id, 1, product.stock);
+      }
+    }
+    if(operation === 'rest'){
+      if(product.quantity<=1){
+        toast.error(`Se alcanzó la cantidad de unidades mínima`, {
+          position: "top-right",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        return
+      }else{
+        addToCart(product.id, -1, product.stock);
+      }
+    }
+  };
+
+  if(!productsOnCart || !productsOnCart.length){
+    return(
+      <ThemeProvider theme={theme}>
+        <Typography variant="h2" sx={{ height:'70vh', display:'flex', justifyContent:'center', alignItems:'center'}}>No hay productos en el carrito</Typography>
+      </ThemeProvider>
+    )
+  }
 
   return (
     <div>
-        <ThemeProvider theme={theme}>
+        {productsOnCart.length > 0
+        ?<ThemeProvider theme={theme}>
+        <ToastContainer />
         <div className="cart">
         <Typography variant="h4Custom">Compra/Carrito de compras</Typography>
 
         <div className="cartStatus">
-            <Typography variant="titulo" sx={{ fontSize: "0.875rem" }}>Productos</Typography>
-          <img src={lineCart} className="cartLine" alt="Linea recta" />
+          <Typography variant="titulo" sx={{ fontSize: "0.875rem" }}>Productos</Typography>
+          <div className="separation"></div>
           <Typography variant="h4" style={{ color: "#164439" }} >Detalle de entrega</Typography>
-          <img src={lineCart} className="cartLine" alt="Linea recta" />
+          <div className="separation"></div>
           <Typography variant="h4" style={{ color: "#164439" }} >Medios de pago</Typography>
         </div>
 
@@ -40,6 +134,7 @@ const Cart = () => {
           <Table stickyHeader aria-label="simple table">
               <TableHead >
               <TableRow >
+                <TableCell align="left" sx={{ background: "#F8F8F8" }}><Typography variant="h2Custom" sx={{fontWeight: "700" }}>Imagen</Typography></TableCell>
                 <TableCell align="left" sx={{ background: "#F8F8F8" }}><Typography variant="h2Custom" sx={{fontWeight: "700" }}>Producto</Typography></TableCell>
                 <TableCell align="left" sx={{ background: "#F8F8F8" }}><Typography variant="h2Custom" sx={{ fontWeight: "700" }}>Cantidad</Typography></TableCell>
                 <TableCell align="left" sx={{ background: "#F8F8F8" }}><Typography variant="h2Custom" sx={{ fontWeight: "700" }}>Precio</Typography></TableCell>
@@ -47,48 +142,64 @@ const Cart = () => {
               </TableRow>
               </TableHead>
               <TableBody>
-                {cart.map((product) => {
+                {productsOnCart.map((product) => {
                   return (
-                    <TableRow key={product.id} sx={{ "&:last-child td, &:last-child th": { border: 0 }, background: "#F8F8F8" }}>
-                      <TableCell component="th" scope="row" align="left" sx={{ display: "flex", justifyContent: "start", }}>
+                    <TableRow key={product.id} className="table-product-container" sx={{ "&:last-child td, &:last-child th": { border: 0 }, background: "#F8F8F8" }}>
+                      <TableCell component="th" scope="row" align="left" sx={{ display: "flex" }}>
                         <div className="productContainer">
-                          <img src={product.image} alt="Imagen del producto"/>
+                          <img src={`https://naturalicy-back-production.up.railway.app/${product.thumbnail[0]}`} onClick={()=>navigate(`/itemDetail/${product.id}`)} alt="Imagen del producto"/>
                           <div className="deleteProductContainer">
                             <Icon onClick={() => deleteById(product.id)} icon="mdi:garbage"/>
                           </div>
                         </div>
-                        <div className="titleProductContainer">
-                          <Typography variant="h4Custom" sx={{ fontSize: "0.813rem" }}>{product.title}</Typography>
-                        </div>
+                      </TableCell>
+                      <TableCell component="th" scope="row" align="left">
+                      <div className="titleProductContainer" style={{width:'15em'}}>
+                        <Typography variant="h4Custom" sx={{ fontSize: "0.813rem", whiteSpace:'nowrap', textOverflow:'ellipsis', overflow:'hidden', display:'block' }}>{product.title}</Typography>
+                      </div>
                       </TableCell>
                       <TableCell component="th" scope="row" align="left">
                         <div className="quantityContainer">
+                          <button type="button" className="quantitySubAdd" disabled={product.quantity <= 1} onClick={()=>onAdd(product, 'rest')}>-</button>
                           <Typography variant="h3Counter" className="quantity">{product.quantity}</Typography>
-                          <Typography className="quantitySubAdd">-</Typography>
-                          <Typography className="quantitySubAdd">+</Typography>
+                          <button type="button" className="quantitySubAdd" disabled={product.quantity >= product.stock} onClick={()=>onAdd(product, 'add')}>+</button>
                         </div>
                       </TableCell>
-                      <TableCell component="th" scope="row" align="left">$
-                        <Typography variant="h4Custom" sx={{ lineHeight: "112%" }}>{product.unit_price}</Typography>
+                      <TableCell component="th" scope="row" align="left">
+                        <Typography variant="h4Custom" sx={{ lineHeight: "112%" }}>{product.price.toLocaleString('es-AR', {
+                        style: 'currency',
+                        currency: 'ARS',
+                        minimumFractionDigits: 0,
+                        maximumFractionDigits: 2,
+                      })}</Typography>
                       </TableCell>
-                      <TableCell component="th" scope="row" align="left">$
-                        <Typography variant="h4Custom" sx={{ fontWeight: "500", lineHeight: "112%" }}>{product.quantity * product.unit_price}</Typography>
+                      <TableCell component="th" scope="row" align="left">
+                        <Typography variant="h4Custom" sx={{ lineHeight: "112%" }}>{(product.quantity * product.price).toLocaleString('es-AR', {
+                        style: 'currency',
+                        currency: 'ARS',
+                        minimumFractionDigits: 0,
+                        maximumFractionDigits: 2,
+                      })}</Typography>
                       </TableCell>
                     </TableRow>
                     );
                 })}
               </TableBody>
             </Table >
-          <div className="subTotalContainer">
-            <Typography variant="stock" className="subTotal">Subtotal (sin envío) ${total}</Typography>
-              <button onClick={clearCart}>Limpiar carrito</button>
+            <div className="subTotalContainer">
+            <Typography variant="stock" className="subTotal" style={{backgroundColor:'#F8F8F8'}}>Subtotal (sin envío) {parseFloat(totalPrice).toLocaleString('es-AR', {
+              style: 'currency',
+              currency: 'ARS',
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 2,
+              })}
+            </Typography>
             </div>
           </TableContainer>
         <div className="optionsContainer">
               {cart.length > 0 && (
               <Link to="/shop" className="linksOptions">
-                <Icon icon="grommet-icons:next" transform="rotate(180)"/>
-                <Typography variant="stock" style={{ color: '#164439'}}>Seguir comprando</Typography> 
+                <Typography variant="stock" style={{ color: '#164439'}}><Icon icon="grommet-icons:next" transform="rotate(180)"/>Seguir comprando</Typography> 
               </Link>
               )}
               {cart.length > 0 && (
@@ -99,10 +210,15 @@ const Cart = () => {
         </div>
         </div>
         <div className="responsiveCart">
-          <ResponsiveCart />
+          <ResponsiveCart products={productsOnCart} totalPrice={totalPrice}/>
         </div>
 
         </ThemeProvider>
+        :
+        <ThemeProvider theme={theme}>
+          <Typography variant="h2" sx={{ height:'70vh', display:'flex', justifyContent:'center', alignItems:'center'}}>No hay productos en el carrito</Typography>
+        </ThemeProvider>
+        }
       </div>
   );
 };

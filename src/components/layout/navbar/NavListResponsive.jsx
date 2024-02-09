@@ -1,6 +1,5 @@
 import { Box, List, ListItem, Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
-import { logout } from "../../../firebaseConfig";
 import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 import { menuItemsAdmin } from "../../../router/navigationAdmin";
@@ -11,10 +10,26 @@ function NavListResponsive({setDrawerOpen}) {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        logout();
-        logoutContext();
-        navigate("/");
-        setDrawerOpen(false);
+
+        let userTokenAccess = localStorage.getItem('userTokenAccess');
+
+        let fetchOptions = {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+
+        if (userTokenAccess) {
+            fetchOptions.headers['Authorization'] = `Bearer ${userTokenAccess}`;
+        }
+
+        axios.get('https://naturalicy-back-production.up.railway.app/api/sessions/logout', fetchOptions)
+        .then(res => {
+            logoutContext();
+            // setListOpen(false);
+            navigate("/");
+        })
+        .catch((error) => console.log("Error:", error))
     };
 
     const rolAdmin = import.meta.env.VITE_ROL_ADMIN;
@@ -24,7 +39,7 @@ function NavListResponsive({setDrawerOpen}) {
             <nav>
                 {menuItemsAdmin.map(({ id, path, title }) => (
                     <ListItem key={id}>
-                        <Link component={Link} to={path} onClick={() => setDrawerOpen(false)}>
+                        <Link to={path} onClick={() => setDrawerOpen(false)}>
                             <Typography variant="drawer">{title}</Typography>
                         </Link>
                     </ListItem>

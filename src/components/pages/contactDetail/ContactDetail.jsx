@@ -8,6 +8,7 @@ import lineCart from "../../../assets/lineCart.png"
 import { Icon } from '@iconify/react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { toast, ToastContainer } from "react-toastify";
 
 
 const ContactDetail = () => {
@@ -21,6 +22,7 @@ const ContactDetail = () => {
             name: "",
             last_name: "",
             email: "",
+            area_code: "",
             phone: "",
             street_name: "",
             street_number: "",
@@ -38,10 +40,14 @@ const ContactDetail = () => {
             email: Yup.string()
                 .email('Email no válido')
                 .required('*Campo requerido'),
+            area_code: Yup.string()
+            .required('*Campo requerido')
+            .matches(/^[0-9]+$/, 'Solo se permiten números')
+            .max(4, 'Debe contener máximo 4 números'),
             phone: Yup.string()
                 .required('*Campo requerido')
                 .matches(/^[0-9]+$/, 'Solo se permiten números')
-                .length(10, 'Debe contener 10 números'),
+                .max(10, 'Debe contener máximo 10 números'),
             street_name: Yup.string()
                 .required('*Campo requerido')
                 .matches(/^[a-zA-Z0-9\s]+$/, 'Solo se permiten letras y números'),
@@ -70,7 +76,16 @@ const ContactDetail = () => {
             localStorage.setItem("order", JSON.stringify(order));
             navigate("/checkout");
         } else {
-            alert("Existen campos que se deben completar correctamente.");
+            toast.warn(`Todos los campos deben ser rellenados correctamente`, {
+                position: "top-center",
+                hideProgressBar: false,
+                closeOnClick: true,
+                autoClose: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              });
             return;
         }
     };
@@ -82,8 +97,9 @@ const ContactDetail = () => {
     return (
         <div className="contactDetail">
             <ThemeProvider theme={theme}>
+                <ToastContainer/>
                 <div className="contactContainer">
-                    <img src={natural} alt="Nombre del emprendimiento: Natural" className="contactImg" />
+                    <img src={natural} alt="Nombre del emprendimiento: Natural" className="contactImg" style={{marginBottom:'.5em'}}/>
                     <Typography className="subtitulo" variant="h2">Compra más rápido y lleva el control de tus pedidos, ¡en un solo lugar!</Typography>
                     <div className="contactStatus">
                         <Typography variant="h4" style={{ color: "#164439" }} className="titleContactStatus">Productos</Typography>
@@ -130,16 +146,28 @@ const ContactDetail = () => {
                                     value={formik.values.email}
                                     helperText={formik.touched.email && formik.errors.email ? formik.errors.email : ''} />
                             </div>
-                            <div style={{ marginBottom: "1.25rem" }} className="textContainer" >
-                                <Typography variant="h4Custom">Teléfono:</Typography>
-                                <TextField
-                                    name="phone"
+                            <div style={{ marginBottom: "1.25rem", display:'flex', flexDirection:'row' }} className="textContainer" >
+                                <div className="area_code-container">
+                                    <Typography variant="h4Custom">Código de área:</Typography>
+                                    <TextField
+                                    name="area_code"
                                     className="textField"
-
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
-                                    value={formik.values.phone}
-                                    helperText={formik.touched.phone && formik.errors.phone ? formik.errors.phone : ''} />
+                                    value={formik.values.area_code}
+                                    helperText={formik.touched.area_code && formik.errors.area_code ? formik.errors.area_code : ''} />
+                                </div>
+
+                                <div className="phone_number-container">
+                                    <Typography variant="h4Custom">Teléfono:</Typography>
+                                    <TextField
+                                        name="phone"
+                                        className="textField"
+                                        onChange={formik.handleChange}
+                                        onBlur={formik.handleBlur}
+                                        value={formik.values.phone}
+                                        helperText={formik.touched.phone && formik.errors.phone ? formik.errors.phone : ''} />
+                                </div>
                             </div>
                         </div>
 
@@ -153,7 +181,7 @@ const ContactDetail = () => {
                                 <FormControlLabel value="pickup" control={<Radio />} label="Retiro en local" />
                                 <FormControlLabel value="homeDelivery" control={<Radio />} label="Envío a domicilio" />
 
-                                <Typography>
+                                <Typography style={{marginBottom:'1em', color:'#388b73', fontWeight:'bolder'}}>
                                     {isHomeDelivery
                                         ? "Nos contactaremos para informarle el precio del envío"
                                         : "Presentate en el local para retirar tu pedido"
@@ -177,7 +205,7 @@ const ContactDetail = () => {
                                     helperText={formik.touched.street_name && formik.errors.street_name ? formik.errors.street_name : ''} />
                             </div>
                             <div style={{ marginBottom: "1.25rem" }} className="textContainer" >
-                                <Typography variant="h4Custom">Número:</Typography>
+                                <Typography variant="h4Custom">Número de casa:</Typography>
                                 <TextField
                                     name="street_number"
                                     className="textField"
@@ -188,7 +216,7 @@ const ContactDetail = () => {
                                     helperText={formik.touched.street_number && formik.errors.street_number ? formik.errors.street_number : ''} />
                             </div>
                             <div style={{ marginBottom: "1.25rem" }} className="textContainer" >
-                                <Typography variant="h4Custom">Departamento:</Typography>
+                                <Typography variant="h4Custom">Departamento (opcional):</Typography>
                                 <TextField
                                     name="apartment"
                                     className="textField"
@@ -209,7 +237,7 @@ const ContactDetail = () => {
                                     helperText={formik.touched.zip_code && formik.errors.zip_code ? formik.errors.zip_code : ''} />
                             </div>
                             <div style={{ marginBottom: "1.25rem" }} className="textContainer" >
-                                <Typography variant="h4Custom">Observaciones:</Typography>
+                                <Typography variant="h4Custom">Observaciones (opcional):</Typography>
                                 <TextField
                                     name="aditional_info"
                                     className="textField"
@@ -227,12 +255,9 @@ const ContactDetail = () => {
 
                     <div className="optionsContainer">
                         <Link to="/cart" className="linksOptions">
-                            <Icon icon="grommet-icons:next" transform="rotate(180)" />
-                            <Typography variant="stock" style={{ color: '#164439' }}>Volver al carrito</Typography>
+                            <Typography variant="stock" style={{ color: '#164439'}}><Icon icon="grommet-icons:next" transform="rotate(180)"/>Seguir comprando</Typography> 
                         </Link>
-                        <Typography onClick={handleBuy} variant="stock" style={{ color: '#164439', cursor: 'pointer' }}>
-                            Siguiente paso <Icon icon="grommet-icons:next" />
-                        </Typography>
+                        <Typography variant="stock" onClick={handleBuy} className="linksOptions-btn" style={{ color: '#164439' }}>Siguiente paso <Icon icon="grommet-icons:next"/></Typography>
 
                     </div>
                 </div>

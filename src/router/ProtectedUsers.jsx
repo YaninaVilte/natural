@@ -3,12 +3,11 @@ import { AuthContext } from "../context/AuthContext"
 import { Outlet, Navigate } from "react-router-dom"
 
 const ProtectedUsers = () => {
-
-    const {isLogged} = useContext(AuthContext)
+  const {isLogged} = useContext(AuthContext)
 
   return <>
   {
-    isLogged ? <Outlet /> : <Navigate to="/login" />
+    isLogged ? <Outlet /> : <Navigate to="/Login" />
   }
 
   </>

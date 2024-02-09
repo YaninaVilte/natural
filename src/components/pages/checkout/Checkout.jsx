@@ -17,98 +17,84 @@ import CartCheckout from "./CartCheckout";
 const Checkout = () => {
 
   const { cart, getTotalPrice, clearCart } = useContext(CartContext);
-  const { user } = useContext(AuthContext);
-  initMercadoPago(import.meta.env.VITE_PUBLICKEY, {
-    locale: "es-AR",
-  });
-  const [preferenceId, setPreferenceId] = useState(null);
-  const [orderId, setOrderId] = useState(null);
-  const [shipmentCost, setShipmentCost] = useState(0)
-
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const paramValue = queryParams.get("status"); // approved --- reject
-
-  useEffect(() => {
-    // ACA ES DONDE GUARDAMOS LA ORDEN EN FIREBASE
-    // CONDICIONADO A QUE YA ESTE EL PAGO REALIZADO
-    let order = JSON.parse(localStorage.getItem("order"));
-    if (paramValue === "approved") {
-      let ordersCollection = collection(db, "orders");
-      addDoc(ordersCollection, { ...order, date: serverTimestamp() }).then(
-        (res) => {
-          setOrderId(res.id);
-        }
-      );
-
-      order.items.forEach((elemento) => {
-        updateDoc(doc(db, "products", elemento.id), {
-          stock: elemento.stock - elemento.quantity,
-        });
-      });
-
-      localStorage.removeItem("order");
-      clearCart()
-    }
-  }, [paramValue]);
-
-  useEffect(() => {
-    let shipmentCollection = collection(db, "shipment")
-    let shipmentDoc = doc(shipmentCollection, "lXy4L7rWxnuFKqPoisQW")
-    getDoc(shipmentDoc).then(res => {
-      setShipmentCost(res.data().cost)
-    })
+  const [preferenceId, setPreferenceId] = useState(undefined)
+  console.log(import.meta.env.VITE_MP_PUBLIC_KEY)
+  useEffect(()=>{
+    initMercadoPago(import.meta.env.VITE_MP_PUBLIC_KEY, { locale: 'es-AR' });
   }, [])
+  const { user } = useContext(AuthContext);
+  
+  const [orderId, setOrderId] = useState(null);
 
+//   const location = useLocation();
+//   const queryParams = new URLSearchParams(location.search);
+//   const paramValue = queryParams.get("status"); // approved --- reject
 
-  let total = getTotalPrice();
+//   useEffect(() => {
+//     // ACA ES DONDE GUARDAMOS LA ORDEN EN FIREBASE
+//     // CONDICIONADO A QUE YA ESTE EL PAGO REALIZADO
+//     let order = JSON.parse(localStorage.getItem("order"));
+//     if (paramValue === "approved") {
+//       let ordersCollection = collection(db, "orders");
+//       addDoc(ordersCollection, { ...order, date: serverTimestamp() }).then(
+//         (res) => {
+//           setOrderId(res.id);
+//         }
+//       );
 
-  const createPreference = async () => {
-    const newArray = cart.map((product) => {
-      return {
-        title: product.title,
-        unit_price: product.unit_price,
-        quantity: product.quantity,
-      };
-    });
-    try {
-      let response = await axios.post(
-        "https://back-prueba-kdt33t5ey-yaninavilte.vercel.app/create_preference",
-        {
-          items: newArray,
-          shipment_cost: shipmentCost,
-        }
-      );
+//       order.items.forEach((elemento) => {
+//         updateDoc(doc(db, "products", elemento.id), {
+//           stock: elemento.stock - elemento.quantity,
+//         });
+//       });
 
-      const { id } = response.data;
-      return id;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-
-  const handleChange = (e) => {
-    setUserData({ ...userData, [e.target.name]: e.target.value });
-  };
+//       localStorage.removeItem("order");
+//       clearCart()
+//     }
+//   }, [paramValue]);
 
   const storedOrder = JSON.parse(localStorage.getItem("order"));
 
   const handleBuy = async () => {
     const storedOrder = JSON.parse(localStorage.getItem("order"));
-    console.log("Order Details from localStorage:", storedOrder);
-    const order = {
-      ...storedOrder,
-      items: cart,
-      total: total,
-      // email: user.email,
-    };
-    localStorage.setItem("order", JSON.stringify(order));
-    console.log("Updated Order Details:", order);
-    const id = await createPreference();
-    if (id) {
-      setPreferenceId(id);
+    const address = {
+      street_name: storedOrder.street_name,
+      street_number: storedOrder.street_number,
+      apartment: storedOrder.apartment ? storedOrder.apartment : false,
+      aditional_info: storedOrder.aditional_info ? storedOrder.aditional_info : false,
+      zip_code: storedOrder.zip_code
     }
+    const phone = {
+      area_code: storedOrder.area_code,
+      number: storedOrder.phone
+    }
+    
+    let orderData = [];
+    cart.map(element=>{
+      orderData.push({id:element.productId, quantity:element.productQuantity})
+    })
+   
+
+    let userTokenAccess = localStorage.getItem('userTokenAccess');
+    const url = 'https://naturalicy-back-production.up.railway.app/api/checkout/createPreference';
+
+    let fetchOptions = {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    };
+
+    if (userTokenAccess) {
+        fetchOptions.headers['Authorization'] = `Bearer ${userTokenAccess}`;
+    }
+    
+    axios.post(url, {orderData, address, phone}, fetchOptions)
+    .then(res=>{
+      console.log(res)
+      setPreferenceId(res.data.id)
+    })
+    .catch(error=>console.log(error))
+
   };
 
 
@@ -119,7 +105,7 @@ const Checkout = () => {
           <ThemeProvider theme={theme}>
             <div className="checkoutBox">
               <div className="principalCheckout">
-                <img src={natural} alt="Nombre del emprendimiento: Natural" className="checkoutImg" />
+                <img src={natural} alt="Nombre del emprendimiento: Natural" style={{marginBottom:'.5em'}} className="checkoutImg" />
                 <Typography variant="h2">Compra más rápido y lleva el control de tus pedidos, ¡en un solo lugar!</Typography>
               </div>
               <div className="cartStatusCheckout">
@@ -135,56 +121,63 @@ const Checkout = () => {
 
 
                   <div className="detailInfoCheckout">
-                    <Typography variant="h4Custom" sx={{ fontWeight: "500", lineHeight: "112%" }}>Nombre: </Typography>
-                    <Typography variant="h4Custom" sx={{ fontSize: "0.813rem" }}>{storedOrder.name}</Typography>
+                    <Typography variant="h4Custom" ><b style={{fontWeight:'500'}}>Nombre:</b> {storedOrder.name}</Typography>
                   </div>
 
                   <div className="detailInfoCheckout">
-                    <Typography variant="h4Custom" sx={{ fontWeight: "500", lineHeight: "112%" }}>Apellido: </Typography>
-                    <Typography variant="h4Custom" sx={{ fontSize: "0.813rem" }}>{storedOrder.last_name}</Typography>
+                    <Typography variant="h4Custom"><b style={{fontWeight:'500'}}>Apellido: </b>{storedOrder.last_name}</Typography>
                   </div>
 
                   <div className="detailInfoCheckout">
-                    <Typography variant="h4Custom" sx={{ fontWeight: "500", lineHeight: "112%" }}>Email: </Typography>
-                    <Typography variant="h4Custom" sx={{ fontSize: "0.813rem" }}>{storedOrder.email}</Typography>
+                    <Typography variant="h4Custom"><b style={{fontWeight:'500'}}>Email: </b>{storedOrder.email}</Typography>
                   </div>
 
                   <div className="detailInfoCheckout">
-                    <Typography variant="h4Custom" sx={{ fontWeight: "500", lineHeight: "112%" }}>Teléfono: </Typography>
-                    <Typography variant="h4Custom" sx={{ fontSize: "0.813rem" }}>{storedOrder.phone}</Typography>
+                    <Typography variant="h4Custom"><b style={{fontWeight:'500'}}>Teléfono: </b>{storedOrder.area_code}{storedOrder.phone}</Typography>
                   </div>
 
                   <div className="detailInfoCheckout">
-                    <Typography variant="h4Custom" sx={{ fontWeight: "500", lineHeight: "112%" }}>Calle: </Typography>
-                    <Typography variant="h4Custom" sx={{ fontSize: "0.813rem" }}>{storedOrder.street_name}</Typography>
+                    <Typography variant="h4Custom"><b style={{fontWeight:'500'}}>Calle: </b>{storedOrder.street_name}</Typography>
                   </div>
 
                   <div className="detailInfoCheckout">
-                    <Typography variant="h4Custom" sx={{ fontWeight: "500", lineHeight: "112%" }}>Número: </Typography>
-                    <Typography variant="h4Custom" sx={{ fontSize: "0.813rem" }}>{storedOrder.street_number}</Typography>
+                    <Typography variant="h4Custom"><b style={{fontWeight:'500'}}>Número: </b>{storedOrder.street_number}</Typography>
                   </div>
 
-                  <div className="detailInfoCheckout">
-                    <Typography variant="h4Custom" sx={{ fontWeight: "500", lineHeight: "112%" }}>Departamento: </Typography>
-                    <Typography variant="h4Custom" sx={{ fontSize: "0.813rem" }}>{storedOrder.apartment}</Typography>
-                  </div>
+                  {
+                    storedOrder.apartment ? (
+                      <div className="detailInfoCheckout">
+                        <Typography variant="h4Custom" sx={{ marginBottom: "1rem" }}><b style={{fontWeight:'500'}}>Observaciones: </b>{storedOrder.apartment}</Typography>
+                      </div>
+                    )
+                    : ('')
+                  }
 
                   <div className="detailInfoCheckout">
-                    <Typography variant="h4Custom" sx={{ fontWeight: "500", lineHeight: "112%" }}>Código postal: </Typography>
-                    <Typography variant="h4Custom" sx={{ fontSize: "0.813rem" }}>{storedOrder.zip_code}</Typography>
+                    <Typography variant="h4Custom"><b style={{fontWeight:'500'}}>Código postal: </b>{storedOrder.zip_code}</Typography>
                   </div>
 
-                  <div className="detailInfoCheckout">
-                    <Typography variant="h4Custom" sx={{ marginBottom: "1rem", fontWeight: "500", lineHeight: "112%" }}>Observaciones: </Typography>
-                    <Typography variant="h4Custom" sx={{ fontSize: "0.813rem" }}>{storedOrder.aditional_info}</Typography>
-                  </div>
+                  {
+                    storedOrder.aditional_info ? (
+                      <div className="detailInfoCheckout">
+                        <p variant="h4Custom" sx={{ marginBottom: "1rem" }} style={{overflowWrap:'anywhere'}}><b style={{fontWeight:'500'}}>Observaciones: </b>{storedOrder.aditional_info}</p>
+                      </div>
+                    )
+                    : ('')
+                  }
                 </div>
                 <div>
                   <CartCheckout />
                 </div>
               </div>
             </div>
-            <Button onClick={handleBuy}>Seleccione metodo de pago</Button>
+            <Button onClick={handleBuy}>Generar medios de pago</Button>
+            {
+              preferenceId &&
+              <div>
+                <Wallet initialization={{preferenceId: preferenceId}} />
+              </div>
+            }
           </ThemeProvider>
         </> : <>
           <h4>El pago se realizo con exito</h4>
@@ -193,11 +186,12 @@ const Checkout = () => {
         </>
       }
 
-      {preferenceId && (
-        <Wallet initialization={{ preferenceId, redirectMode: "self" }} />
-      )}
+{/* //       {preferenceId && (
+//         <Wallet initialization={{ preferenceId, redirectMode: "self" }} />
+//       )} */}
     </div>
   );
 };
+
 
 export default Checkout;

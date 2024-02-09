@@ -3,7 +3,7 @@
 
 .boxContainer {
     width: 100%;
-    
+    background-color: #e7e7e7;
     .box {
     min-height: 100vh;
     display: flex;
@@ -24,7 +24,6 @@
         .textContainer {
             display: flex;
             flex-direction: column;
-            
 
             .textField {
                 width: 100%;
@@ -44,12 +43,14 @@
             height: 3rem;
             background-color: #164439;
             margin-bottom: 0.625rem;
-
+            transition: all .2s ease;
+            & .MuiTypography-root{
+                transition: all .2s ease;
+            }
             &:hover {
                 box-shadow: none;
                 background-color: #164439;
                 text-align: center;
-
                 & svg {
                     color: #41a88a;
                 }
@@ -57,7 +58,6 @@
                 & .MuiTypography-root {
                     color: #41a88a;
                     text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.25);
-                    font-style: italic;
                 }
             }
         }

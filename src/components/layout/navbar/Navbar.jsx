@@ -26,7 +26,6 @@ function Navbar() {
   const [listOpen, setListOpen] = useState(false);
 
 
-
   return (
     <Box sx={{ display: "flex", position: 'sticky', top: '0', left: '0', zIndex: '9999' }}>
       <ThemeProvider theme={theme}>
@@ -46,14 +45,14 @@ function Navbar() {
               </div>
               <div style={{ display: "flex", alignItems: "center" }}>
                 <div style={{}}>
-                  <Link component={Link} to={"/cart"}>
+                  <Link component={Link} style={{display:'flex'}} to={"/cart"}>
                     <Icon icon="fontisto:shopping-basket" width="24" height="24" color="#FFFFFF" />
                   </Link>
                 </div>
                 <div style={{ marginLeft: "1.5rem" }}>
                   {user && user.email ? (
                     <>
-                      <Link onClick={() => setListOpen(true)} >
+                      <Link onClick={() => setListOpen(!listOpen)} >
                         <Typography variant="h4" sx={{ fontSize: "1rem" }}>Perfil</Typography>
                       </Link>
                     </>
@@ -82,21 +81,28 @@ function Navbar() {
         <nav style={{
           display: "flex",
           flexDirection: "row",
-          justifyContent: "space-between",
+          justifyContent: "space-around",
           alignItems: "center",
           height: "5.125rem",
           width: "100%",
+<<<<<<< HEAD
           backgroundColor: "#164439"
+=======
+          backgroundColor: "#164439",
+          '@media screen and (minWidth: 600px)': {
+            display: 'none',
+          }
+>>>>>>> secondDevelop
         }}>
 
-          <IconButton sx={{ display: { sm: 'none' }, height: "5.125rem", marginLeft: "1.25rem", color: "#FFF" }} color="secondary.primary" aria-label="open drawer" edge="start" onClick={() => setDrawerOpen(true)}>
+          <IconButton sx={{ display: { sm: 'none' }, height: "5.125rem", color: "#FFF" }} color="secondary.primary" aria-label="open drawer" edge="start" onClick={() => setDrawerOpen(!drawerOpen)}>
             <MenuIcon color="secondary.primary" />
           </IconButton>
 
-          <Link to="/"><img src={naturalBlanco} style={{ width: "12rem", alignItems: "center" }} alt="Natural" /></Link>
+          <Link to="/"><img src={naturalBlanco} style={{ width: "10em", alignItems: "center" }} alt="Natural" /></Link>
 
-          <Link component={Link} to={"/cart"}>
-            <Icon icon="fontisto:shopping-basket" width="24" height="24" color="#FFFFFF" style={{ marginRight: "1.25rem" }} />
+          <Link component={Link} style={{display:'flex'}} to={"/cart"}>
+            <Icon icon="fontisto:shopping-basket" width="24" height="24" color="#FFFFFF" />
           </Link>
 
           <Drawer open={drawerOpen} anchor="left" onClose={() => setDrawerOpen(false)} PaperProps={{

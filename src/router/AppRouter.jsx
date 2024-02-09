@@ -8,6 +8,7 @@ import ChangePassword from "../components/pages/forgotPassword/ChangePassword";
 import Dashboard from "../components/pages/dashboard/Dashboard";
 import ProtectedAdmin from "./ProtectedAdmin";
 import Layout from "../components/layout/Layout";
+// import Cart from "../components/pages/cart/Cart";
 
 const AppRouter = () => {
   return (

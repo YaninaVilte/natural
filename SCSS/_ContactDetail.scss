@@ -24,7 +24,7 @@
             width: 30rem;
 
             .infoBox {
-                width: 20rem;
+                width: 100%;
 
                 .textContainer {
                     display: flex;
@@ -56,13 +56,26 @@
             flex-direction: row;
             justify-content: space-between;
             margin-top: 1.25rem;
+            width: 80%;
             margin-bottom: 4.375rem;
-            width: 30rem;
-
-            .LinkOptions {
+            .linksOptions {
                 text-decoration: none;
-
-                & SVG {
+                & span{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                & svg {
+                    width: 0.875rem;
+                    height: 0.875rem;
+                }
+            }
+            .linksOptions-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                & svg {
                     width: 0.875rem;
                     height: 0.875rem;
                 }

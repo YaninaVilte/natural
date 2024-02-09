@@ -1,7 +1,7 @@
 import { Button, TextField, Typography } from "@mui/material";
 import theme from "../../../temaConfig";
 import { ThemeProvider } from "@emotion/react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios'
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -89,6 +89,18 @@ const ForgotPassword = () => {
               <div className="textContainerRow">
                 <Typography variant="h5" onClick={() => navigate("/login")} sx={{ textTransform: "none", cursor: "pointer", color: "#164439", fontWeight: "500" }}>Regresar</Typography>
               </div>
+              <Link to="/shop" style={{ textAlign:'center'}}>
+                  <Typography variant="h5" sx={{
+                      textTransform: "none",
+                      cursor: "pointer",
+                      color: "#164439",
+                      marginTop:'.7em',
+                      fontWeight: "500",
+                    }}
+                  >
+                    Volver al inicio
+                  </Typography>
+                </Link>
             </div>
           </form>
         </div>

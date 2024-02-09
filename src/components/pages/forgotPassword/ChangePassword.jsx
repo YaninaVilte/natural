@@ -1,9 +1,7 @@
 import { Box, Button, FormControl, IconButton, InputAdornment, TextField, Typography } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { signUp, db } from "../../../firebaseConfig";
-import { setDoc, doc } from "firebase/firestore"
+import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import natural from "../../../assets/natural.png"
@@ -197,8 +195,20 @@ const Register = () => {
                   </Button>
                 </div>
                 <div className="textContainerRow">
-                  <Typography variant="h5" onClick={() => navigate("/")} sx={{ textTransform: "none", cursor: "pointer", color: "#164439", fontWeight: "500" }}>Regresar</Typography>
+                  <Typography variant="h5" onClick={() => navigate("/shop")} sx={{ textTransform: "none", cursor: "pointer", color: "#164439", fontWeight: "500" }}>Regresar</Typography>
                 </div>
+                <Link to="/shop" style={{ textAlign:'center'}}>
+                  <Typography variant="h5" sx={{
+                      textTransform: "none",
+                      cursor: "pointer",
+                      color: "#164439",
+                      marginTop:'.7em',
+                      fontWeight: "500",
+                    }}
+                  >
+                    Volver al inicio
+                  </Typography>
+                </Link>
               </div>
             </div>
           </form>
