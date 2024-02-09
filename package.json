@@ -22,6 +22,7 @@
     "firebase": "^10.2.0",
     "formik": "^2.4.5",
     "jquery": "^3.7.1",
+    "mercadopago": "^2.0.7",
     "react": "^18.2.0",
     "react-bootstrap": "^2.9.1",
     "react-bootstrap-icons": "^1.10.3",

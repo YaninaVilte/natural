@@ -869,8 +869,7 @@ html {
   flex-direction: row;
   align-items: center;
   width: 20rem;
-  margin-top: 0.7rem;
-  margin-left: 0.5rem;
+  margin: 0.5em;
 }
 
 .cartStatusCheckout {
@@ -963,7 +962,7 @@ html {
   width: 30rem;
 }
 .contactDetail .contactContainer .contactBox .infoBox {
-  width: 20rem;
+  width: 100%;
 }
 .contactDetail .contactContainer .contactBox .infoBox .textContainer {
   display: flex;
@@ -989,13 +988,28 @@ html {
   flex-direction: row;
   justify-content: space-between;
   margin-top: 1.25rem;
+  width: 80%;
   margin-bottom: 4.375rem;
-  width: 30rem;
 }
-.contactDetail .contactContainer .optionsContainer .LinkOptions {
+.contactDetail .contactContainer .optionsContainer .linksOptions {
   text-decoration: none;
 }
-.contactDetail .contactContainer .optionsContainer .LinkOptions SVG {
+.contactDetail .contactContainer .optionsContainer .linksOptions span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.contactDetail .contactContainer .optionsContainer .linksOptions svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+.contactDetail .contactContainer .optionsContainer .linksOptions-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.contactDetail .contactContainer .optionsContainer .linksOptions-btn svg {
   width: 0.875rem;
   height: 0.875rem;
 }

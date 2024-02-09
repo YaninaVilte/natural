@@ -5,6 +5,7 @@ import twitter from "../../../assets/twitter.svg"
 import facebook from "../../../assets/facebook.svg"
 import instagram from "../../../assets/instagram.svg"
 import theme from "../../../temaConfig";
+import { FaInstagram, FaTwitter, FaFacebookSquare } from "react-icons/fa";
 import { ThemeProvider } from "@emotion/react";
 import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -36,7 +37,7 @@ const Footer = () => {
                     <Link component={Link} to={"/cart"}>
                         <Typography variant="h5">Carrito</Typography>
                     </Link>
-                    <Link component={Link} to={""}>
+                    <Link component={Link} to={"/favorites"}>
                         <Typography variant="h5">Favoritos</Typography>
                     </Link>
                 </div>
@@ -55,12 +56,12 @@ const Footer = () => {
                         <Typography variant="h5">Quienes somos</Typography>
                     </Link>
                 </div>
-                <div className="redes">
+                <div className="redes" style={{textAlign:'center'}}>
                     <Typography variant="h4">Seguinos en nuestras redes</Typography>
-                    <div className="red-social">
-                            <a href="https://www.instagram.com/natural.icy.market/" className="fa fa-instagram"><img src={instagram} style={{ width: '1.5rem', height: '1.5rem' }} alt="Logo Instagram" /></a>
-                            <a href="#" className="fa fa-twitter"><img src={twitter} style={{ width: '1.5rem', height: '1.5rem' }} alt="Logo Twitter" /></a>
-                            <a href="#" className="fa fa-facebook"><img src={facebook} style={{ width: '1.5rem', height: '1.5rem' }} alt="Logo Facebook" /></a>
+                    <div className="red-social" style={{display:'flex', justifyContent:'space-around', marginTop:'.4em'}}>
+                        <a href="https://www.instagram.com/natural.icy.market/" className="fa fa-instagram"><FaInstagram style={{color:'#FFF', width:'1.7em', height:'1.7em'}}/></a>
+                        <a href="#" className="fa fa-twitter"> <FaTwitter style={{color:'#FFF', width:'1.7em', height:'1.7em'}}/></a>
+                        <a href="#" className="fa fa-facebook"><FaFacebookSquare style={{color:'#FFF', width:'1.7em', height:'1.7em'}}/></a>
                     </div>
                 </div>
                 <div className="equipo">

@@ -32,7 +32,12 @@ const CartContextComponent = ({ children }) => {
 
   const deleteById = (id)=>{
     const newArr = cart.filter( elemento => elemento.productId !== id)
-    localStorage.setItem("cart", JSON.stringify(newArr))
+    if(!newArr.length){
+      window.location.reload();
+      localStorage.removeItem("cart")
+    }else{
+      localStorage.setItem("cart", JSON.stringify(newArr))
+    }
     setCart(newArr)
   }
 

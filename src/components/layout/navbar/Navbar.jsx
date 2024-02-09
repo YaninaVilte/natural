@@ -52,7 +52,7 @@ function Navbar() {
                 <div style={{ marginLeft: "1.5rem" }}>
                   {user && user.email ? (
                     <>
-                      <Link onClick={() => setListOpen(true)} >
+                      <Link onClick={() => setListOpen(!listOpen)} >
                         <Typography variant="h4" sx={{ fontSize: "1rem" }}>Perfil</Typography>
                       </Link>
                     </>
@@ -81,17 +81,17 @@ function Navbar() {
         <nav style={{
           display: "flex",
           flexDirection: "row",
-          justifyContent: "space-between",
+          justifyContent: "space-around",
           alignItems: "center",
           height: "5.125rem",
           width: "100%",
           backgroundColor: "#164439",
-          '@media screen and (min-width: 600px)': {
+          '@media screen and (minWidth: 600px)': {
             display: 'none',
           }
         }}>
 
-          <IconButton sx={{ display: { sm: 'none' }, height: "5.125rem", color: "#FFF" }} color="secondary.primary" aria-label="open drawer" edge="start" onClick={() => setDrawerOpen(true)}>
+          <IconButton sx={{ display: { sm: 'none' }, height: "5.125rem", color: "#FFF" }} color="secondary.primary" aria-label="open drawer" edge="start" onClick={() => setDrawerOpen(!drawerOpen)}>
             <MenuIcon color="secondary.primary" />
           </IconButton>
 

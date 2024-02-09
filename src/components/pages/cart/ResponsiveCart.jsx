@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { CartContext } from "../../../context/CartContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
 import { Icon } from '@iconify/react';
 import TableContainer from '@mui/material/TableContainer';
@@ -12,7 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const ResponsiveCart = ({ products, totalPrice }) => {
     const { addToCart, deleteById } = useContext(CartContext);
-
+    const navigate = useNavigate()
     const onAdd = (product, operation) => {
         if(operation === 'add'){
             if(product.quantity>=product.stock){
@@ -77,7 +77,7 @@ const ResponsiveCart = ({ products, totalPrice }) => {
                                     <TableRow key={product.id} sx={{ "&:last-child td, &:last-child th": { border: 0 }, background: "#F8F8F8" }}>
                                         <TableCell component="th" scope="row" align="left" sx={{ display: "flex", justifyContent: "start", alignItems: "center", position:'relative' }}>
                                             <div className="productContainerResponsive">
-                                                <img src={`https://naturalicy-back-production.up.railway.app/${product.thumbnail[0]}`} alt="Imagen del producto" />
+                                                <img src={`https://naturalicy-back-production.up.railway.app/${product.thumbnail[0]}`} onClick={()=>navigate(`/itemDetail/${product.id}`)} alt="Imagen del producto" />
                                                 <div className="deleteProductContainerResponsive">
                                                     <Icon onClick={() => deleteById(product.id)} icon="mdi:garbage" />
                                                 </div>
@@ -122,7 +122,7 @@ const ResponsiveCart = ({ products, totalPrice }) => {
                         </Link>
                     )}
                     {products.length > 0 && (
-                        <Link to="/checkout" className="linksOptionsResponsive">
+                        <Link to="/contactDetail" className="linksOptionsResponsive">
                             <Typography variant="stock" style={{ color: '#164439' }}>Siguiente paso</Typography>
                             <Icon icon="grommet-icons:next" />
                         </Link>

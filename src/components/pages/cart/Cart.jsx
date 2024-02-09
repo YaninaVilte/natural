@@ -16,7 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 const Cart = () => {
   const { cart, addToCart, deleteById } = useContext(CartContext);
   const [productsOnCart, setProductsOnCart] = useState([])
-  const [totalPrice, setTotalPrice] = useState(undefined)
+  const [totalPrice, setTotalPrice] = useState(0)
   const navigate = useNavigate();
 
   let productIds = [];
@@ -91,11 +91,17 @@ const Cart = () => {
     }
   };
 
-  
+  if(!productsOnCart || !productsOnCart.length){
+    return(
+      <ThemeProvider theme={theme}>
+        <Typography variant="h2" sx={{ height:'70vh', display:'flex', justifyContent:'center', alignItems:'center'}}>No hay productos en el carrito</Typography>
+      </ThemeProvider>
+    )
+  }
 
   return (
     <div>
-        {productsOnCart 
+        {productsOnCart.length > 0
         ?<ThemeProvider theme={theme}>
         <ToastContainer />
         <div className="cart">
@@ -166,7 +172,7 @@ const Cart = () => {
               </TableBody>
             </Table >
             <div className="subTotalContainer">
-            <Typography variant="stock" className="subTotal" style={{backgroundColor:'#F8F8F8'}}>Subtotal (sin envío) {totalPrice.toLocaleString('es-AR', {
+            <Typography variant="stock" className="subTotal" style={{backgroundColor:'#F8F8F8'}}>Subtotal (sin envío) {parseFloat(totalPrice).toLocaleString('es-AR', {
               style: 'currency',
               currency: 'ARS',
               minimumFractionDigits: 0,

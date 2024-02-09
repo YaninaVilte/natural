@@ -168,7 +168,7 @@ const ProductsList = ({ products, setIsChange }) => {
                   })} </TableCell>
                 <TableCell component="th" scope="row" align="left"> {product.stock} u. </TableCell>
                 <TableCell component="th" scope="row" align="left">
-                  <img src={`https://naturalicy-back-production.up.railway.app/${product.thumbnail[0]}`} alt="Product image" style={{ width: "7em", height:"5em" }}/>
+                  <img src={`https://naturalicy-back-production.up.railway.app/${product.thumbnail[0]}`} onClick={()=>navigate(`/itemDetail/${product._id}`)} alt="Product image" style={{ width: "7em", height:"5em", cursor:'pointer' }}/>
                 </TableCell>
                 {/* <TableCell component="th" scope="row" align="left">
                   <img
