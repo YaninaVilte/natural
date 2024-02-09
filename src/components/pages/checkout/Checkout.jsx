@@ -160,7 +160,7 @@ const Checkout = () => {
                   {
                     storedOrder.aditional_info ? (
                       <div className="detailInfoCheckout">
-                        <p variant="h4Custom" sx={{ marginBottom: "1rem" }} style={{overflowWrap:'anywhere'}}><b style={{fontWeight:'500'}}>Observaciones: </b>{storedOrder.aditional_info}</p>
+                        <Typography variant="h4Custom" sx={{ marginBottom: "1rem" }} style={{ overflowWrap: 'anywhere' }}><b style={{ fontWeight: '500' }}>Observaciones: </b>{storedOrder.aditional_info}</Typography>
                       </div>
                     )
                     : ('')

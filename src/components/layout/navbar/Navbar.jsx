@@ -64,7 +64,7 @@ function Navbar() {
                 </div>
               </div>
 
-              <Drawer open={listOpen} anchor="right" onClose={() => setListOpen(false)} elemento PaperProps={{
+              <Drawer open={listOpen} anchor="right" onClose={() => setListOpen(false)} PaperProps={{
                 sx: {
                   width: "15rem",
                   zIndex: "1", backgroundColor: "#F8F8F8", marginTop: "5.2rem"
@@ -85,14 +85,7 @@ function Navbar() {
           alignItems: "center",
           height: "5.125rem",
           width: "100%",
-<<<<<<< HEAD
           backgroundColor: "#164439"
-=======
-          backgroundColor: "#164439",
-          '@media screen and (minWidth: 600px)': {
-            display: 'none',
-          }
->>>>>>> secondDevelop
         }}>
 
           <IconButton sx={{ display: { sm: 'none' }, height: "5.125rem", color: "#FFF" }} color="secondary.primary" aria-label="open drawer" edge="start" onClick={() => setDrawerOpen(!drawerOpen)}>

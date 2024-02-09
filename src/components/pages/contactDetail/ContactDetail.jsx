@@ -69,7 +69,11 @@ const ContactDetail = () => {
     const navigate = useNavigate();
 
     const handleBuy = () => {
-        if (formik.isValid && (formik.values.name || formik.values.last_name || formik.values.email || formik.values.phone)) {
+        const isHomeDeliverySelected = isHomeDelivery;
+        if (
+            (isHomeDeliverySelected && formik.isValid) ||
+            (!isHomeDeliverySelected && (formik.values.name && formik.values.last_name && formik.values.email && formik.values.phone))
+        ) {
             let order = {
                 ...formik.values,
             };
@@ -85,7 +89,7 @@ const ContactDetail = () => {
                 draggable: true,
                 progress: undefined,
                 theme: "light",
-              });
+                });
             return;
         }
     };

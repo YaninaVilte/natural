@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { CartContext } from "../../../context/CartContext";
-<<<<<<< HEAD
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
     Table,
     TableBody,
@@ -11,10 +10,6 @@ import {
     Typography,
 } from "@mui/material";
 import lineCart from "../../../assets/lineCart.png";
-=======
-import { Link, useNavigate } from "react-router-dom";
-import { Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
->>>>>>> secondDevelop
 import { Icon } from '@iconify/react';
 import theme from "../../../temaConfig";
 import TableContainer from '@mui/material/TableContainer';
