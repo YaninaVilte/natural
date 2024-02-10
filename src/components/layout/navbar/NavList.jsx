@@ -40,7 +40,7 @@ function NavList({ setListOpen }) {
                 {user && user.email && user.rol !== rolAdmin ? (
                     <List >
                         <ListItem onClick={() => setListOpen(false)}>
-                            <Link component={Link} to={"/favorites"} >
+                            <Link component={Link.toString()} to={"/favorites"} >
                                 <Typography variant="drawer">Favoritos</Typography>
                             </Link>
                         </ListItem>
@@ -54,12 +54,12 @@ function NavList({ setListOpen }) {
                     <>
                         <List>
                                 <ListItem onClick={() => setListOpen(false)}>
-                                <Link component={Link} to={"/dashboard"}>
+                                <Link component={Link.toString()} to={"/dashboard"}>
                                     <Typography variant="drawer">Dashboard</Typography>
                                 </Link>
                             </ListItem>
                                 <ListItem onClick={() => setListOpen(false)}>
-                                <Link component={Link} to={"/favorites"}>
+                                <Link component={Link.toString()} to={"/favorites"}>
                                     <Typography variant="drawer">Favoritos</Typography>
                                 </Link>
                             </ListItem>
@@ -71,7 +71,7 @@ function NavList({ setListOpen }) {
                         </List>
                     </>
                 ) : (
-                            <Link component={Link} to={"/Login"} onClick={() => setListOpen(false)}>
+                            <Link component={Link.toString()} to={"/Login"} onClick={() => setListOpen(false)}>
                         <Typography variant="drawer">Iniciar sesión</Typography>
                     </Link>
                 )}

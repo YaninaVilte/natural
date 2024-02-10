@@ -6,6 +6,7 @@ import ItemDetail from "../components/pages/itemDetail/ItemDetail";
 import ItemListContainer from "../components/pages/itemList/ItemListContainer";
 // import UserOrders from "../components/pages/userOrders/UserOrders";
 import ContactDetail from "../components/pages/contactDetail/ContactDetail";
+import ShipmentSuccess from "../components/pages/ShipmentComfirmation/ShipmentSuccess";
 
 export const routes = [
   {
@@ -52,5 +53,10 @@ export const routes = [
     id: "contactDetail",
     path: "/contactDetail",
     Element: ContactDetail,
+  },
+  {
+    id: "shipmentSuccess",
+    path: "/pago-confirmado",
+    Element: ShipmentSuccess,
   },
 ];
