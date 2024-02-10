@@ -164,7 +164,7 @@ const ItemDetail = () => {
           visible={true}
           ariaLabel="rotating-triangels-loading"
           wrapperClass="rotating-triangels-wrapper"
-          colors={['#51E5FF', '#7DE2D1', '#FF7E6B']}
+          colors={['#41A88A', '#164439', '#FFFFFF']}
         />
       </div>
     );
