@@ -16,10 +16,10 @@ const ButtonBuy = styled(Button)({
   boxShadow: "none",
   borderRadius: "2px",
   textTransform: "none",
-  width: "261px",
-  height: "63px",
+  width: "16.313rem",
+  height: "3.938rem",
   backgroundColor: "#308d72",
-  marginLeft: "5px",
+  marginLeft: "0.313rem",
   textShadow: "0px 0px 5px rgba(0, 0, 0, 0.5)",
   transition: "all .2s ease",
   "&:hover": {
@@ -211,7 +211,7 @@ const ItemDetail = () => {
                     </span>
                   ))}
                 </div>
-                <Typography variant="h1" className="titleDetail">
+                <Typography variant="h1" className="titleDetail" >
                   {product.title}
                 </Typography>
                 <Typography

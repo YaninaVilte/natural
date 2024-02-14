@@ -40,7 +40,7 @@ function NavListResponsive({setDrawerOpen}) {
                 {menuItemsAdmin.map(({ id, path, title }) => (
                     <ListItem key={id}>
                         <Link to={path} onClick={() => setDrawerOpen(false)}>
-                            <Typography variant="drawer">{title}</Typography>
+                            <Typography variant="drawer" className="hoverVerdeClaro">{title}</Typography>
                         </Link>
                     </ListItem>
                 ))}
@@ -48,12 +48,12 @@ function NavListResponsive({setDrawerOpen}) {
                     <List >
                         <ListItem onClick={() => setDrawerOpen(false)}>
                             <Link component={Link} to={"/favorites"}>
-                                <Typography variant="drawer">Favoritos</Typography>
+                                <Typography variant="drawer" className="hoverVerdeClaro">Favoritos</Typography>
                             </Link>
                         </ListItem>
                         <ListItem>
                             <Link onClick={handleLogout}>
-                                <Typography variant="drawer">Cerrar sesión</Typography>
+                                <Typography variant="drawer" className="hoverVerdeClaro">Cerrar sesión</Typography>
                             </Link>
                         </ListItem>
                     </List>
@@ -61,17 +61,17 @@ function NavListResponsive({setDrawerOpen}) {
                     <List>
                             <ListItem onClick={() => setDrawerOpen(false)}>
                             <Link component={Link} to={"/dashboard"}>
-                                <Typography variant="drawer">Dashboard</Typography>
+                                    <Typography variant="drawer" className="hoverVerdeClaro">Dashboard</Typography>
                             </Link>
                         </ListItem>
                             <ListItem onClick={() => setDrawerOpen(false)}>
                             <Link component={Link} to={"/favorites"}>
-                                <Typography variant="drawer">Favoritos</Typography>
+                                    <Typography variant="drawer" className="hoverVerdeClaro">Favoritos</Typography>
                             </Link>
                         </ListItem>
                         <ListItem>
                             <Link onClick={handleLogout}>
-                                <Typography variant="drawer">Cerrar sesión</Typography>
+                                    <Typography variant="drawer" className="hoverVerdeClaro">Cerrar sesión</Typography>
                             </Link>
                         </ListItem>
                     </List>
@@ -79,7 +79,7 @@ function NavListResponsive({setDrawerOpen}) {
                     <List >
                                 <ListItem onClick={() => setDrawerOpen(false)}>
                             <Link component={Link} to={"/Login"} >
-                                <Typography variant="drawer">Iniciar sesión</Typography>
+                                        <Typography variant="drawer" className="hoverVerdeClaro">Iniciar sesión</Typography>
                             </Link>
                         </ListItem>
                     </List>

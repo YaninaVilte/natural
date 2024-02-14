@@ -11,6 +11,29 @@
   background-color: #ebebeb;
 }
 
+/* === Hover Navbar */
+.hoverVerdeClaro:hover {
+  color: #41A88A;
+  font-weight: bold;
+}
+
+/* === Hover: Footer */
+.soporte .itemsContainer .itemBox {
+  padding: 1px;
+}
+.soporte .itemsContainer .itemBox .item:hover {
+  color: #FFFF66;
+  font-weight: 500;
+}
+
+.secciones .itemsContainer .itemBox {
+  padding: 1px;
+}
+.secciones .itemsContainer .itemBox .item:hover {
+  color: #FFFF66;
+  font-weight: 500;
+}
+
 /* === Estilos: Login */
 .boxContainer {
   width: 100%;
@@ -511,7 +534,6 @@ html {
 .global-container .globalItemDetailContainer .item-container .itemDetail .titleDetail {
   width: 100%;
   margin-bottom: 1em;
-  white-space: nowrap;
   overflow-x: clip;
   text-overflow: ellipsis;
 }
@@ -893,6 +915,11 @@ html {
   height: 0.875rem;
 }
 
+@media screen and (max-width: 800px) {
+  .cart .tableContainer {
+    width: 95%;
+  }
+}
 @media screen and (max-width: 720px) {
   .responsiveCart {
     display: block;
@@ -1250,9 +1277,9 @@ html {
   margin: 0;
   color: #164439;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 700;
-  padding: 16px;
+  padding: 1rem;
 }
 
 @media screen and (max-width: 800px) {

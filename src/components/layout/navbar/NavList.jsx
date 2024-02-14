@@ -41,12 +41,12 @@ function NavList({ setListOpen }) {
                     <List >
                         <ListItem onClick={() => setListOpen(false)}>
                             <Link component={Link.toString()} to={"/favorites"} >
-                                <Typography variant="drawer">Favoritos</Typography>
+                                <Typography variant="drawer" className="hoverVerdeClaro">Favoritos</Typography>
                             </Link>
                         </ListItem>
                         <ListItem >
                             <Link onClick={handleLogout}>
-                                <Typography variant="drawer">Cerrar sesión</Typography>
+                                <Typography variant="drawer" className="hoverVerdeClaro">Cerrar sesión</Typography>
                             </Link>
                         </ListItem>
                     </List>
@@ -55,24 +55,24 @@ function NavList({ setListOpen }) {
                         <List>
                                 <ListItem onClick={() => setListOpen(false)}>
                                 <Link component={Link.toString()} to={"/dashboard"}>
-                                    <Typography variant="drawer">Dashboard</Typography>
+                                        <Typography variant="drawer" className="hoverVerdeClaro">Dashboard</Typography>
                                 </Link>
                             </ListItem>
                                 <ListItem onClick={() => setListOpen(false)}>
                                 <Link component={Link.toString()} to={"/favorites"}>
-                                    <Typography variant="drawer">Favoritos</Typography>
+                                        <Typography variant="drawer" className="hoverVerdeClaro">Favoritos</Typography>
                                 </Link>
                             </ListItem>
                             <ListItem >
                                 <Link onClick={handleLogout}>
-                                    <Typography variant="drawer">Cerrar sesión</Typography>
+                                        <Typography variant="drawer" className="hoverVerdeClaro">Cerrar sesión</Typography>
                                 </Link>
                             </ListItem>
                         </List>
                     </>
                 ) : (
                             <Link component={Link.toString()} to={"/Login"} onClick={() => setListOpen(false)}>
-                        <Typography variant="drawer">Iniciar sesión</Typography>
+                                <Typography variant="drawer" className="hoverVerdeClaro">Iniciar sesión</Typography>
                     </Link>
                 )}
             </nav>

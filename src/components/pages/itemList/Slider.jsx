@@ -89,7 +89,7 @@ const Slider = ({ space, uniqueSlide, navigationActive, paginationActive, catego
                     <SwiperSlide key={img}>
                     <div className="carrusel">
                         <div className="carruselContainer">
-                            <Typography variant="h1" sx= {{ fontSize: "2.5rem", marginBottom: "30px" }}>{title}</Typography>
+                                <Typography variant="h1" sx={{ fontSize: "2.5rem", marginBottom: "1.875rem" }}>{title}</Typography>
                             <Typography variant="carrusel">{middleText}</Typography>
                             <Typography variant="carrusel" sx={{ fontWeight: "600" }}>{boldEndText}</Typography>
                         </div>

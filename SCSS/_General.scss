@@ -7,3 +7,38 @@
 #root{
     background-color: #ebebeb;
 }
+
+
+/* === Hover Navbar */
+
+.hoverVerdeClaro:hover {
+    color: #41A88A;
+    font-weight: bold;
+}
+
+/* === Hover: Footer */
+
+.soporte {
+    .itemsContainer {
+        .itemBox {
+            padding: 1px;
+            .item:hover {
+                    color: #FFFF66;
+                    font-weight: 500;
+                }
+        }
+    }
+}
+
+.secciones {
+    .itemsContainer {
+        .itemBox {
+            padding: 1px;
+
+            .item:hover {
+                color: #FFFF66;
+                font-weight: 500;
+            }
+        }
+    }
+}
